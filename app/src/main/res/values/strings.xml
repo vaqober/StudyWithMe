@@ -3,4 +3,6 @@
     <string name="room_title">Math room</string>
     <string name="room_description">Math study room. Lorem ipsum tadalala ulala</string>
     <string name="room_theme">Math</string>
+    <string name="fragment_rooms_title">ROOMS</string>
+    <string name="filter">Filter</string>
 </resources>

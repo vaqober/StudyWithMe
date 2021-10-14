@@ -6,34 +6,39 @@
         android:name="com.studywithme.app.RoomList"
         android:layout_height="match_parent"
         android:layout_width="match_parent">
-    <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/search_edit_frame"
-            app:layout_constraintTop_toTopOf="parent">
-        <LinearLayout
-                android:id="@+id/filter_room"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-        </LinearLayout>
-
-        <ImageButton
-                android:layout_width="wrap_content"
+        <FrameLayout
+                android:id="@+id/search_frame"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:src="@android:drawable/ic_menu_search"
-                />
-    </FrameLayout>
+                app:layout_constraintTop_toTopOf="parent">
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/filter_list"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="5"
+                    tools:listitem="@layout/filter_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+            <ImageButton
+                    android:id="@+id/search_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:src="@android:drawable/ic_menu_search"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    />
+        </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list"
+            android:id="@+id/room_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginRight="@dimen/text_margin"
             app:layoutManager="LinearLayoutManager"
-            tools:context=".RoomList"
+            tools:context=".RoomListFragment"
             tools:listitem="@layout/fragment_room_list_item"
-            app:layout_constraintTop_toBottomOf="@+id/search_edit_frame"/>
+            app:layout_constraintTop_toBottomOf="@+id/search_frame"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_list_item"
+        android:gravity="center"
+        android:layout_margin="@dimen/element_margin"
+        android:padding="@dimen/text_margin">
+
+    <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="@dimen/image_size"
+            android:layout_height="@dimen/image_size"
+            android:src="@mipmap/ic_launcher"
+            android:background="@drawable/bg_round_image"
+            />
+
+    <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="@integer/material_motion_duration_long_2"
+            android:layout_marginEnd="@dimen/text_margin"
+            android:layout_marginStart="@dimen/text_margin">
+
+        <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/room_title"
+                android:textColor="@color/white"
+                android:textAppearance="?attr/textAppearanceListItem" />
+
+        <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/room_description"
+                android:textColor="@color/white"
+                android:textAppearance="?attr/textAppearanceListItemSecondary"
+                />
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/room_theme"
+            android:textColor="@color/white"
+            android:textAppearance="?attr/textAppearanceListItemSecondary" />
+</LinearLayout>

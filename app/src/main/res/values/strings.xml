@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">StudyWithMe</string>
+    <string name="room_title">Math room</string>
+    <string name="room_description">Math study room. Lorem ipsum tadalala ulala</string>
+    <string name="room_theme">Math</string>
 </resources>

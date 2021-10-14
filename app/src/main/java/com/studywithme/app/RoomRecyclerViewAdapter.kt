@@ -1,20 +1,20 @@
 package com.studywithme.app
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
 class RoomRecyclerViewAdapter(
-        private val values: List<RoomItem>,
-        private val listener: OnRoomClickListener
-)
-    : RecyclerView.Adapter<RoomRecyclerViewAdapter.ViewHolder>() {
+    private val values: List<RoomItem>,
+    private val listener: OnRoomClickListener
+) :
+    RecyclerView.Adapter<RoomRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_room_list_item, parent, false)
+            .inflate(R.layout.fragment_room_list_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -37,11 +37,14 @@ class RoomRecyclerViewAdapter(
         }
 
         override fun toString(): String {
-            return super.toString() + " title: '" + titleView.text + "'\n" + "theme: '" + themeView.text + "'\n" + "description: '" + descriptionView.text + "'\n"
+            return super.toString() +
+                " title: '" + titleView.text +
+                "'\n" + "theme: '" + themeView.text +
+                "'\n" + "description: '" + descriptionView.text + "'\n"
         }
 
         override fun onClick(v: View?) {
-            val position: Int = adapterPosition
+            val position: Int = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
                 listener.onRoomClick(position)
             }

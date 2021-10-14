@@ -1,10 +1,7 @@
 package com.studywithme.app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import androidx.appcompat.app.ActionBar
-import org.w3c.dom.Text
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -37,6 +37,11 @@ object DummyRoomContent {
     }
 
     private fun createDummyItem(position: Int): RoomItem {
-        return RoomItem(position.toString(), "Math room " + position, "Math", "Math study room. Lorem ipsum tadalala ulala")
+        return RoomItem(
+            position.toString(),
+            "Math room " + position,
+            "Math",
+            "Math study room. Lorem ipsum tadalala ulala"
+        )
     }
 }

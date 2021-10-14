@@ -7,12 +7,11 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-
 class FilterRecyclerViewAdapter(
     private val values: List<String>,
     private val listener: OnFilterClickListener
-)
-    : RecyclerView.Adapter<FilterRecyclerViewAdapter.ViewHolder>() {
+) :
+    RecyclerView.Adapter<FilterRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -46,7 +45,6 @@ class FilterRecyclerViewAdapter(
                 listener.onFilterClick(position)
             }
         }
-
     }
 
     interface OnFilterClickListener {

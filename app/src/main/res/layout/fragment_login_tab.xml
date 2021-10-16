@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -12,7 +12,7 @@
         android:paddingBottom="10sp"
         android:paddingStart="20sp"
         android:paddingTop="10sp"
-        android:background="@color/fieldColor"
+        android:background="@drawable/field_customization"
         app:layout_constraintWidth_percent=".8"
         app:layout_constraintVertical_bias=".3"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,11 +21,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
     
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/fieldColor"
+        android:background="@drawable/field_customization"
         android:hint="@string/password"
         android:paddingStart="20sp"
         android:paddingBottom="10sp"
@@ -40,7 +40,7 @@
         app:layout_constraintHorizontal_bias=".5"
         />
     
-    <Button
+   <androidx.appcompat.widget.AppCompatButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/password"
@@ -50,12 +50,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias=".7"
         android:text="@string/login"
+        android:background="@drawable/button_shape"
         android:textSize="16sp"
         android:textStyle="bold"
         
         />
     
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/forget_password"

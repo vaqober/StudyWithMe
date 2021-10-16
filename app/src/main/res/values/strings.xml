@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">StudyWithMe</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forget_password">Forget password</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

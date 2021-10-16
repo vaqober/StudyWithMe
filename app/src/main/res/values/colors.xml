@@ -10,4 +10,5 @@
     <color name="pinkWhite">#fff5f6</color>
     <color name="forgetPasswordColor">#0028F9</color>
     <color name="fieldColor">#F0F0F0</color>
+    <color name="strongPink">#ffc0cb"</color>
 </resources>

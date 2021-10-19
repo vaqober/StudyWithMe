@@ -2,7 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
     
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/email"
@@ -77,7 +79,6 @@
         />
     
     
-    
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -93,17 +94,5 @@
         android:textStyle="bold"
         />
     
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/forget_password"
-        android:layout_marginTop="5sp"
-        app:layout_constraintTop_toBottomOf="@id/confirmPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/forgetPasswordColor"/>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-    >

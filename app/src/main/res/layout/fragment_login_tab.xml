@@ -31,16 +31,31 @@
         android:paddingBottom="10sp"
         android:paddingTop="10sp"
         android:layout_marginTop="20sp"
-        app:layout_constraintVertical_bias="0"
         app:layout_constraintWidth_percent=".8"
+        app:layout_constraintVertical_bias="0"
         app:layout_constraintTop_toBottomOf="@id/email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias=".5"
         />
     
-   <androidx.appcompat.widget.AppCompatButton
+    
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/forgetPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forget_password"
+        android:layout_marginTop="5sp"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias=".85"
+        app:layout_constraintTop_toBottomOf="@id/password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/loginButton"
+        android:textColor="@color/forgetPasswordColor"/>
+    
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/password"
@@ -57,15 +72,6 @@
         
         />
     
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/forget_password"
-        android:layout_marginTop="5sp"
-        app:layout_constraintTop_toBottomOf="@id/password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/forgetPasswordColor"/>
         
     
 

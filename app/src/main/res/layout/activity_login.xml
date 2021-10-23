@@ -44,7 +44,7 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="@color/purple_200"
+            app:tabIndicatorColor="@color/strongPink"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,56 +60,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sign_up"/>
-            
         </com.google.android.material.tabs.TabLayout>
         
         
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabGoogle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="50sp"
-            app:maxImageSize="50dp"
-            app:layout_constraintTop_toBottomOf="@id/viewPager"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@drawable/fab_google_cloud"
-            android:backgroundTint="@color/pinkWhite"/>
         
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabFacebook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="50sp"
-            android:scaleType="centerCrop"
-            app:maxImageSize="50dp"
-            app:layout_constraintHorizontal_bias="0"
-            android:layout_marginLeft="20sp"
-            app:layout_constraintTop_toBottomOf="@id/viewPager"
-            app:layout_constraintStart_toEndOf="@id/fabGoogle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@drawable/fab_facebook_cloud"
-            android:backgroundTint="@color/pinkWhite"/>
-    
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabTwitter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="50sp"
-            android:scaleType="centerCrop"
-            app:maxImageSize="50dp"
-            app:layout_constraintHorizontal_bias="1"
-            android:layout_marginRight="20sp"
-            app:layout_constraintTop_toBottomOf="@id/viewPager"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/fabGoogle"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@drawable/fab_twitter_cloud"
-            android:backgroundTint="@color/pinkWhite"/>
-        
-            
         
         
     </androidx.constraintlayout.widget.ConstraintLayout>

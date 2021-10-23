@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyWithMe">
 
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER"/>

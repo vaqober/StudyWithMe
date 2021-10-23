@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="corner_radius_text_field">20dp</dimen>
+    <dimen name="margin_top_text_field">5dp</dimen>
+</resources>

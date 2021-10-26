@@ -13,8 +13,7 @@
             android:layout_width="@dimen/image_size"
             android:layout_height="@dimen/image_size"
             android:src="@mipmap/ic_launcher"
-            android:background="@drawable/bg_round_image"
-            />
+            android:background="@drawable/bg_round_image" />
 
     <LinearLayout
             android:layout_width="0dp"
@@ -39,8 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/room_description"
                 android:textColor="@color/white"
-                android:textAppearance="?attr/textAppearanceListItemSecondary"
-                />
+                android:textAppearance="?attr/textAppearanceListItemSecondary" />
     </LinearLayout>
 
     <TextView

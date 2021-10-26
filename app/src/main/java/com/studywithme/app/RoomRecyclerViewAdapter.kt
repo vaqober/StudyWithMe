@@ -7,14 +7,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class RoomRecyclerViewAdapter(
-    private val values: List<RoomItem>,
-    private val listener: OnRoomClickListener
+        private val values: List<RoomItem>,
+        private val listener: OnRoomClickListener
 ) :
-    RecyclerView.Adapter<RoomRecyclerViewAdapter.ViewHolder>() {
+        RecyclerView.Adapter<RoomRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_room_list_item, parent, false)
+                .inflate(R.layout.fragment_room_list_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -38,9 +38,9 @@ class RoomRecyclerViewAdapter(
 
         override fun toString(): String {
             return super.toString() +
-                " title: '" + titleView.text +
-                "'\n" + "theme: '" + themeView.text +
-                "'\n" + "description: '" + descriptionView.text + "'\n"
+                    " title: '" + titleView.text +
+                    "'\n" + "theme: '" + themeView.text +
+                    "'\n" + "description: '" + descriptionView.text + "'\n"
         }
 
         override fun onClick(v: View?) {

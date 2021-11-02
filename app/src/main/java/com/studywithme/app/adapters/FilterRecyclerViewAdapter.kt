@@ -1,4 +1,4 @@
-package com.studywithme.app
+package com.studywithme.app.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,16 +6,17 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.studywithme.app.R
 
 class FilterRecyclerViewAdapter(
-        private val values: List<String>,
-        private val listener: OnFilterClickListener
+    private val values: List<String>,
+    private val listener: OnFilterClickListener
 ) :
-        RecyclerView.Adapter<FilterRecyclerViewAdapter.ViewHolder>() {
+    RecyclerView.Adapter<FilterRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.filter_layout, parent, false)
+            .inflate(R.layout.filter_layout, parent, false)
         return ViewHolder(view)
     }
 

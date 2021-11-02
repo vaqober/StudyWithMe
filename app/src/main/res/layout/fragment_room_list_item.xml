@@ -4,8 +4,10 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/bg_list_item"
+        android:layout_marginStart="@dimen/element_small_margin"
+        android:layout_marginEnd="@dimen/element_small_margin"
+        android:layout_marginBottom="@dimen/element_margin"
         android:gravity="center"
-        android:layout_margin="@dimen/element_margin"
         android:padding="@dimen/text_margin">
 
     <ImageView
@@ -29,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/room_title"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textAppearance="?attr/textAppearanceListItem" />
 
         <TextView
@@ -37,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/room_description"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textAppearance="?attr/textAppearanceListItemSecondary" />
     </LinearLayout>
 
@@ -46,6 +48,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/room_theme"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textAppearance="?attr/textAppearanceListItemSecondary" />
 </LinearLayout>

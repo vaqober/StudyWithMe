@@ -1,4 +1,4 @@
-package com.studywithme.app
+package com.studywithme.app.data
 
 data class Room(
     val photo: String,

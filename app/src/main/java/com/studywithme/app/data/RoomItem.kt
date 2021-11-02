@@ -1,4 +1,4 @@
-package com.studywithme.app
+package com.studywithme.app.data
 
 data class RoomItem(val id: String, val title: String, val theme: String, val description: String) {
     override fun toString(): String {

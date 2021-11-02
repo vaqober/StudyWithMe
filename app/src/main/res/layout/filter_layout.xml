@@ -9,7 +9,7 @@
             android:id="@+id/filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:background="@drawable/bg_list_item"
             android:paddingLeft="@dimen/element_margin"
             android:paddingRight="@dimen/element_margin"
@@ -19,6 +19,6 @@
             android:id="@+id/filter_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@drawable/bg_round_image"
             android:src="@drawable/ic_delete" />
 </LinearLayout>

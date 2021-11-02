@@ -1,6 +1,6 @@
 package com.studywithme.app.dummy
 
-import com.studywithme.app.RoomItem
+import com.studywithme.app.data.RoomItem
 import java.util.ArrayList
 import java.util.HashMap
 

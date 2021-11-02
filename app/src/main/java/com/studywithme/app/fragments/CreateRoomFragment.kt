@@ -1,4 +1,4 @@
-package com.studywithme.app
+package com.studywithme.app.fragments
 
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import com.studywithme.app.R
+import com.studywithme.app.data.Room
 import com.studywithme.app.databinding.FragmentCreateRoomBinding
 
 class CreateRoomFragment : Fragment() {

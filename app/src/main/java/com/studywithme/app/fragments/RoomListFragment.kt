@@ -37,31 +37,27 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.setTitle(R.string.fragment_rooms_title)
-        setCreateFabSettings()
-        setSearchFieldSettings()
-        setSearchIconSettings()
-        setRoomListSettings()
-        setFilterListSettings()
-        setMenuSettings()
+        setAdapters()
+        setOnClickListeners()
     }
 
-    private fun setFilterListSettings() {
+    private fun setAdapters() {
         filterList.addAll(listOf("Math", "Bath", "Kek", "Pek"))
         binding.filterList.adapter = filterAdapter
-    }
-
-    private fun setRoomListSettings() {
         roomList.addAll(DummyRoomContent.ITEMS)
         binding.roomList.adapter = recyclerAdapter
     }
 
-    private fun setSearchIconSettings() {
+    private fun setOnClickListeners() {
+        binding.fabCreate.setOnClickListener {
+            openFragment(CreateRoomFragment())
+        }
+        binding.menu.setOnClickListener {
+            openFragment(MenuFragment())
+        }
         binding.searchIcon.setOnClickListener {
             openFragment(SearchFragment())
         }
-    }
-
-    private fun setSearchFieldSettings() {
         val themes = resources.getStringArray(R.array.hints_for_theme).toList()
         val adapter = ArrayAdapter(binding.root.context, R.layout.them_list_item, themes)
         binding.menuAutocomplete.setAdapter(adapter)
@@ -71,18 +67,7 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
                 binding.menuAutocomplete.showDropDown()
             }
         }
-    }
 
-    private fun setCreateFabSettings() {
-        binding.fabCreate.setOnClickListener {
-            openFragment(CreateRoomFragment())
-        }
-    }
-
-    private fun setMenuSettings() {
-        binding.menu.setOnClickListener {
-            openFragment(MenuFragment())
-        }
     }
 
     override fun onDestroyView() {

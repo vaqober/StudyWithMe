@@ -14,6 +14,8 @@
     <string name="create_room_description_text_field">Description</string>
     <string name="private_switch_text">Private</string>
     <string name="room_theme_text">Theme</string>
+    <string name="accept">accept</string>
+    <string name="decline">decline</string>
 
     <string-array name="hints_for_theme">
         <item>Math</item>

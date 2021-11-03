@@ -7,6 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background">#BBBBBB</color>
+    <color name="background">#CCCCCC</color>
     <color name="room_name_edit_text_color">#C4C4C4</color>
 </resources>

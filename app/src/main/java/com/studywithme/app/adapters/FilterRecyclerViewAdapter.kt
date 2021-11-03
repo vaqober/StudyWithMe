@@ -21,30 +21,23 @@ class FilterRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-        holder.filterView.text = item
+        holder.bind(values[position], listener, position)
     }
 
     override fun getItemCount(): Int = values.size
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
-        val filterView: TextView = view.findViewById(R.id.filter)
-        val imageView: ImageButton = view.findViewById(R.id.filter_delete)
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val filterView: TextView = view.findViewById(R.id.filter)
 
-        init {
-            filterView.setOnClickListener(this)
-            imageView.setOnClickListener(this)
+        fun bind(filter: String, listener: OnFilterClickListener, position: Int) {
+            filterView.text = filter
+            itemView.setOnClickListener {
+                listener.onFilterClick(position)
+            }
         }
 
         override fun toString(): String {
             return super.toString() + " filter: '${filterView.text}'"
-        }
-
-        override fun onClick(v: View?) {
-            val position: Int = adapterPosition
-            if (position != RecyclerView.NO_POSITION) {
-                listener.onFilterClick(position)
-            }
         }
     }
 

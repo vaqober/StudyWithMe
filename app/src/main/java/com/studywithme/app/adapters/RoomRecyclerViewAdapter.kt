@@ -12,30 +12,32 @@ class RoomRecyclerViewAdapter(
     private val values: List<RoomItem>,
     private val listener: OnRoomClickListener
 ) :
-    RecyclerView.Adapter<RoomRecyclerViewAdapter.ViewHolder>() {
+    RecyclerView.Adapter<RoomRecyclerViewAdapter.RoomItemViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomItemViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_room_list_item, parent, false)
-        return ViewHolder(view)
+        return RoomItemViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-        holder.titleView.text = item.title
-        holder.themeView.text = item.theme
-        holder.descriptionView.text = item.description
+    override fun onBindViewHolder(holder: RoomItemViewHolder, position: Int) {
+        holder.bind(values[position], listener, position)
     }
 
     override fun getItemCount(): Int = values.size
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
-        val titleView: TextView = view.findViewById(R.id.title)
-        val descriptionView: TextView = view.findViewById(R.id.description)
-        val themeView: TextView = view.findViewById(R.id.theme)
+    class RoomItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val titleView: TextView = view.findViewById(R.id.title)
+        private val descriptionView: TextView = view.findViewById(R.id.description)
+        private val themeView: TextView = view.findViewById(R.id.theme)
 
-        init {
-            view.setOnClickListener(this)
+        fun bind(room: RoomItem, listener: OnRoomClickListener, position: Int) {
+            titleView.text = room.title
+            themeView.text = room.theme
+            descriptionView.text = room.description
+            itemView.setOnClickListener {
+                listener.onRoomClick(position)
+            }
         }
 
         override fun toString(): String {
@@ -43,13 +45,6 @@ class RoomRecyclerViewAdapter(
                 " title: '" + titleView.text +
                 "'\n" + "theme: '" + themeView.text +
                 "'\n" + "description: '" + descriptionView.text + "'\n"
-        }
-
-        override fun onClick(v: View?) {
-            val position: Int = bindingAdapterPosition
-            if (position != RecyclerView.NO_POSITION) {
-                listener.onRoomClick(position)
-            }
         }
     }
 

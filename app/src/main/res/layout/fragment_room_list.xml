@@ -8,6 +8,48 @@
         android:layout_width="match_parent"
         tools:context="com.studywithme.app.fragments.RoomListFragment">
 
+    <FrameLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@color/cardview_light_background">
+
+        <ImageView
+                android:id="@+id/menu"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_menu_black_24dp"
+                android:layout_marginStart="@dimen/element_margin" />
+
+        <TextView
+                android:id="@+id/title"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/menu"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="@string/fragment_rooms_title"
+                android:textColor="@color/black" />
+
+        <ImageView
+                android:id="@+id/search_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_gravity="end"
+                android:layout_width="@dimen/image_search_size"
+                android:layout_height="@dimen/image_search_size"
+                android:src="@android:drawable/ic_search_category_default"
+                android:contentDescription="@string/filter"
+                android:layout_marginStart="@dimen/element_margin" />
+    </FrameLayout>
+
+
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/search_input"
             android:layout_width="match_parent"
@@ -20,22 +62,22 @@
             app:boxCornerRadiusBottomStart="@dimen/corner_radius_small_field"
             app:boxCornerRadiusTopStart="@dimen/corner_radius_small_field"
             app:boxBackgroundColor="@color/cardview_light_background"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <AutoCompleteTextView
-                android:id="@+id/menuAutocomplete"
+                android:id="@+id/menu_autocomplete"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/search"
-                android:gravity="center"/>
+                android:gravity="center" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/filterList"
+            android:id="@+id/filter_list"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="5"
             tools:listitem="@layout/filter_layout"
@@ -56,7 +98,7 @@
             android:layout_marginEnd="@dimen/element_margin"
             app:layoutManager="LinearLayoutManager"
             tools:listitem="@layout/fragment_room_list_item"
-            app:layout_constraintTop_toBottomOf="@+id/filterList" />
+            app:layout_constraintTop_toBottomOf="@+id/filter_list" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_create"
@@ -68,17 +110,5 @@
             android:layout_gravity="end|bottom"
             android:src="@android:drawable/ic_input_add"
             android:contentDescription="@string/newFloat"
-            android:layout_margin="16dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_filter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            style="@style/Widget.MaterialComponents.FloatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:src="@android:drawable/ic_search_category_default"
-            android:contentDescription="@string/filter"
             android:layout_margin="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

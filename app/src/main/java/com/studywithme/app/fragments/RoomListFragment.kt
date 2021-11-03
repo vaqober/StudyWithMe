@@ -29,7 +29,7 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRoomListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -39,9 +39,10 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
         activity?.setTitle(R.string.fragment_rooms_title)
         setCreateFabSettings()
         setSearchFieldSettings()
-        // setFilterFabSettings()
+        // setSearchIconSettings()
         setRoomListSettings()
         setFilterListSettings()
+        setMenuSettings()
     }
 
     private fun setFilterListSettings() {
@@ -54,8 +55,10 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
         binding.roomList.adapter = recyclerAdapter
     }
 
-    private fun setFilterFabSettings() {
-        TODO("Not yet implemented")
+    private fun setSearchIconSettings() {
+        binding.searchIcon.setOnClickListener {
+            TODO()
+        }
     }
 
     private fun setSearchFieldSettings() {
@@ -75,6 +78,17 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
             parentFragmentManager.beginTransaction()
                 .add(R.id.fragment_container, CreateRoomFragment(), null)
                 .show(CreateRoomFragment())
+                .hide(this)
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+    }
+
+    private fun setMenuSettings() {
+        binding.menu.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .add(R.id.fragment_container, MenuFragment(), null)
+                .show(MenuFragment())
                 .hide(this)
                 .addToBackStack(null)
                 .commitAllowingStateLoss()

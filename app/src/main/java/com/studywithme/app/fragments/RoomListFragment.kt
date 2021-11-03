@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.studywithme.app.R
 import com.studywithme.app.adapters.FilterRecyclerViewAdapter
@@ -91,7 +90,6 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
         _binding = null
     }
 
-
     override fun onFilterClick(position: Int) {
         Toast.makeText(context, "Filter $position clicked", Toast.LENGTH_SHORT).show()
         filterList.removeAt(position)
@@ -101,10 +99,9 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
     override fun onRoomClick(position: Int) {
         Toast.makeText(context, "Room $position clicked", Toast.LENGTH_SHORT).show()
         openFragment(MembersFragment())
-
     }
 
-    private fun openFragment(fragment: Fragment, ) {
+    private fun openFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction()
             .add(R.id.fragment_container, fragment, null)
             .show(fragment)

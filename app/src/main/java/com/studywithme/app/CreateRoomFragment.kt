@@ -76,10 +76,10 @@ class CreateRoomFragment : Fragment() {
     ) { uri: Uri? ->
         uri?.let {
             val inputStream = activity?.contentResolver?.openInputStream(uri)
-            binding.addPhotoButton.setImageDrawable(
+            binding.photoImage.setImageDrawable(
                 Drawable.createFromStream(inputStream, uri.toString())
             )
-            binding.addPhotoButton.setPadding(0)
+            binding.photoImage.setPadding(0)
             imageUri = uri
         }
     }

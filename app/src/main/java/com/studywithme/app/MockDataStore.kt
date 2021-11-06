@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object MockDataStore {
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://6182bc6902f60a001775cea2.mockapi.io/swm/")
+        .baseUrl("https://6161de9737492500176314c6.mockapi.io/api/develop/v1/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

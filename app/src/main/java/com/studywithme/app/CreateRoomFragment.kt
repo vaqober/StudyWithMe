@@ -9,17 +9,20 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.studywithme.app.databinding.FragmentCreateRoomBinding
+import com.studywithme.app.models.Room
+import kotlinx.coroutines.launch
 
 class CreateRoomFragment : Fragment() {
 
     private var _binding: FragmentCreateRoomBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private var imageUri = Uri.parse(
+        "android.resource://com.studywithme.app/drawable/outline_add_a_photo_black_48"
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,12 +40,21 @@ class CreateRoomFragment : Fragment() {
 
     private fun setCreateButtonSettings() {
         binding.createButton.setOnClickListener {
+            val photo = imageUri.toString()
             val name = binding.roomNameTextField.editText?.text.toString()
             val theme = binding.roomThemeTextField.editText?.text.toString()
             val description = binding.roomDescriptionTextField.editText?.text.toString()
             val isPrivate = binding.privateSwitch.isChecked
-            val room = Room("", name, theme, description, isPrivate)
-            Toast.makeText(it.context, room.toString(), Toast.LENGTH_LONG).show()
+            val room = Room(photo, name, theme, description, isPrivate)
+
+            if (name == "") {
+                Toast.makeText(context, "Missing name", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            lifecycleScope.launch {
+                MockDataStore.postRoom(room)
+            }
         }
     }
 
@@ -62,11 +74,17 @@ class CreateRoomFragment : Fragment() {
     private val selectImageFromGalleryResult = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
-        uri?.let { binding.addPhotoButton.icon = Drawable.createFromPath(uri.path) }
+        uri?.let {
+            val inputStream = activity?.contentResolver?.openInputStream(uri)
+            binding.addPhotoButton.setImageDrawable(
+                Drawable.createFromStream(inputStream, uri.toString())
+            )
+            binding.addPhotoButton.setPadding(0)
+            imageUri = uri
+        }
     }
 
     private fun setPhotoPickButtonSettings() {
-        // TODO выбрать картинку с помощью интента и ActivityResultContract
         binding.addPhotoButton.setOnClickListener {
             selectImageFromGalleryResult.launch("image/*")
         }

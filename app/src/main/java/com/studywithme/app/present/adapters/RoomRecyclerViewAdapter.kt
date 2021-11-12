@@ -9,7 +9,7 @@ import com.studywithme.app.R
 import com.studywithme.app.objects.room.Room
 
 class RoomRecyclerViewAdapter(
-    private val values: List<Room>,
+    val values: MutableList<Room>,
     private val listener: OnRoomClickListener
 ) :
     RecyclerView.Adapter<RoomRecyclerViewAdapter.RoomItemViewHolder>() {

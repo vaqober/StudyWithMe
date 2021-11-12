@@ -1,4 +1,4 @@
-package com.studywithme.app
+package com.studywithme.app.present.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

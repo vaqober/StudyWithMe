@@ -20,14 +20,14 @@ object DummyRoomContent {
     /**
      * A map of sample (dummy) items, by ID.
      */
-    val ITEM_MAP: MutableMap<Long, Room> = HashMap()
+    val ITEM_MAP: MutableMap<String, Room> = HashMap()
 
     private val COUNT = 25
 
     init {
         // Add some sample items.
         for (i in 1..COUNT) {
-            addItem(createDummyItem(i))
+            addItem(createDummyItem(i.toString()))
         }
     }
 
@@ -36,9 +36,9 @@ object DummyRoomContent {
         ITEM_MAP[item.getId()] = item
     }
 
-    private fun createDummyItem(position: Int): Room {
+    private fun createDummyItem(position: String): Room {
         return Room(
-            position.toLong(),
+            position,
             "Math room " + position,
             "Math",
             "Math study room. Lorem ipsum tadalala ulala"

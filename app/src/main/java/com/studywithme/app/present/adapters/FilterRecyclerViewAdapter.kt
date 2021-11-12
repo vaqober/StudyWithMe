@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.studywithme.app.R
 
 class FilterRecyclerViewAdapter(
-    private val values: List<String>,
+    val values: MutableList<String>,
     private val listener: OnFilterClickListener
 ) :
     RecyclerView.Adapter<FilterRecyclerViewAdapter.ViewHolder>() {

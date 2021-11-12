@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 
 data class RoomDto(
 	@SerialName("id")
-	val id: Long?,
+	val id: String?,
 	@SerialName("title")
 	val title: String,
 	@SerialName("theme")

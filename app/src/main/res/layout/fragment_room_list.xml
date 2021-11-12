@@ -6,7 +6,7 @@
         android:name="com.studywithme.app.RoomList"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        tools:context="com.studywithme.app.fragments.RoomListFragment">
+        tools:context="com.studywithme.app.present.fragments.RoomListFragment">
 
     <FrameLayout
             android:id="@+id/toolbar"

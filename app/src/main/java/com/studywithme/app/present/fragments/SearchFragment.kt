@@ -1,4 +1,4 @@
-package com.studywithme.app.fragments
+package com.studywithme.app.present.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

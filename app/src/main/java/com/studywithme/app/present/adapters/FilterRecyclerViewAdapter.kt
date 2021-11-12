@@ -1,4 +1,4 @@
-package com.studywithme.app.adapters
+package com.studywithme.app.present.adapters
 
 import android.view.LayoutInflater
 import android.view.View

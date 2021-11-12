@@ -1,7 +1,7 @@
 package com.studywithme.app
 
-import com.studywithme.app.models.MockAPI
-import com.studywithme.app.models.Room
+import com.studywithme.app.present.models.MockAPI
+import com.studywithme.app.objects.room.RoomDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
@@ -15,7 +15,7 @@ object MockDataStore {
 
     private val mockApi = retrofit.create(MockAPI::class.java)
 
-    suspend fun postRoom(room: Room): Room = withContext(Dispatchers.IO) {
+    suspend fun postRoom(room: RoomDto): RoomDto = withContext(Dispatchers.IO) {
         return@withContext mockApi.postRoom(room).execute().body() ?: error("error")
     }
 }

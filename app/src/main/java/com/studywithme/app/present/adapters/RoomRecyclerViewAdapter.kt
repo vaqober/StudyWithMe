@@ -1,4 +1,4 @@
-package com.studywithme.app.adapters
+package com.studywithme.app.present.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.studywithme.app.R
-import com.studywithme.app.data.RoomItem
+import com.studywithme.app.objects.room.Room
 
 class RoomRecyclerViewAdapter(
-    private val values: List<RoomItem>,
+    private val values: List<Room>,
     private val listener: OnRoomClickListener
 ) :
     RecyclerView.Adapter<RoomRecyclerViewAdapter.RoomItemViewHolder>() {
@@ -31,10 +31,10 @@ class RoomRecyclerViewAdapter(
         private val descriptionView: TextView = view.findViewById(R.id.description)
         private val themeView: TextView = view.findViewById(R.id.theme)
 
-        fun bind(room: RoomItem, listener: OnRoomClickListener, position: Int) {
-            titleView.text = room.title
-            themeView.text = room.theme
-            descriptionView.text = room.description
+        fun bind(room: Room, listener: OnRoomClickListener, position: Int) {
+            titleView.text = room.getTitle()
+            themeView.text = room.getTheme()
+            descriptionView.text = room.getDescription()
             itemView.setOnClickListener {
                 listener.onRoomClick(position)
             }

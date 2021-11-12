@@ -1,6 +1,6 @@
 package com.studywithme.app.dummy
 
-import com.studywithme.app.data.RoomItem
+import com.studywithme.app.objects.room.Room
 import java.util.ArrayList
 import java.util.HashMap
 
@@ -15,12 +15,12 @@ object DummyRoomContent {
     /**
      * An array of sample (dummy) items.
      */
-    val ITEMS: MutableList<RoomItem> = ArrayList()
+    val ITEMS: MutableList<Room> = ArrayList()
 
     /**
      * A map of sample (dummy) items, by ID.
      */
-    val ITEM_MAP: MutableMap<String, RoomItem> = HashMap()
+    val ITEM_MAP: MutableMap<Long, Room> = HashMap()
 
     private val COUNT = 25
 
@@ -31,14 +31,14 @@ object DummyRoomContent {
         }
     }
 
-    private fun addItem(item: RoomItem) {
+    private fun addItem(item: Room) {
         ITEMS.add(item)
-        ITEM_MAP.put(item.id, item)
+        ITEM_MAP[item.getId()] = item
     }
 
-    private fun createDummyItem(position: Int): RoomItem {
-        return RoomItem(
-            position.toString(),
+    private fun createDummyItem(position: Int): Room {
+        return Room(
+            position.toLong(),
             "Math room " + position,
             "Math",
             "Math study room. Lorem ipsum tadalala ulala"

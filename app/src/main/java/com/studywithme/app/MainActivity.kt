@@ -3,7 +3,8 @@ package com.studywithme.app
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
-import com.studywithme.app.fragments.RoomListFragment
+import com.studywithme.app.R
+import com.studywithme.app.present.fragments.RoomListFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

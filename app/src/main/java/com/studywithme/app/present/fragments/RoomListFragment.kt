@@ -1,4 +1,4 @@
-package com.studywithme.app.fragments
+package com.studywithme.app.present.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,19 +8,19 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.studywithme.app.R
-import com.studywithme.app.adapters.FilterRecyclerViewAdapter
-import com.studywithme.app.adapters.FilterRecyclerViewAdapter.OnFilterClickListener
-import com.studywithme.app.adapters.RoomRecyclerViewAdapter
-import com.studywithme.app.adapters.RoomRecyclerViewAdapter.OnRoomClickListener
-import com.studywithme.app.data.RoomItem
+import com.studywithme.app.present.adapters.FilterRecyclerViewAdapter
+import com.studywithme.app.present.adapters.FilterRecyclerViewAdapter.OnFilterClickListener
+import com.studywithme.app.present.adapters.RoomRecyclerViewAdapter
+import com.studywithme.app.present.adapters.RoomRecyclerViewAdapter.OnRoomClickListener
 import com.studywithme.app.databinding.FragmentRoomListBinding
 import com.studywithme.app.dummy.DummyRoomContent
+import com.studywithme.app.objects.room.Room
 
 class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener {
 
     private var _binding: FragmentRoomListBinding? = null
     private val binding get() = _binding!!
-    private val roomList: MutableList<RoomItem> = mutableListOf()
+    private val roomList: MutableList<Room> = mutableListOf()
     private val filterList: MutableList<String> = mutableListOf()
     private val recyclerAdapter = RoomRecyclerViewAdapter(roomList, this)
     private val filterAdapter = FilterRecyclerViewAdapter(filterList, this)

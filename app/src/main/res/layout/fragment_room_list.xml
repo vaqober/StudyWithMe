@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:background="@color/background"
         android:name="com.studywithme.app.RoomList"
         android:focusable="true"
         android:clickable="true"
@@ -10,47 +9,6 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         tools:context="com.studywithme.app.present.fragments.RoomListFragment">
-
-    <FrameLayout
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:background="@color/cardview_light_background">
-
-        <ImageView
-                android:id="@+id/menu"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu_black_24dp"
-                android:layout_marginStart="@dimen/element_margin" />
-
-        <TextView
-                android:id="@+id/title"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/menu"
-                app:layout_constraintRight_toRightOf="parent"
-                android:text="@string/fragment_rooms_title"
-                android:textColor="@color/black" />
-
-        <ImageView
-                android:id="@+id/search_icon"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_gravity="end"
-                android:layout_width="@dimen/image_search_size"
-                android:layout_height="@dimen/image_search_size"
-                android:src="@android:drawable/ic_search_category_default"
-                android:contentDescription="@string/filter"
-                android:layout_marginStart="@dimen/element_margin" />
-    </FrameLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -65,7 +23,7 @@
             app:boxCornerRadiusBottomStart="@dimen/corner_radius_small_field"
             app:boxCornerRadiusTopStart="@dimen/corner_radius_small_field"
             app:boxBackgroundColor="@color/cardview_light_background"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
 

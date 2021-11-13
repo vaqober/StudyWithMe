@@ -68,12 +68,6 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
         binding.fabCreate.setOnClickListener {
             openFragment(CreateRoomFragment())
         }
-        binding.menu.setOnClickListener {
-            openFragment(MenuFragment())
-        }
-        binding.searchIcon.setOnClickListener {
-            openFragment(SearchFragment())
-        }
         val themes = resources.getStringArray(R.array.hints_for_theme).toList()
         val adapter = ArrayAdapter(binding.root.context, R.layout.them_list_item, themes)
         binding.menuAutocomplete.setAdapter(adapter)

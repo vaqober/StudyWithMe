@@ -53,10 +53,11 @@
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/room_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/element_margin"
             android:layout_marginStart="@dimen/element_margin"
             android:layout_marginEnd="@dimen/element_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layoutManager="LinearLayoutManager"
             tools:listitem="@layout/fragment_room_list_item"
             app:layout_constraintTop_toBottomOf="@+id/filter_list" />

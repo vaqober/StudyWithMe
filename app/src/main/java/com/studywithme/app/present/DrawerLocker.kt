@@ -1,5 +1,5 @@
 package com.studywithme.app.present
 
 interface DrawerLocker {
-	fun setDrawerLocked(shouldLock: Boolean)
+    fun setDrawerLocked(shouldLock: Boolean)
 }

@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.studywithme.app.R
 import com.studywithme.app.databinding.ActivityMainBinding
-import com.studywithme.app.databinding.FragmentCreateRoomBinding
 import com.studywithme.app.present.fragments.RoomListFragment
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +33,8 @@ class MainActivity : AppCompatActivity() {
             binding.drawer,
             binding.toolbar.root,
             R.string.nav_open_drawer,
-            R.string.nav_close_drawer)
+            R.string.nav_close_drawer
+        )
         binding.drawer.addDrawerListener(toggle)
         toggle.syncState()
     }

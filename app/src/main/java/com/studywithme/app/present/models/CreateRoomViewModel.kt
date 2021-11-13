@@ -14,7 +14,7 @@ import com.studywithme.app.present.State
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class CreateRoomViewModel: ViewModel(), KoinComponent {
+class CreateRoomViewModel : ViewModel(), KoinComponent {
     private val handler = Handler(Looper.getMainLooper())
     private val provider by inject<IRoomProvider>()
     private val state = MutableLiveData<State<AbstractRoom>>()

@@ -9,15 +9,12 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.view.isVisible
 import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.studywithme.app.MockDataStore
 import com.studywithme.app.R
 import com.studywithme.app.databinding.FragmentCreateRoomBinding
-import com.studywithme.app.objects.room.Room
 import com.studywithme.app.objects.room.RoomDto
 import com.studywithme.app.present.State
 import com.studywithme.app.present.models.CreateRoomViewModel
@@ -103,10 +100,12 @@ class CreateRoomFragment : Fragment() {
         viewModel.getState().observe(viewLifecycleOwner) {
             when (it) {
                 is State.Fail -> {
-                    Toast.makeText(requireContext(), "Fail: ${it.error}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Fail: ${it.error}", Toast.LENGTH_LONG)
+                        .show()
                 }
                 is State.Success -> {
-                    Toast.makeText(requireContext(), "Success: ${it.data}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Success: ${it.data}", Toast.LENGTH_LONG)
+                        .show()
                 }
             }
         }

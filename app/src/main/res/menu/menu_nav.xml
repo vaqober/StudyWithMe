@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_rooms"
+            android:title="@string/nav_room_list"
+            android:icon="@drawable/outline_list_alt_black_36"/>
+        <item
+            android:id="@+id/nav_settings"
+            android:title="@string/nav_settings"
+            android:icon="@drawable/outline_settings_black_36"/>
+        <item
+            android:id="@+id/nav_logout"
+            android:title="@string/nav_logout"
+            android:icon="@drawable/outline_logout_black_36"/>
+    </group>
+</menu>

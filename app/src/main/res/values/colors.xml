@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background">#CCCCCC</color>
     <color name="room_name_edit_text_color">#C4C4C4</color>
+    <color name="nav_profile_header_background_color">#6F97DD</color>
 </resources>

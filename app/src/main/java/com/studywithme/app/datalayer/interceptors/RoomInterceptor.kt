@@ -1,4 +1,4 @@
-package company.vk.education.lection07.datalayer.interceptors
+package com.studywithme.app.datalayer.interceptors
 
 import okhttp3.Interceptor
 import okhttp3.Response

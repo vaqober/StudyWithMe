@@ -10,7 +10,6 @@ import com.studywithme.app.databinding.ActivityMainBinding
 import com.studywithme.app.present.DrawerLocker
 import com.studywithme.app.present.fragments.RoomListFragment
 
-
 class MainActivity : AppCompatActivity(), DrawerLocker {
 
     private var _binding: ActivityMainBinding? = null

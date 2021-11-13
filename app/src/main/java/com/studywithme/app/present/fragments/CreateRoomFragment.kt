@@ -21,7 +21,6 @@ import com.studywithme.app.present.State
 import com.studywithme.app.present.models.CreateRoomViewModel
 import kotlinx.coroutines.launch
 
-
 class CreateRoomFragment : Fragment() {
 
     private val viewModel by viewModels<CreateRoomViewModel>()

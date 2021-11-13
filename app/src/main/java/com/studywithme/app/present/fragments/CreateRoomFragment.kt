@@ -11,12 +11,10 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
-
-import com.studywithme.app.R
 import androidx.lifecycle.lifecycleScope
 import com.studywithme.app.MockDataStore
+import com.studywithme.app.R
 import com.studywithme.app.databinding.FragmentCreateRoomBinding
-import com.studywithme.app.objects.room.Room
 import com.studywithme.app.objects.room.RoomDto
 import kotlinx.coroutines.launch
 
@@ -54,8 +52,7 @@ class CreateRoomFragment : Fragment() {
             if (title == "") {
                 Toast.makeText(context, "Missing name", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }
-            else {
+            } else {
                 lifecycleScope.launch {
                     MockDataStore.postRoom(room)
                 }

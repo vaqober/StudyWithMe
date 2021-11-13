@@ -2,6 +2,7 @@ package com.studywithme.app.present.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -42,12 +43,25 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
         observeModel()
         setAdapters()
         setOnClickListeners()
+        setSearchListeners(view)
     }
 
     private fun setAdapters() {
         // filterList.addAll(listOf("Math", "Bath", "Kek", "Pek"))
         binding.filterList.adapter = filterAdapter
         binding.roomList.adapter = recyclerAdapter
+    }
+
+    private fun setSearchListeners(view: View) {
+        view.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_UP -> {
+                    v.performClick()
+                    viewModel.findAll()
+                }
+            }
+            true
+        }
     }
 
     private fun setOnClickListeners() {
@@ -83,6 +97,7 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
                 }
                 is State.Success -> {
                     binding.loadingProgress.isVisible = false
+                    recyclerAdapter.values.clear()
                     recyclerAdapter.values.addAll(it.data.map { it -> it as Room })
                     recyclerAdapter.notifyDataSetChanged()
                     Toast.makeText(requireContext(), "Success: ${it.data.size}", Toast.LENGTH_LONG)

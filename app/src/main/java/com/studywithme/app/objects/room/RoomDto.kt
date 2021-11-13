@@ -12,7 +12,7 @@ data class RoomDto(
     @SerializedName("description")
     val description: String?,
     @SerializedName("photoUri")
-    val photoUrl: String?,
+    val photoUri: String?,
     @SerializedName("isPrivate")
     val isPrivate: Boolean
 )

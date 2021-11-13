@@ -1,8 +1,8 @@
 package com.studywithme.app.objects.room
 
+import com.google.gson.annotations.SerializedName
 import com.studywithme.app.objects.AbstractObject
-import kotlinx.serialization.SerialName
 
 class RoomList<TYPE> : AbstractObject() {
-    @SerialName("rooms") var rooms = emptyList<TYPE>()
+    @SerializedName("rooms") var rooms = emptyList<TYPE>()
 }

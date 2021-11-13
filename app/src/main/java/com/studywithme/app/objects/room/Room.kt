@@ -1,15 +1,15 @@
 package com.studywithme.app.objects.room
 
+import com.google.gson.annotations.SerializedName
 import com.studywithme.app.objects.AbstractRoom
-import kotlinx.serialization.SerialName
 
 class Room(
-    @SerialName("id") private val id: String = "",
-    @SerialName("title") private val title: String,
-    @SerialName("theme") private val theme: String = "",
-    @SerialName("description") private val description: String = "",
-    @SerialName("isPrivate") private val isPrivate: Boolean = false,
-    @SerialName("photoUri") private val photoUri: String = ""
+    @SerializedName("id") private val id: String = "",
+    @SerializedName("title") private val title: String,
+    @SerializedName("theme") private val theme: String = "",
+    @SerializedName("description") private val description: String = "",
+    @SerializedName("isPrivate") private val isPrivate: Boolean = false,
+    @SerializedName("photoUri") private val photoUri: String = ""
 ) : AbstractRoom() {
     override fun getId(): String = id
     override fun getTitle(): String = title

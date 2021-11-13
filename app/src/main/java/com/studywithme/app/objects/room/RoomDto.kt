@@ -1,18 +1,18 @@
 package com.studywithme.app.objects.room
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 
 data class RoomDto(
-    @SerialName("id")
+    @SerializedName("id")
     val id: String?,
-    @SerialName("title")
+    @SerializedName("title")
     val title: String,
-    @SerialName("theme")
+    @SerializedName("theme")
     val theme: String?,
-    @SerialName("description")
+    @SerializedName("description")
     val description: String?,
-    @SerialName("photoUri")
+    @SerializedName("photoUri")
     val photoUrl: String?,
-    @SerialName("isPrivate")
+    @SerializedName("isPrivate")
     val isPrivate: Boolean
 )

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="element_margin">8dp</dimen>
+    <dimen name="element_small_margin">4dp</dimen>
+    <dimen name="image_size">50dp</dimen>
+    <dimen name="image_search_size">30dp</dimen>
+    <dimen name="search_size">40dp</dimen>
+    <dimen name="small_text_size">15sp</dimen>
+    <dimen name="corners_item_radius">30dp</dimen>
     <dimen name="corner_radius_text_field">20dp</dimen>
+    <dimen name="corner_radius_small_field">5dp</dimen>
     <dimen name="margin_top_text_field">5dp</dimen>
 </resources>

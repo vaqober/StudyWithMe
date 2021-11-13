@@ -91,4 +91,9 @@ class CreateRoomFragment : Fragment() {
             selectImageFromGalleryResult.launch("image/*")
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

@@ -17,15 +17,15 @@ val roomsModule = module() {
     factory<IRoomProvider> { RoomProvider(get()) }
 
     factory<IRoomAccessor> {
-        val openWeatherUrl = "https://6161de9737492500176314c6.mockapi.io/api/develop/v1/"
-        val openWeatherKey = "<SET HERE API_KEY>"
+        val baseUrl = "https://6161de9737492500176314c6.mockapi.io/api/develop/v1/"
+        val baseKey = "<SET HERE API_KEY>"
 
         val loggingInterceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
 
         val client = OkHttpClient.Builder()
-            .addInterceptor(RoomInterceptor(openWeatherKey))
+            .addInterceptor(RoomInterceptor(baseKey))
             .addNetworkInterceptor(loggingInterceptor)
             .build()
 
@@ -35,7 +35,7 @@ val roomsModule = module() {
         val gsonConverter = GsonConverterFactory.create(gson)
 
         Retrofit.Builder()
-            .baseUrl(openWeatherUrl)
+            .baseUrl(baseUrl)
             .addConverterFactory(gsonConverter)
             .client(client)
             .build()

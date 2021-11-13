@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">StudyWithMe</string>
+    <string name="room_title">Math room</string>
+    <string name="search">Search</string>
+    <string name="newFloat">New</string>
+    <string name="room_description">Math study room. Lorem ipsum tadalala ulala</string>
+    <string name="room_theme">Math</string>
+    <string name="fragment_rooms_title">ROOMS</string>
+    <string name="filter">Filter</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="create_room_room_name_text_field_hint">Room name</string>
@@ -7,6 +14,8 @@
     <string name="create_room_description_text_field">Description</string>
     <string name="private_switch_text">Private</string>
     <string name="room_theme_text">Theme</string>
+    <string name="accept">accept</string>
+    <string name="decline">decline</string>
 
     <string-array name="hints_for_theme">
         <item>Math</item>

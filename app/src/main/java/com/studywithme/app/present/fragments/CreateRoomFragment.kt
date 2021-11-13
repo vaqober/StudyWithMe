@@ -1,4 +1,4 @@
-package com.studywithme.app
+package com.studywithme.app.present.fragments
 
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -12,8 +12,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.studywithme.app.MockDataStore
+import com.studywithme.app.R
 import com.studywithme.app.databinding.FragmentCreateRoomBinding
-import com.studywithme.app.models.Room
+import com.studywithme.app.objects.room.RoomDto
 import kotlinx.coroutines.launch
 
 class CreateRoomFragment : Fragment() {
@@ -41,19 +43,19 @@ class CreateRoomFragment : Fragment() {
     private fun setCreateButtonSettings() {
         binding.createButton.setOnClickListener {
             val photo = imageUri.toString()
-            val name = binding.roomNameTextField.editText?.text.toString()
+            val title = binding.roomNameTextField.editText?.text.toString()
             val theme = binding.roomThemeTextField.editText?.text.toString()
             val description = binding.roomDescriptionTextField.editText?.text.toString()
             val isPrivate = binding.privateSwitch.isChecked
-            val room = Room(photo, name, theme, description, isPrivate)
+            val room = RoomDto(null, title, theme, description, photo, isPrivate)
 
-            if (name == "") {
+            if (title == "") {
                 Toast.makeText(context, "Missing name", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }
-
-            lifecycleScope.launch {
-                MockDataStore.postRoom(room)
+            } else {
+                lifecycleScope.launch {
+                    MockDataStore.postRoom(room)
+                }
             }
         }
     }

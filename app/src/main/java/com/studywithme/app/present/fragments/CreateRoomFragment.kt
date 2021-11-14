@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.studywithme.app.R
 import com.studywithme.app.databinding.FragmentCreateRoomBinding
 import com.studywithme.app.objects.room.RoomDto
+import com.studywithme.app.present.DrawerLocker
 import com.studywithme.app.present.State
 import com.studywithme.app.present.models.CreateRoomViewModel
 import kotlinx.coroutines.launch
@@ -40,6 +41,7 @@ class CreateRoomFragment : Fragment() {
         setThemeTextFieldSettings()
         setPhotoPickButtonSettings()
         observeModel()
+        (activity as DrawerLocker?)!!.setDrawerLocked(true)
 
         return binding.root
     }
@@ -114,5 +116,6 @@ class CreateRoomFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        (activity as DrawerLocker?)!!.setDrawerLocked(false)
     }
 }

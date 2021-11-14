@@ -3,12 +3,14 @@ package com.studywithme.app.present.activity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentTransaction
 import com.studywithme.app.R
 import com.studywithme.app.databinding.ActivityMainBinding
+import com.studywithme.app.present.DrawerLocker
 import com.studywithme.app.present.fragments.RoomListFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), DrawerLocker {
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
@@ -37,5 +39,15 @@ class MainActivity : AppCompatActivity() {
         )
         binding.drawer.addDrawerListener(toggle)
         toggle.syncState()
+    }
+
+    override fun setDrawerLocked(shouldLock: Boolean) {
+        if (shouldLock) {
+            binding.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            supportActionBar?.hide()
+        } else {
+            binding.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            supportActionBar?.show()
+        }
     }
 }

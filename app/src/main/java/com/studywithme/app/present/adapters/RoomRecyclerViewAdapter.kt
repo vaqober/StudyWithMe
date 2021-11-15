@@ -1,9 +1,12 @@
 package com.studywithme.app.present.adapters
 
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.studywithme.app.R
 import com.studywithme.app.objects.room.Room
@@ -42,13 +45,38 @@ class RoomRecyclerViewAdapter(
 
         override fun toString(): String {
             return super.toString() +
-                " title: '" + titleView.text +
-                "'\n" + "theme: '" + themeView.text +
-                "'\n" + "description: '" + descriptionView.text + "'\n"
+                    " title: '" + titleView.text +
+                    "'\n" + "theme: '" + themeView.text +
+                    "'\n" + "description: '" + descriptionView.text + "'\n"
         }
     }
 
     interface OnRoomClickListener {
         fun onRoomClick(position: Int)
+    }
+
+    fun update(newList: List<Room>) {
+        val messageDiffUtilCallback =
+            RoomDiffUtilCallback(values, newList)
+        DiffUtil.calculateDiff(messageDiffUtilCallback).dispatchUpdatesTo(this)
+    }
+
+    class RoomDiffUtilCallback(
+        private val mOldList: List<Room>,
+        private val mNewList: List<Room>
+    ) : DiffUtil.Callback() {
+
+        override fun getOldListSize(): Int = mOldList.size
+
+        override fun getNewListSize(): Int = mNewList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+            mOldList[oldItemPosition] == mNewList[newItemPosition]
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+            mOldList[oldItemPosition].getId() == mNewList[newItemPosition].getId()
+                    && mOldList[oldItemPosition].getTheme() == mNewList[newItemPosition].getTheme()
+                    && mOldList[oldItemPosition].getDescription() == mNewList[newItemPosition].getDescription()
+                    && mOldList[oldItemPosition].getTitle() == mNewList[newItemPosition].getTitle()
     }
 }

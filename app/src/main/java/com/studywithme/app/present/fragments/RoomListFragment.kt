@@ -1,15 +1,21 @@
 package com.studywithme.app.present.fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.os.postDelayed
 import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.studywithme.app.R
 import com.studywithme.app.databinding.FragmentRoomListBinding
 import com.studywithme.app.objects.room.Room
@@ -26,6 +32,7 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
     private val binding get() = _binding!!
     private val recyclerAdapter = RoomRecyclerViewAdapter(mutableListOf(), this)
     private val filterAdapter = FilterRecyclerViewAdapter(mutableListOf(), this)
+    private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,6 +69,31 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
             }
             true
         }
+        binding.menuAutocomplete.doAfterTextChanged { input ->
+            handler.removeCallbacksAndMessages(null)
+            handler.postDelayed(delayInMillis = 600) {
+                recyclerAdapter.update(
+                    recyclerAdapter.values.filter {
+                        it.getTheme().contains(input.toString()) ||
+                            it.getTitle().contains(input.toString())
+                    }
+                )
+            }
+        }
+        binding.roomList.addOnScrollListener(
+            object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    if (dy <= 0) // check for scroll down
+                        {
+                            if ((binding.roomList.layoutManager as LinearLayoutManager)
+                                .findFirstVisibleItemPosition() == 0
+                            ) {
+                                viewModel.findAll()
+                            }
+                        }
+                }
+            }
+        )
     }
 
     private fun setOnClickListeners() {
@@ -80,7 +112,7 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
     }
 
     private fun observeModel() {
-        viewModel.getState().observe(viewLifecycleOwner) {
+        viewModel.getState().observe(viewLifecycleOwner) { it ->
             when (it) {
                 is State.Pending -> {
                     binding.loadingProgress.isVisible = true
@@ -92,8 +124,8 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
                 is State.Success -> {
                     binding.loadingProgress.isVisible = false
                     recyclerAdapter.values.clear()
-                    recyclerAdapter.values.addAll(it.data.map { it -> it as Room })
-                    recyclerAdapter.notifyDataSetChanged()
+                    recyclerAdapter.values.addAll(it.data.map { it as Room })
+                    recyclerAdapter.update(it.data.map { it as Room })
                     Toast.makeText(requireContext(), "Success: ${it.data.size}", Toast.LENGTH_LONG)
                         .show()
                 }

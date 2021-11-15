@@ -1,7 +1,5 @@
 package com.studywithme.app.present.adapters
 
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,9 +43,9 @@ class RoomRecyclerViewAdapter(
 
         override fun toString(): String {
             return super.toString() +
-                    " title: '" + titleView.text +
-                    "'\n" + "theme: '" + themeView.text +
-                    "'\n" + "description: '" + descriptionView.text + "'\n"
+                " title: '" + titleView.text +
+                "'\n" + "theme: '" + themeView.text +
+                "'\n" + "description: '" + descriptionView.text + "'\n"
         }
     }
 
@@ -74,9 +72,10 @@ class RoomRecyclerViewAdapter(
             mOldList[oldItemPosition] == mNewList[newItemPosition]
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-            mOldList[oldItemPosition].getId() == mNewList[newItemPosition].getId()
-                    && mOldList[oldItemPosition].getTheme() == mNewList[newItemPosition].getTheme()
-                    && mOldList[oldItemPosition].getDescription() == mNewList[newItemPosition].getDescription()
-                    && mOldList[oldItemPosition].getTitle() == mNewList[newItemPosition].getTitle()
+            mOldList[oldItemPosition].getId() == mNewList[newItemPosition].getId() &&
+                mOldList[oldItemPosition].getTheme() == mNewList[newItemPosition].getTheme() &&
+                mOldList[oldItemPosition].getDescription() ==
+                mNewList[newItemPosition].getDescription() &&
+                mOldList[oldItemPosition].getTitle() == mNewList[newItemPosition].getTitle()
     }
 }

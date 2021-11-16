@@ -144,14 +144,17 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
         filterAdapter.notifyItemRemoved(position)
     }
 
-    override fun onRoomClick(position: Int) {
+    override fun onRoomClick(position: Long) {
         Toast.makeText(context, "Room $position clicked", Toast.LENGTH_SHORT).show()
-        openFragment(MembersFragment())
+        openFragment(MembersFragment.newInstance(position))
     }
 
     private fun openFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction()
-            .add(R.id.fragment_container, fragment, null)
+        val transaction = parentFragmentManager.beginTransaction()
+        if (!parentFragmentManager.fragments.contains(fragment)) {
+            transaction.add(R.id.fragment_container, fragment, null)
+        }
+        transaction
             .show(fragment)
             .hide(this)
             .addToBackStack(null)

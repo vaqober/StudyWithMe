@@ -34,7 +34,6 @@ class MembersFragment : Fragment(), OnUserClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentMembersBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,7 +41,8 @@ class MembersFragment : Fragment(), OnUserClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.setTitle(R.string.fragment_members_title)
-        viewModel.getMembers()
+        val roomId = requireArguments().getLong(ARG_ROOM)
+        viewModel.getMembers(roomId)
         observeModel()
         setAdapters()
         setOnClickListeners()
@@ -54,15 +54,15 @@ class MembersFragment : Fragment(), OnUserClickListener {
     }
 
     private fun onlineAndOfflineUsers(allMembers: List<AbstractUser>) {
-        Log.d("UsersList", "onlineAndOfflineUsers: " + allMembers.toString())
-        if (!allMembers.isEmpty()) {
+        Log.d("UsersList", "onlineAndOfflineUsers: $allMembers")
+        if (allMembers.isNotEmpty()) {
             for (user in allMembers) {
                 Log.d("UsersList", "user " + user)
                 if (user.isOnline()) usersOnlineList.add(user)
                 else usersOfflineList.add(user)
             }
         }
-        Log.d("UsersList", "usersOfflineList end: " + usersOfflineList)
+        Log.d("UsersList", "usersOfflineList end: $usersOfflineList")
     }
 
     private fun setOnClickListeners() {
@@ -108,6 +108,18 @@ class MembersFragment : Fragment(), OnUserClickListener {
     override fun onUserClick(position: Int) {
         Toast.makeText(context, "User $position clicked", Toast.LENGTH_SHORT).show()
         openFragment(UserProfileFragment())
+    }
+
+    companion object {
+        private const val ARG_ROOM: String = ""
+
+        @JvmStatic
+        fun newInstance(roomId: Long) =
+            MembersFragment().apply {
+                arguments = Bundle().apply {
+                    putLong(ARG_ROOM, roomId)
+                }
+            }
     }
 
     private fun openFragment(fragment: Fragment) {

@@ -5,7 +5,6 @@ import com.studywithme.app.business.providers.IUserProvider
 import com.studywithme.app.business.providers.UserProvider
 import com.studywithme.app.datalayer.accessors.IUserAccessor
 import com.studywithme.app.datalayer.interceptors.UserInterceptor
-import kotlinx.serialization.ExperimentalSerializationApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module

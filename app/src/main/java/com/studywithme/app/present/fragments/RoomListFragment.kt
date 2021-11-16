@@ -75,7 +75,7 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
                 recyclerAdapter.update(
                     recyclerAdapter.values.filter {
                         it.getTheme().contains(input.toString()) ||
-                                it.getTitle().contains(input.toString())
+                            it.getTitle().contains(input.toString())
                     }
                 )
             }
@@ -84,13 +84,13 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
             object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     if (dy <= 0) // check for scroll down
-                    {
-                        if ((binding.roomList.layoutManager as LinearLayoutManager)
+                        {
+                            if ((binding.roomList.layoutManager as LinearLayoutManager)
                                 .findFirstVisibleItemPosition() == 0
-                        ) {
-                            viewModel.findAll()
+                            ) {
+                                viewModel.findAll()
+                            }
                         }
-                    }
                 }
             }
         )

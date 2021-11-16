@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.studywithme.app.R
 
 
-
 class UserProfileFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null

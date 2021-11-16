@@ -55,7 +55,7 @@ class MembersFragment : Fragment(), OnUserClickListener {
 
     private fun onlineAndOfflineUsers(allMembers: List<AbstractUser>) {
         Log.d("UsersList", "onlineAndOfflineUsers: " + allMembers.toString())
-        if (allMembers != null) {
+        if (!allMembers.isEmpty()) {
             for (user in allMembers) {
                 Log.d("UsersList", "user " + user)
                 if (user.isOnline()) usersOnlineList.add(user)

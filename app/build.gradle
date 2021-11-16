@@ -38,6 +38,7 @@ android {
 dependencies {
     // di
     implementation "io.insert-koin:koin-android:3.1.2"
+    implementation "io.insert-koin:koin-core-jvm:3.1.2"
     // https://insert-koin.io/docs/quickstart/android/
 
     //app

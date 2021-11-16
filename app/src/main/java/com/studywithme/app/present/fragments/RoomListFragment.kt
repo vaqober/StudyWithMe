@@ -1,10 +1,12 @@
 package com.studywithme.app.present.fragments
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -13,9 +15,6 @@ import androidx.core.os.postDelayed
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.studywithme.app.R
 import com.studywithme.app.databinding.FragmentRoomListBinding
 import com.studywithme.app.objects.room.Room
@@ -26,8 +25,13 @@ import com.studywithme.app.present.adapters.RoomRecyclerViewAdapter
 import com.studywithme.app.present.adapters.RoomRecyclerViewAdapter.OnRoomClickListener
 import com.studywithme.app.present.models.RoomListViewModel
 
-class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener {
-    private val viewModel by viewModels<RoomListViewModel>()
+class RoomListFragment :
+    Fragment(),
+    OnFilterClickListener,
+    OnRoomClickListener,
+    RoomListViewModel.InternetCheck {
+
+    private val viewModel = RoomListViewModel(this)
     private var _binding: FragmentRoomListBinding? = null
     private val binding get() = _binding!!
     private val recyclerAdapter = RoomRecyclerViewAdapter(mutableListOf(), this)
@@ -49,8 +53,7 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
         viewModel.findAll()
         observeModel()
         setAdapters()
-        setOnClickListeners()
-        setSearchListeners(view)
+        setListeners()
     }
 
     private fun setAdapters() {
@@ -59,16 +62,7 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
         binding.roomList.adapter = recyclerAdapter
     }
 
-    private fun setSearchListeners(view: View) {
-        view.setOnTouchListener { v, event ->
-            when (event.action) {
-                MotionEvent.ACTION_UP -> {
-                    v.performClick()
-                    viewModel.findAll()
-                }
-            }
-            true
-        }
+    private fun setListeners() {
         binding.menuAutocomplete.doAfterTextChanged { input ->
             handler.removeCallbacksAndMessages(null)
             handler.postDelayed(delayInMillis = 600) {
@@ -80,23 +74,7 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
                 )
             }
         }
-        binding.roomList.addOnScrollListener(
-            object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    if (dy <= 0) // check for scroll down
-                        {
-                            if ((binding.roomList.layoutManager as LinearLayoutManager)
-                                .findFirstVisibleItemPosition() == 0
-                            ) {
-                                viewModel.findAll()
-                            }
-                        }
-                }
-            }
-        )
-    }
 
-    private fun setOnClickListeners() {
         binding.fabCreate.setOnClickListener {
             openFragment(CreateRoomFragment())
         }
@@ -108,6 +86,11 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
                 // Выводим выпадающий список
                 binding.menuAutocomplete.showDropDown()
             }
+        }
+
+        binding.swipeContainer.setOnRefreshListener {
+            viewModel.findAll()
+            binding.swipeContainer.isRefreshing = false
         }
     }
 
@@ -159,5 +142,21 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
             .hide(this)
             .addToBackStack(null)
             .commitAllowingStateLoss()
+    }
+
+    override fun isOnline(): Boolean {
+        var isOnline = false
+        val connectivityManager =
+            context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if (capabilities != null) {
+            when (true) {
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> isOnline = true
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> isOnline = true
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> isOnline = true
+            }
+        }
+        return isOnline
     }
 }

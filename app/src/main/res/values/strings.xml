@@ -18,6 +18,11 @@
     <string name="accept">accept</string>
     <string name="decline">decline</string>
 
+    <string name="offline">Не в сети - </string>
+    <string name="online">В сети - </string>
+    <string name="fragment_members_title">MEMBERS</string>
+    <string name="user_name">User Name</string>
+
     <string-array name="hints_for_theme">
         <item>Math</item>
         <item>Art</item>

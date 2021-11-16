@@ -37,7 +37,7 @@ class RoomRecyclerViewAdapter(
             themeView.text = room.getTheme()
             descriptionView.text = room.getDescription()
             itemView.setOnClickListener {
-                listener.onRoomClick(position)
+                listener.onRoomClick(room.getId().toLong())
             }
         }
 
@@ -50,7 +50,7 @@ class RoomRecyclerViewAdapter(
     }
 
     interface OnRoomClickListener {
-        fun onRoomClick(position: Int)
+        fun onRoomClick(position: Long)
     }
 
     fun update(newList: List<Room>) {

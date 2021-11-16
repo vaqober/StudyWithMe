@@ -1,12 +1,10 @@
 package com.studywithme.app.objects
 
-import com.studywithme.app.objects.room.Room
-
 abstract class AbstractUser : AbstractObject() {
     abstract fun getId(): String
     abstract fun getName(): String
     abstract fun getPhotoUri(): String
     abstract fun getDescription(): String
-    abstract fun getRoomsList(): MutableList<Room>
+    abstract fun getRoomsList(): MutableList<Long>
     abstract fun isOnline(): Boolean
 }

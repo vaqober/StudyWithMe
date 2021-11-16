@@ -10,8 +10,7 @@ import com.studywithme.app.R
 class FilterRecyclerViewAdapter(
     val values: MutableList<String>,
     private val listener: OnFilterClickListener
-) :
-    RecyclerView.Adapter<FilterRecyclerViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<FilterRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)

@@ -10,11 +10,13 @@ import kotlinx.coroutines.withContext
 class UserProvider(private val onlineAccessor: IUserAccessor) :
     AbstractCoroutineProvider, IUserProvider {
 
-    override fun getMembers(callback: (result: Result<List<AbstractUser>>) -> Unit) {
+    override fun getMembers(roomId: Long, callback: (result: Result<List<AbstractUser>>) -> Unit) {
         AbstractCoroutineProvider.scope.launch {
 
             val result = try {
-                val apiResult = onlineAccessor.getMembers().users as List<AbstractUser>
+                val apiResult = (onlineAccessor.getMembers().users as List<AbstractUser>).filter {
+                    it.getRoomsList().contains(roomId)
+                }
                 Result.Success(apiResult)
             } catch (error: IllegalStateException) {
                 Result.Fail(error)

@@ -23,21 +23,21 @@ class MembersListViewModel : ViewModel(), KoinComponent {
 
     fun getState(): LiveData<State<List<AbstractUser>>> = state
 
-    fun getMembers() {
-        postponedQuery()
+    fun getMembers(roomId: Long) {
+        postponedQuery(roomId)
     }
 
-    private fun postponedQuery() {
+    private fun postponedQuery(roomId: Long) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {
-            makeRequest()
+            makeRequest(roomId)
         }
     }
 
-    private fun makeRequest() {
+    private fun makeRequest(roomId: Long) {
         state.postValue(State.Pending())
 
-        provider.getMembers {
+        provider.getMembers(roomId) {
             val newState = when (it) {
                 is Result.Success -> State.Success(it.data)
                 is Result.Fail -> State.Fail(it.error)

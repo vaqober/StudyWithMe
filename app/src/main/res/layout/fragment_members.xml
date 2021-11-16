@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".present.fragments.MembersFragment">
+
+    <TextView
+            android:id="@+id/title_members"
+            android:text="@string/fragment_members_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"/>
+
+
+    <FrameLayout
+            android:id="@+id/members_list_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/title_members"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@color/cardview_light_background">
+
+        <TextView
+                android:id="@+id/title"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="title"
+                android:textColor="@color/black" />
+
+        <ImageView
+                android:id="@+id/settings_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_settings"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+    </FrameLayout>
+
+
+    <Button
+            android:id="@+id/add_user_button"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/members_list_settings"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="50dp"
+            android:text="ADD USER"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="60dp"
+            android:gravity="center"
+            android:drawableLeft="@drawable/ic_add_user" />
+
+    <TextView
+            android:id="@+id/online_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/online"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/add_user_button"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/black"/>
+
+    <TextView
+            android:id="@+id/users_online"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/online_text"
+            app:layout_constraintStart_toEndOf="@id/online_text"
+            android:text=" 0"
+            android:textColor="@color/black"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/users_online_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintTop_toBottomOf="@id/online_text"
+            app:layout_constraintLeft_toLeftOf="@id/online_text"
+            />
+
+
+    <TextView
+            android:id="@+id/offline_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/offline"
+            app:layout_constraintTop_toBottomOf="@id/users_online_list"
+            app:layout_constraintStart_toStartOf="@id/online_text"
+            android:textColor="@color/black"/>
+
+    <TextView
+            android:id="@+id/users_offline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/offline_text"
+            app:layout_constraintStart_toEndOf="@id/offline_text"
+            android:text=" 0"
+            android:textColor="@color/black"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/users_offline_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintTop_toBottomOf="@id/offline_text"
+            app:layout_constraintLeft_toLeftOf="@id/offline_text"/>
+
+    <ProgressBar
+            android:id="@+id/loading_progress"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="top|end"
+            android:layout_margin="18dp"
+            android:elevation="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

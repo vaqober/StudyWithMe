@@ -12,7 +12,6 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-@ExperimentalSerializationApi
 val roomsModule = module() {
     factory<IRoomProvider> { RoomProvider(get()) }
 

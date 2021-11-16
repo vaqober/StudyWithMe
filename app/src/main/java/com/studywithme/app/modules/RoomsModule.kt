@@ -5,7 +5,6 @@ import com.studywithme.app.business.providers.IRoomProvider
 import com.studywithme.app.business.providers.RoomProvider
 import com.studywithme.app.datalayer.accessors.IRoomAccessor
 import com.studywithme.app.datalayer.interceptors.RoomInterceptor
-import kotlinx.serialization.ExperimentalSerializationApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module

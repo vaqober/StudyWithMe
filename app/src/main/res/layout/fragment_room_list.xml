@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:name="com.studywithme.app.RoomList"
@@ -8,7 +9,13 @@
         android:focusableInTouchMode="true"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:id="@+id/swipe_container"
         tools:context="com.studywithme.app.present.fragments.RoomListFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -86,4 +93,5 @@
             android:src="@android:drawable/ic_input_add"
             android:contentDescription="@string/newFloat"
             android:layout_margin="16dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

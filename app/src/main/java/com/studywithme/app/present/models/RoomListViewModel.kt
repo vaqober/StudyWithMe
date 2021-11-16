@@ -13,7 +13,7 @@ import com.studywithme.app.present.State
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class RoomListViewModel : ViewModel(), KoinComponent {
+class RoomListViewModel(private val internetCheck: InternetCheck) : ViewModel(), KoinComponent {
     private val handler = Handler(Looper.getMainLooper())
     private val provider by inject<IRoomProvider>()
     private val state = MutableLiveData<State<List<AbstractRoom>>>()
@@ -35,7 +35,12 @@ class RoomListViewModel : ViewModel(), KoinComponent {
     }
 
     private fun makeRequest() {
-        state.postValue(State.Pending())
+        if (internetCheck.isOnline()) {
+            state.postValue(State.Pending())
+        } else {
+            state.postValue(State.Fail(Throwable("miss internet")))
+            return
+        }
 
         provider.findAll {
             val newState = when (it) {
@@ -45,5 +50,9 @@ class RoomListViewModel : ViewModel(), KoinComponent {
 
             state.postValue(newState)
         }
+    }
+
+    interface InternetCheck {
+        fun isOnline(): Boolean
     }
 }

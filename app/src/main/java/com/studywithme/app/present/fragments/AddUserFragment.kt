@@ -22,10 +22,11 @@ import kotlinx.coroutines.launch
 class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener {
 
     private val viewModel by viewModels<MembersListViewModel>()
+    private val userViewModel by viewModels<UsersListViewModel>()
     private var _binding: FragmentAddUserBinding? = null
     private val binding get() = _binding!!
     private val usersListAdapter = UserRecyclerViewAdapter(mutableListOf(), this)
-    val roomId = requireArguments().getLong(ARG_ROOM)
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +43,7 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
         viewModel.getAllUsers()
         observeModel()
         setAdapter()
+        observeUserModel()
 //        setOnClickListeners()
     }
 
@@ -80,21 +82,39 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
         }
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun observeUserModel() {
+        userViewModel.getState().observe(viewLifecycleOwner) { it ->
+            when (it) {
+                is State.Pending -> {
+                    binding.loadingProgress.isVisible = true
+                }
+                is State.Fail -> {
+                    binding.loadingProgress.isVisible = false
+                    Toast.makeText(requireContext(), "Fail: ${it.error}", Toast.LENGTH_LONG).show()
+                }
+                is State.Success -> {
+                    binding.loadingProgress.isVisible = false
+                    Toast.makeText(requireContext(), "Success: ${it.data}", Toast.LENGTH_LONG)
+                        .show()
+                }
+            }
+        }
+    }
+
     override fun onUserClick(position: Int) {
-        val vm by viewModels<UsersListViewModel>()
 
         val userId = usersListAdapter.values[position].getId()
         val name = usersListAdapter.values[position].getName()
         val photo = usersListAdapter.values[position].getPhotoUri()
         val description = usersListAdapter.values[position].getDescription()
         val rooms = usersListAdapter.values[position].getRoomsList()
-        rooms.add(roomId)
+        rooms.add(requireArguments().getLong(ARG_ROOM))
         val isOnline = usersListAdapter.values[position].isOnline()
         val newUser = User(userId, name, photo, description, rooms, isOnline)
 
-        lifecycleScope.launch {
-            vm.postUser(newUser)
-        }
+        userViewModel.postUser(newUser)
+
     }
 
     companion object {

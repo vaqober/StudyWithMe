@@ -43,15 +43,13 @@ class UserProvider(private val onlineAccessor: IUserAccessor) :
         AbstractCoroutineProvider.scope.launch {
 
             val result = try {
-                val apiResult = onlineAccessor.postUser(user) as AbstractUser
+                val apiResult = onlineAccessor.postUser(user.getId().toInt(), user) as AbstractUser
                 Result.Success(apiResult)
             } catch (error: IllegalStateException) {
                 Result.Fail(error)
             }
 
-            withContext(Dispatchers.Main) {
-                callback(result)
-            }
+            returnResult(result, callback)
         }
     }
 }

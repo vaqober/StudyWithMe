@@ -34,8 +34,8 @@ class MainActivity :
 
         val fragment = RoomListFragment()
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment, fragment.javaClass.toString())
-        transaction.commit()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.commitAllowingStateLoss()
     }
 
     private fun menuSettings() {
@@ -86,7 +86,7 @@ class MainActivity :
                 transaction.hide(supportFragmentManager.fragments.last())
                 transaction.add(R.id.fragment_container, fragment, fragName)
                 transaction.addToBackStack(null)
-                transaction.commit()
+                transaction.commitAllowingStateLoss()
             }
         } else {
             Toast.makeText(this, "Soon", Toast.LENGTH_SHORT).show()

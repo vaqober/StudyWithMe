@@ -140,7 +140,7 @@ class RoomListFragment :
         transaction
             .hide(this)
             .addToBackStack(null)
-            .commit()
+            .commitAllowingStateLoss()
     }
 
     override fun isOnline(): Boolean {

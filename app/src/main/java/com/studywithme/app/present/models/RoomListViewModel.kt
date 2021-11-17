@@ -18,23 +18,20 @@ class RoomListViewModel(private val internetCheck: InternetCheck) : ViewModel(),
     private val provider by inject<IRoomProvider>()
     private val state = MutableLiveData<State<List<AbstractRoom>>>()
 
-    var query = ""
-        private set
-
     fun getState(): LiveData<State<List<AbstractRoom>>> = state
 
-    fun findAll() {
-        postponedQuery()
+    fun findRooms(query: String) {
+        postponedQuery(query)
     }
 
-    private fun postponedQuery() {
+    private fun postponedQuery(query: String) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {
-            makeRequest()
+            makeRequest(query)
         }
     }
 
-    private fun makeRequest() {
+    private fun makeRequest(query: String) {
         if (internetCheck.isOnline()) {
             state.postValue(State.Pending())
         } else {
@@ -42,7 +39,7 @@ class RoomListViewModel(private val internetCheck: InternetCheck) : ViewModel(),
             return
         }
 
-        provider.findAll {
+        provider.findRooms(query) {
             val newState = when (it) {
                 is Result.Success -> State.Success(it.data)
                 is Result.Fail -> State.Fail(it.error)

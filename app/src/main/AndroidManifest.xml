@@ -16,9 +16,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.StudyWithMe">
 
-
         <activity
                 android:name=".present.activity.MainActivity"
+                android:screenOrientation="portrait"
                 android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

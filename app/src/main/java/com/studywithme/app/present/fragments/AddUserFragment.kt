@@ -49,8 +49,8 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
         binding.allUsersList.adapter = usersListAdapter
     }
 
-    private fun setOnClickListeners() {
-    }
+//    private fun setOnClickListeners() {
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

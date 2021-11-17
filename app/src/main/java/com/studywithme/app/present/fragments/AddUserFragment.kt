@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.studywithme.app.R
 import com.studywithme.app.databinding.FragmentAddUserBinding
 import com.studywithme.app.objects.user.User
@@ -17,7 +16,6 @@ import com.studywithme.app.present.State
 import com.studywithme.app.present.adapters.UserRecyclerViewAdapter
 import com.studywithme.app.present.models.MembersListViewModel
 import com.studywithme.app.present.models.UsersListViewModel
-import kotlinx.coroutines.launch
 
 class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener {
 
@@ -26,7 +24,6 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
     private var _binding: FragmentAddUserBinding? = null
     private val binding get() = _binding!!
     private val usersListAdapter = UserRecyclerViewAdapter(mutableListOf(), this)
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -114,7 +111,6 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
         val newUser = User(userId, name, photo, description, rooms, isOnline)
 
         userViewModel.postUser(newUser)
-
     }
 
     companion object {

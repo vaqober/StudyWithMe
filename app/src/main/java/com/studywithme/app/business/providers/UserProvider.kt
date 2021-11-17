@@ -3,9 +3,7 @@ package com.studywithme.app.business.providers
 import com.studywithme.app.datalayer.accessors.IUserAccessor
 import com.studywithme.app.objects.AbstractUser
 import java.lang.IllegalStateException
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class UserProvider(private val onlineAccessor: IUserAccessor) :
     AbstractCoroutineProvider, IUserProvider {
@@ -22,9 +20,7 @@ class UserProvider(private val onlineAccessor: IUserAccessor) :
                 Result.Fail(error)
             }
 
-            withContext(Dispatchers.Main) {
-                callback(result)
-            }
+            returnResult(result, callback)
         }
     }
 }

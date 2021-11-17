@@ -5,9 +5,7 @@ import com.studywithme.app.datalayer.accessors.IRoomAccessor
 import com.studywithme.app.objects.AbstractRoom
 import com.studywithme.app.objects.room.RoomDto
 import java.lang.IllegalStateException
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class RoomProvider(private val onlineAccessor: IRoomAccessor) :
     AbstractCoroutineProvider, IRoomProvider {
@@ -35,9 +33,7 @@ class RoomProvider(private val onlineAccessor: IRoomAccessor) :
                 Result.Fail(error)
             }
 
-            withContext(Dispatchers.Main) {
-                callback(result)
-            }
+            returnResult(result, callback)
         }
     }
 }

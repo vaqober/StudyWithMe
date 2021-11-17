@@ -4,7 +4,7 @@ import com.google.gson.GsonBuilder
 import com.studywithme.app.business.providers.IRoomProvider
 import com.studywithme.app.business.providers.RoomProvider
 import com.studywithme.app.datalayer.accessors.IRoomAccessor
-import com.studywithme.app.datalayer.interceptors.RoomInterceptor
+import com.studywithme.app.datalayer.interceptors.AppInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -23,7 +23,7 @@ val roomsModule = module() {
         }
 
         val client = OkHttpClient.Builder()
-            .addInterceptor(RoomInterceptor(baseKey))
+            .addInterceptor(AppInterceptor(baseKey))
             .addNetworkInterceptor(loggingInterceptor)
             .build()
 

@@ -13,31 +13,33 @@ import com.studywithme.app.present.State
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class RoomListViewModel : ViewModel(), KoinComponent {
+class RoomListViewModel(private val internetCheck: InternetCheck) : ViewModel(), KoinComponent {
     private val handler = Handler(Looper.getMainLooper())
     private val provider by inject<IRoomProvider>()
     private val state = MutableLiveData<State<List<AbstractRoom>>>()
 
-    var query = ""
-        private set
-
     fun getState(): LiveData<State<List<AbstractRoom>>> = state
 
-    fun findAll() {
-        postponedQuery()
+    fun findRooms(query: String) {
+        postponedQuery(query)
     }
 
-    private fun postponedQuery() {
+    private fun postponedQuery(query: String) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {
-            makeRequest()
+            makeRequest(query)
         }
     }
 
-    private fun makeRequest() {
-        state.postValue(State.Pending())
+    private fun makeRequest(query: String) {
+        if (internetCheck.isOnline()) {
+            state.postValue(State.Pending())
+        } else {
+            state.postValue(State.Fail(Throwable("miss internet")))
+            return
+        }
 
-        provider.findAll {
+        provider.findRooms(query) {
             val newState = when (it) {
                 is Result.Success -> State.Success(it.data)
                 is Result.Fail -> State.Fail(it.error)
@@ -45,5 +47,9 @@ class RoomListViewModel : ViewModel(), KoinComponent {
 
             state.postValue(newState)
         }
+    }
+
+    interface InternetCheck {
+        fun isOnline(): Boolean
     }
 }

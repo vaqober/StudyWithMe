@@ -1,38 +1,43 @@
 package com.studywithme.app.present.fragments
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
-import android.view.MotionEvent
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.os.postDelayed
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
-import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.studywithme.app.R
 import com.studywithme.app.databinding.FragmentRoomListBinding
 import com.studywithme.app.objects.room.Room
 import com.studywithme.app.present.State
-import com.studywithme.app.present.adapters.FilterRecyclerViewAdapter
-import com.studywithme.app.present.adapters.FilterRecyclerViewAdapter.OnFilterClickListener
 import com.studywithme.app.present.adapters.RoomRecyclerViewAdapter
 import com.studywithme.app.present.adapters.RoomRecyclerViewAdapter.OnRoomClickListener
 import com.studywithme.app.present.models.RoomListViewModel
 
-class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener {
-    private val viewModel by viewModels<RoomListViewModel>()
+@Suppress("Detekt.TooManyFunctions")
+class RoomListFragment :
+    Fragment(),
+    OnRoomClickListener,
+    RoomListViewModel.InternetCheck,
+    SearchView.OnQueryTextListener {
+
+    private val viewModel = RoomListViewModel(this)
     private var _binding: FragmentRoomListBinding? = null
     private val binding get() = _binding!!
     private val recyclerAdapter = RoomRecyclerViewAdapter(mutableListOf(), this)
-    private val filterAdapter = FilterRecyclerViewAdapter(mutableListOf(), this)
-    private val handler = Handler(Looper.getMainLooper())
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,69 +51,35 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.setTitle(R.string.fragment_rooms_title)
-        viewModel.findAll()
+
+        viewModel.findRooms("")
+
         observeModel()
-        setAdapters()
-        setOnClickListeners()
-        setSearchListeners(view)
-    }
 
-    private fun setAdapters() {
-        // filterList.addAll(listOf("Math", "Bath", "Kek", "Pek"))
-        binding.filterList.adapter = filterAdapter
         binding.roomList.adapter = recyclerAdapter
+
+        binding.swipeContainer.setOnRefreshListener {
+            viewModel.findRooms("")
+            binding.swipeContainer.isRefreshing = false
+        }
     }
 
-    private fun setSearchListeners(view: View) {
-        view.setOnTouchListener { v, event ->
-            when (event.action) {
-                MotionEvent.ACTION_UP -> {
-                    v.performClick()
-                    viewModel.findAll()
-                }
-            }
-            true
-        }
-        binding.menuAutocomplete.doAfterTextChanged { input ->
-            handler.removeCallbacksAndMessages(null)
-            handler.postDelayed(delayInMillis = 600) {
-                recyclerAdapter.update(
-                    recyclerAdapter.values.filter {
-                        it.getTheme().contains(input.toString()) ||
-                            it.getTitle().contains(input.toString())
-                    }
-                )
-            }
-        }
-        binding.roomList.addOnScrollListener(
-            object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    if (dy <= 0) // check for scroll down
-                        {
-                            if ((binding.roomList.layoutManager as LinearLayoutManager)
-                                .findFirstVisibleItemPosition() == 0
-                            ) {
-                                viewModel.findAll()
-                            }
-                        }
-                }
-            }
-        )
+    @Override
+    override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        super.onCreateOptionsMenu(menu, menuInflater)
     }
 
-    private fun setOnClickListeners() {
-        binding.fabCreate.setOnClickListener {
-            openFragment(CreateRoomFragment())
-        }
-        val themes = resources.getStringArray(R.array.hints_for_theme).toList()
-        val adapter = ArrayAdapter(binding.root.context, R.layout.them_list_item, themes)
-        binding.menuAutocomplete.setAdapter(adapter)
-        binding.menuAutocomplete.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                // Выводим выпадающий список
-                binding.menuAutocomplete.showDropDown()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_add -> {
+                openFragment(CreateRoomFragment())
+            }
+            R.id.action_search -> {
+                (item.actionView as SearchView).setOnQueryTextListener(this)
             }
         }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun observeModel() {
@@ -138,12 +109,6 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
         _binding = null
     }
 
-    override fun onFilterClick(position: Int) {
-        Toast.makeText(context, "Filter $position clicked", Toast.LENGTH_SHORT).show()
-        filterAdapter.values.removeAt(position)
-        filterAdapter.notifyItemRemoved(position)
-    }
-
     override fun onRoomClick(position: Long) {
         Toast.makeText(context, "Room $position clicked", Toast.LENGTH_SHORT).show()
         openFragment(MembersFragment.newInstance(position))
@@ -155,9 +120,33 @@ class RoomListFragment : Fragment(), OnFilterClickListener, OnRoomClickListener 
             transaction.add(R.id.fragment_container, fragment, null)
         }
         transaction
-            .show(fragment)
             .hide(this)
             .addToBackStack(null)
             .commitAllowingStateLoss()
+    }
+
+    override fun isOnline(): Boolean {
+        var isOnline = false
+        val connectivityManager =
+            context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if (capabilities != null) {
+            when (true) {
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> isOnline = true
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> isOnline = true
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> isOnline = true
+            }
+        }
+        return isOnline
+    }
+
+    override fun onQueryTextSubmit(query: String): Boolean {
+        viewModel.findRooms(query)
+        return false
+    }
+
+    override fun onQueryTextChange(newText: String): Boolean {
+        return false
     }
 }

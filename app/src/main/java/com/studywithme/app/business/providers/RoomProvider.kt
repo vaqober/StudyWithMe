@@ -3,18 +3,18 @@ package com.studywithme.app.business.providers
 import com.studywithme.app.business.providers.AbstractCoroutineProvider.Companion.scope
 import com.studywithme.app.datalayer.accessors.IRoomAccessor
 import com.studywithme.app.objects.AbstractRoom
-import com.studywithme.app.objects.room.RoomDto
+import com.studywithme.app.objects.room.Room
 import java.lang.IllegalStateException
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class RoomProvider(private val onlineAccessor: IRoomAccessor) :
     AbstractCoroutineProvider, IRoomProvider {
-    override fun findAll(callback: (result: Result<List<AbstractRoom>>) -> Unit) {
+    override fun findRooms(query: String, callback: (result: Result<List<AbstractRoom>>) -> Unit) {
         scope.launch {
             val result = try {
-                val apiResult = onlineAccessor.findAll().rooms as List<AbstractRoom>
+                val apiResult = (onlineAccessor.findAll().rooms as List<AbstractRoom>).filter {
+                    it.getTitle().contains(query)
+                }
                 Result.Success(apiResult)
             } catch (error: IllegalStateException) {
                 Result.Fail(error)
@@ -23,7 +23,7 @@ class RoomProvider(private val onlineAccessor: IRoomAccessor) :
         }
     }
 
-    override fun postRoom(room: RoomDto, callback: (result: Result<AbstractRoom>) -> Unit) {
+    override fun postRoom(room: Room, callback: (result: Result<AbstractRoom>) -> Unit) {
         scope.launch {
 
             val result = try {
@@ -33,9 +33,7 @@ class RoomProvider(private val onlineAccessor: IRoomAccessor) :
                 Result.Fail(error)
             }
 
-            withContext(Dispatchers.Main) {
-                callback(result)
-            }
+            returnResult(result, callback)
         }
     }
 }

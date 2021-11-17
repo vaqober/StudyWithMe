@@ -1,7 +1,6 @@
 package com.studywithme.app
 
 import android.app.Application
-import com.studywithme.app.modules.baseModule
 import com.studywithme.app.modules.roomsModule
 import com.studywithme.app.modules.usersModule
 import org.koin.android.ext.koin.androidContext
@@ -17,7 +16,6 @@ class Application : Application() {
             androidLogger()
 
             modules(
-                baseModule,
                 roomsModule,
                 usersModule
             )

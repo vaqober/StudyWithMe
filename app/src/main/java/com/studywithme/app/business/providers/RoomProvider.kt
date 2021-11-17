@@ -3,7 +3,7 @@ package com.studywithme.app.business.providers
 import com.studywithme.app.business.providers.AbstractCoroutineProvider.Companion.scope
 import com.studywithme.app.datalayer.accessors.IRoomAccessor
 import com.studywithme.app.objects.AbstractRoom
-import com.studywithme.app.objects.room.RoomDto
+import com.studywithme.app.objects.room.Room
 import java.lang.IllegalStateException
 import kotlinx.coroutines.launch
 
@@ -23,7 +23,7 @@ class RoomProvider(private val onlineAccessor: IRoomAccessor) :
         }
     }
 
-    override fun postRoom(room: RoomDto, callback: (result: Result<AbstractRoom>) -> Unit) {
+    override fun postRoom(room: Room, callback: (result: Result<AbstractRoom>) -> Unit) {
         scope.launch {
 
             val result = try {

@@ -44,7 +44,6 @@ class CreateRoomFragment : Fragment(), CreateRoomViewModel.InternetCheck {
         setPhotoPickButtonSettings()
         observeModel()
         (activity as DrawerLocker?)!!.setDrawerLocked(true)
-
         return binding.root
     }
 

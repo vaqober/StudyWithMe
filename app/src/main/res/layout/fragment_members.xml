@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:name="com.studywithme.app.RoomList"
+        android:focusable="true"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/swipe_container"
+        tools:context="com.studywithme.app.present.fragments.MembersFragment">
+
+
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -7,54 +21,16 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".present.fragments.MembersFragment">
 
-    <TextView
-            android:id="@+id/title_members"
-            android:text="@string/fragment_members_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:gravity="center"/>
-
-
-    <FrameLayout
-            android:id="@+id/members_list_settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/title_members"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:background="@color/cardview_light_background">
-
-        <TextView
-                android:id="@+id/title"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="title"
-                android:textColor="@color/black" />
-
-        <ImageView
-                android:id="@+id/settings_icon"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_gravity="end"
-                android:src="@drawable/ic_settings"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"/>
-    </FrameLayout>
 
 
     <Button
             android:id="@+id/add_user_button"
             android:layout_width="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/members_list_settings"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="50dp"
-            android:text="ADD USER"
+            android:text="@string/add_user_btn"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="60dp"
             android:gravity="center"
@@ -131,3 +107,4 @@
             tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

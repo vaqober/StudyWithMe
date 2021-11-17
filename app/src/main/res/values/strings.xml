@@ -18,8 +18,8 @@
     <string name="accept">accept</string>
     <string name="decline">decline</string>
 
-    <string name="offline">Не в сети - </string>
-    <string name="online">В сети - </string>
+    <string name="offline">Offline - </string>
+    <string name="online">Online - </string>
     <string name="fragment_members_title">MEMBERS</string>
     <string name="user_name">User Name</string>
 
@@ -37,4 +37,6 @@
     <string name="nav_logout">Logout</string>
     <string name="nav_open_drawer">Open navigation drawer</string>
     <string name="nav_close_drawer">Close navigation drawer</string>
+    <string name="add_user_btn">ADD USER</string>
+    <string name="join_btn">JOIN</string>
 </resources>

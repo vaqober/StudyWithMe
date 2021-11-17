@@ -34,7 +34,7 @@ class MainActivity :
 
         val fragment = RoomListFragment()
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
+        transaction.replace(R.id.fragment_container, fragment, fragment.javaClass.toString())
         transaction.commitAllowingStateLoss()
     }
 

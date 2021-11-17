@@ -42,7 +42,7 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
         viewModel.getAllUsers()
         observeModel()
         setAdapter()
-        setOnClickListeners()
+//        setOnClickListeners()
     }
 
     private fun setAdapter() {

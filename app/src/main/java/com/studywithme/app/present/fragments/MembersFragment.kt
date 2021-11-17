@@ -68,7 +68,7 @@ class MembersFragment : Fragment(), OnUserClickListener {
 
     private fun setOnClickListeners() {
         binding.addUserButton.setOnClickListener {
-            openFragment(AddUserFragment())
+            openFragment(AddUserFragment.newInstance(ARG_ROOM.toLong()))
         }
     }
 

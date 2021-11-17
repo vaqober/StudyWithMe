@@ -88,7 +88,7 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
         val photo = usersListAdapter.values[position].getPhotoUri()
         val description = usersListAdapter.values[position].getDescription()
         val rooms = usersListAdapter.values[position].getRoomsList()
-        rooms.add(ARG_ROOM.toLong())
+        rooms.add(roomId)
         val isOnline = usersListAdapter.values[position].isOnline()
         val newUser = User(userId, name, photo, description, rooms, isOnline)
 
@@ -102,7 +102,7 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
 
         @JvmStatic
         fun newInstance(roomId: Long) =
-            MembersFragment().apply {
+            AddUserFragment().apply {
                 arguments = Bundle().apply {
                     putLong(ARG_ROOM, roomId)
                 }

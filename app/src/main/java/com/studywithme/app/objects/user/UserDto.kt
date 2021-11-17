@@ -1,7 +1,6 @@
 package com.studywithme.app.objects.user
 
 import com.google.gson.annotations.SerializedName
-import com.studywithme.app.objects.room.Room
 
 data class UserDto(
     @SerializedName("id")
@@ -12,10 +11,10 @@ data class UserDto(
     private val photoUri: String,
     @SerializedName("description")
     private val description: String,
-    @SerializedName("friendsList")
-    private val friendsList: MutableList<User>,
+//    @SerializedName("friendsList")
+//    private val friendsList: MutableList<User>,
     @SerializedName("roomsList")
-    private val roomsList: MutableList<Room>,
+    private val roomsList: MutableList<Long>,
     @SerializedName("isOnline")
     private val isOnline: Boolean,
 )

@@ -9,63 +9,37 @@ import androidx.lifecycle.ViewModel
 import com.studywithme.app.business.providers.IUserProvider
 import com.studywithme.app.business.providers.Result
 import com.studywithme.app.objects.AbstractUser
-import com.studywithme.app.objects.room.RoomDto
+import com.studywithme.app.objects.user.User
 import com.studywithme.app.objects.user.UserDto
 import com.studywithme.app.present.State
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class MembersListViewModel : ViewModel(), KoinComponent {
+class UsersListViewModel : ViewModel(), KoinComponent {
     private val handler = Handler(Looper.getMainLooper())
     private val provider by inject<IUserProvider>()
-    private val state = MutableLiveData<State<List<AbstractUser>>>()
+    private val state = MutableLiveData<State<AbstractUser>>()
 
     var query = ""
         private set
 
-    fun getState(): LiveData<State<List<AbstractUser>>> = state
+    fun getState(): LiveData<State<AbstractUser>> = state
 
-    fun getMembers(roomId: Long) {
-        postponedQuery(roomId)
+    fun postUser(user: User) {
+        postponedQuery(user)
     }
 
-    fun getAllUsers() {
-        postponedQuery()
-    }
-
-
-
-    private fun postponedQuery() {
+    private fun postponedQuery(user: User) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {
-            makeRequest()
+            makeRequest(user)
         }
     }
 
-    private fun postponedQuery(roomId: Long) {
-        handler.removeCallbacksAndMessages(null)
-        handler.postDelayed(delayInMillis = 600) {
-            makeRequest(roomId)
-        }
-    }
-
-    private fun makeRequest() {
+    private fun makeRequest(user: User) {
         state.postValue(State.Pending())
 
-        provider.getAllUsers {
-            val newState = when (it) {
-                is Result.Success -> State.Success(it.data)
-                is Result.Fail -> State.Fail(it.error)
-            }
-
-            state.postValue(newState)
-        }
-    }
-
-    private fun makeRequest(roomId: Long) {
-        state.postValue(State.Pending())
-
-        provider.getMembers(roomId) {
+        provider.postUser(user) {
             val newState = when (it) {
                 is Result.Success -> State.Success(it.data)
                 is Result.Fail -> State.Fail(it.error)

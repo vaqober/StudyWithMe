@@ -67,7 +67,6 @@ class UserRecyclerViewAdapter(
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
             mOldList[oldItemPosition].getId() == mNewList[newItemPosition].getId() &&
-                    mOldList[oldItemPosition].getName() == mNewList[newItemPosition].getName()
-
+                mOldList[oldItemPosition].getName() == mNewList[newItemPosition].getName()
     }
 }

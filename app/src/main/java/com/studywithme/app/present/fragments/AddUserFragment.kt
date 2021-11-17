@@ -2,18 +2,17 @@ package com.studywithme.app.present.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.studywithme.app.R
 import com.studywithme.app.databinding.FragmentAddUserBinding
 import com.studywithme.app.objects.user.User
-import com.studywithme.app.objects.user.UserDto
 import com.studywithme.app.present.State
 import com.studywithme.app.present.adapters.UserRecyclerViewAdapter
 import com.studywithme.app.present.models.MembersListViewModel
@@ -51,7 +50,6 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
     }
 
     private fun setOnClickListeners() {
-
     }
 
     override fun onDestroyView() {

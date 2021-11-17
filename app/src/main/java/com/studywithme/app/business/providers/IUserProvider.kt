@@ -2,7 +2,6 @@ package com.studywithme.app.business.providers
 
 import com.studywithme.app.objects.AbstractUser
 import com.studywithme.app.objects.user.User
-import com.studywithme.app.objects.user.UserDto
 
 interface IUserProvider {
     fun getMembers(roomId: Long, callback: (result: Result<List<AbstractUser>>) -> Unit)

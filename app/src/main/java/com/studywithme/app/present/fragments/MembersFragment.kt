@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.studywithme.app.R
 import com.studywithme.app.databinding.FragmentMembersBinding
 import com.studywithme.app.objects.AbstractUser
-import com.studywithme.app.objects.room.Room
 import com.studywithme.app.objects.user.User
 import com.studywithme.app.present.State
 import com.studywithme.app.present.adapters.UserRecyclerViewAdapter
@@ -98,7 +97,7 @@ class MembersFragment : Fragment(), OnUserClickListener {
                     usersOnlineListAdapter.values.addAll(usersOnlineList.map { it as User })
                     usersOnlineListAdapter.update(usersOnlineList.map { it as User })
                     usersOfflineListAdapter.values.clear()
-                    usersOfflineListAdapter.values.addAll(usersOfflineList.map {it as User })
+                    usersOfflineListAdapter.values.addAll(usersOfflineList.map { it as User })
                     usersOfflineListAdapter.update(usersOfflineList.map { it as User })
                     binding.usersOnline.text = " " + usersOnlineList.size
                     binding.usersOffline.text = " " + usersOfflineList.size

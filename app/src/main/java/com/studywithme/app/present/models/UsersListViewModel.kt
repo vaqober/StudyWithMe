@@ -10,7 +10,6 @@ import com.studywithme.app.business.providers.IUserProvider
 import com.studywithme.app.business.providers.Result
 import com.studywithme.app.objects.AbstractUser
 import com.studywithme.app.objects.user.User
-import com.studywithme.app.objects.user.UserDto
 import com.studywithme.app.present.State
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject

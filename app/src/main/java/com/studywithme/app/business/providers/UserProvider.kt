@@ -3,7 +3,6 @@ package com.studywithme.app.business.providers
 import com.studywithme.app.datalayer.accessors.IUserAccessor
 import com.studywithme.app.objects.AbstractUser
 import com.studywithme.app.objects.user.User
-import com.studywithme.app.objects.user.UserDto
 import java.lang.IllegalStateException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,7 +42,6 @@ class UserProvider(private val onlineAccessor: IUserAccessor) :
             returnResult(result, callback)
         }
     }
-
 
     override fun postUser(user: User, callback: (result: Result<AbstractUser>) -> Unit) {
         AbstractCoroutineProvider.scope.launch {

@@ -120,7 +120,6 @@ class RoomListFragment :
             transaction.add(R.id.fragment_container, fragment, null)
         }
         transaction
-            .show(fragment)
             .hide(this)
             .addToBackStack(null)
             .commitAllowingStateLoss()

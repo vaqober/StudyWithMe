@@ -22,9 +22,7 @@ class UserProvider(private val onlineAccessor: IUserAccessor) :
                 Result.Fail(error)
             }
 
-            withContext(Dispatchers.Main) {
-                callback(result)
-            }
+            returnResult(result, callback)
         }
     }
 }

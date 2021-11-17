@@ -35,9 +35,7 @@ class RoomProvider(private val onlineAccessor: IRoomAccessor) :
                 Result.Fail(error)
             }
 
-            withContext(Dispatchers.Main) {
-                callback(result)
-            }
+            returnResult(result, callback)
         }
     }
 }

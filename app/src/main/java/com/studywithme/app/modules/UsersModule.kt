@@ -4,7 +4,7 @@ import com.google.gson.GsonBuilder
 import com.studywithme.app.business.providers.IUserProvider
 import com.studywithme.app.business.providers.UserProvider
 import com.studywithme.app.datalayer.accessors.IUserAccessor
-import com.studywithme.app.datalayer.interceptors.UserInterceptor
+import com.studywithme.app.datalayer.interceptors.AppInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -23,7 +23,7 @@ val usersModule = module() {
         }
 
         val client = OkHttpClient.Builder()
-            .addInterceptor(UserInterceptor(baseKey))
+            .addInterceptor(AppInterceptor(baseKey))
             .addNetworkInterceptor(loggingInterceptor)
             .build()
 

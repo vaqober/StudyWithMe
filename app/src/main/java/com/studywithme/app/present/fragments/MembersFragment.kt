@@ -47,6 +47,11 @@ class MembersFragment : Fragment(), OnUserClickListener {
         observeModel()
         setAdapters()
         setOnClickListeners()
+
+        binding.swipeContainer.setOnRefreshListener {
+            viewModel.getMembers(roomId)
+            binding.swipeContainer.isRefreshing = false
+        }
     }
 
     private fun setAdapters() {

@@ -45,7 +45,7 @@ class UserProvider(private val onlineAccessor: IUserAccessor) :
             val result = try {
                 val apiResult = onlineAccessor.postUser(user.getId().toInt(), user) as AbstractUser
                 Result.Success(apiResult)
-            } catch (error: IllegalStateException) {
+            } catch (error: retrofit2.HttpException) {
                 Result.Fail(error)
             }
 

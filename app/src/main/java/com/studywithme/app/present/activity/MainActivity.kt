@@ -1,7 +1,6 @@
 package com.studywithme.app.present.activity
 
 import android.os.Bundle
-import android.view.Menu
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout

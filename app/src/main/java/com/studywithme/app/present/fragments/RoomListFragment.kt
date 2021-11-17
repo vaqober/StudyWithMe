@@ -4,12 +4,14 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.core.os.postDelayed
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.studywithme.app.R
@@ -20,16 +22,17 @@ import com.studywithme.app.present.adapters.RoomRecyclerViewAdapter
 import com.studywithme.app.present.adapters.RoomRecyclerViewAdapter.OnRoomClickListener
 import com.studywithme.app.present.models.RoomListViewModel
 
+@Suppress("Detekt.TooManyFunctions")
 class RoomListFragment :
     Fragment(),
     OnRoomClickListener,
-    RoomListViewModel.InternetCheck, SearchView.OnQueryTextListener {
+    RoomListViewModel.InternetCheck,
+    SearchView.OnQueryTextListener {
 
     private val viewModel = RoomListViewModel(this)
     private var _binding: FragmentRoomListBinding? = null
     private val binding get() = _binding!!
     private val recyclerAdapter = RoomRecyclerViewAdapter(mutableListOf(), this)
-    private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +64,7 @@ class RoomListFragment :
         }
     }
 
+    @Override
     override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.menu_main, menu)
         super.onCreateOptionsMenu(menu, menuInflater)

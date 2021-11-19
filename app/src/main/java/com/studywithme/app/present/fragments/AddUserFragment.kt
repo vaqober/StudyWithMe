@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.studywithme.app.R
 import com.studywithme.app.databinding.FragmentAddUserBinding
 import com.studywithme.app.objects.user.User
@@ -17,15 +16,14 @@ import com.studywithme.app.present.State
 import com.studywithme.app.present.adapters.UserRecyclerViewAdapter
 import com.studywithme.app.present.models.MembersListViewModel
 import com.studywithme.app.present.models.UsersListViewModel
-import kotlinx.coroutines.launch
 
 class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener {
 
     private val viewModel by viewModels<MembersListViewModel>()
+    private val userViewModel by viewModels<UsersListViewModel>()
     private var _binding: FragmentAddUserBinding? = null
     private val binding get() = _binding!!
     private val usersListAdapter = UserRecyclerViewAdapter(mutableListOf(), this)
-    val roomId = requireArguments().getLong(ARG_ROOM)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,15 +40,17 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
         viewModel.getAllUsers()
         observeModel()
         setAdapter()
-//        setOnClickListeners()
+        observeModel()
+
+        binding.swipeContainer.setOnRefreshListener {
+            viewModel.getAllUsers()
+            binding.swipeContainer.isRefreshing = false
+        }
     }
 
     private fun setAdapter() {
         binding.allUsersList.adapter = usersListAdapter
     }
-
-//    private fun setOnClickListeners() {
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -66,14 +66,14 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
                 }
                 is State.Fail -> {
                     binding.loadingProgress.isVisible = false
-                    Toast.makeText(requireContext(), "Fail: ${it.error}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Fail: ${it.error}", Toast.LENGTH_SHORT).show()
                 }
                 is State.Success -> {
                     binding.loadingProgress.isVisible = false
                     usersListAdapter.values.clear()
                     usersListAdapter.values.addAll(it.data.map { it as User })
                     usersListAdapter.notifyDataSetChanged()
-                    Toast.makeText(requireContext(), "Success: ${it.data.size}", Toast.LENGTH_LONG)
+                    Toast.makeText(requireContext(), "Success: ${it.data.size}", Toast.LENGTH_SHORT)
                         .show()
                 }
             }
@@ -81,19 +81,22 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
     }
 
     override fun onUserClick(position: Int) {
-        val vm by viewModels<UsersListViewModel>()
-
-        val userId = usersListAdapter.values[position].getId()
-        val name = usersListAdapter.values[position].getName()
-        val photo = usersListAdapter.values[position].getPhotoUri()
-        val description = usersListAdapter.values[position].getDescription()
         val rooms = usersListAdapter.values[position].getRoomsList()
-        rooms.add(roomId)
-        val isOnline = usersListAdapter.values[position].isOnline()
-        val newUser = User(userId, name, photo, description, rooms, isOnline)
+        val name = usersListAdapter.values[position].getName()
 
-        lifecycleScope.launch {
-            vm.postUser(newUser)
+        val roomId = requireArguments().getLong(ARG_ROOM)
+
+        if (rooms.contains(roomId)) {
+            Toast.makeText(requireContext(), "$name is in this room", Toast.LENGTH_SHORT).show()
+        } else {
+            rooms.add(roomId)
+            val userId = usersListAdapter.values[position].getId()
+            val photo = usersListAdapter.values[position].getPhotoUri()
+            val description = usersListAdapter.values[position].getDescription()
+            val isOnline = usersListAdapter.values[position].isOnline()
+            val newUser = User(userId, name, photo, description, rooms, isOnline)
+            userViewModel.postUser(newUser)
+            Toast.makeText(requireContext(), "Success: $name was added", Toast.LENGTH_SHORT).show()
         }
     }
 

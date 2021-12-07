@@ -1,22 +1,33 @@
 package com.studywithme.app.present.fragments
 
+import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.studywithme.app.R
+import com.studywithme.app.business.providers.IGlideProvider
+import com.studywithme.app.createProgressPlaceholderDrawable
 import com.studywithme.app.databinding.FragmentUserProfileBinding
 import com.studywithme.app.objects.user.User
 import com.studywithme.app.present.State
 import com.studywithme.app.present.models.UserProfileViewModel
+import org.koin.android.ext.android.inject
+import org.koin.core.component.inject
 
 class UserProfileFragment : Fragment() {
 
     private val viewModel by viewModels<UserProfileViewModel>()
+    private val providerGlide by inject<IGlideProvider>()
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
 
@@ -24,7 +35,7 @@ class UserProfileFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -82,9 +93,10 @@ class UserProfileFragment : Fragment() {
         }
         binding.profileName.text = user.getName()
         binding.profileDescription.text = user.getDescription()
+        providerGlide.loadImage(user.getPhotoUri(), binding.profilePhoto, this)
         setContentVisibility(true)
-        // binding.profilePhoto = user.getPhotoUri()
     }
+
 
     companion object {
         private const val ARG_USER: String = ""

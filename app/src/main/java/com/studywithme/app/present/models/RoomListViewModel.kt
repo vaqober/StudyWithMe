@@ -26,7 +26,7 @@ class RoomListViewModel(private val internetCheck: InternetCheck) : ViewModel(),
 
     private fun postponedQuery(query: String) {
         handler.removeCallbacksAndMessages(null)
-        handler.postDelayed(delayInMillis = 600) {
+        handler.postDelayed(delayInMillis = 500) {
             makeRequest(query)
         }
     }

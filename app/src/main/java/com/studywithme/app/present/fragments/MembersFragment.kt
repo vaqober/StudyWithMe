@@ -47,7 +47,8 @@ class MembersFragment : Fragment(), OnUserClickListener {
         observeModel()
         setAdapters()
         setOnClickListeners()
-
+        binding.usersOnlineList.layoutManager = LinearLayoutManager(this.context)
+        binding.usersOfflineList.layoutManager = LinearLayoutManager(this.context)
         binding.swipeContainer.setOnRefreshListener {
             viewModel.getMembers(roomId)
             binding.swipeContainer.isRefreshing = false
@@ -61,6 +62,8 @@ class MembersFragment : Fragment(), OnUserClickListener {
 
     private fun onlineAndOfflineUsers(allMembers: List<AbstractUser>) {
         Log.d("UsersList", "onlineAndOfflineUsers: $allMembers")
+        usersOnlineList.clear()
+        usersOfflineList.clear()
         if (allMembers.isNotEmpty()) {
             for (user in allMembers) {
                 Log.d("UsersList", "user " + user)
@@ -96,14 +99,12 @@ class MembersFragment : Fragment(), OnUserClickListener {
                 is State.Success -> {
                     binding.loadingProgress.isVisible = false
                     onlineAndOfflineUsers(it.data)
-                    binding.usersOnlineList.layoutManager = LinearLayoutManager(this.context)
-                    binding.usersOfflineList.layoutManager = LinearLayoutManager(this.context)
+                    usersOnlineListAdapter.update(usersOnlineList.map { it as User })
+                    usersOfflineListAdapter.update(usersOfflineList.map { it as User })
                     usersOnlineListAdapter.values.clear()
                     usersOnlineListAdapter.values.addAll(usersOnlineList.map { it as User })
-                    usersOnlineListAdapter.update(usersOnlineList.map { it as User })
                     usersOfflineListAdapter.values.clear()
                     usersOfflineListAdapter.values.addAll(usersOfflineList.map { it as User })
-                    usersOfflineListAdapter.update(usersOfflineList.map { it as User })
                     binding.usersOnline.text = " " + usersOnlineList.size
                     binding.usersOffline.text = " " + usersOfflineList.size
                     Toast.makeText(requireContext(), "Success: ${it.data.size}", Toast.LENGTH_LONG)

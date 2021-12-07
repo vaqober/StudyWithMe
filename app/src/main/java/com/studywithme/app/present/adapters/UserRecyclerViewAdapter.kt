@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.studywithme.app.R
+import com.studywithme.app.business.providers.IGlideProvider
 import com.studywithme.app.databinding.FragmentMembersUserItemBinding
 import com.studywithme.app.objects.user.User
 
 class UserRecyclerViewAdapter(
     val values: MutableList<User>,
-    private val listener: OnUserClickListener
+    private val listener: OnUserClickListener,
+    private val providerGlide: IGlideProvider
 ) :
     RecyclerView.Adapter<UserRecyclerViewAdapter.UserItemViewHolder>() {
 
@@ -20,7 +22,7 @@ class UserRecyclerViewAdapter(
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_members_user_item, parent, false)
         Log.d("UserList", "onCreateViewHolder")
-        return UserItemViewHolder(view)
+        return UserItemViewHolder(view, providerGlide)
     }
 
     override fun onBindViewHolder(holder: UserItemViewHolder, position: Int) {
@@ -29,13 +31,16 @@ class UserRecyclerViewAdapter(
 
     override fun getItemCount(): Int = values.size
 
-    class UserItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class UserItemViewHolder(view: View, private val provider: IGlideProvider) : RecyclerView.ViewHolder(
+        view
+    ) {
 
         val binding = FragmentMembersUserItemBinding.bind(view)
 
         fun bind(user: User, listener: OnUserClickListener, position: Int) = with(binding) {
             Log.d("UsersList", "name: " + user.getName())
             userName.text = user.getName()
+            provider.loadImage(user.getPhotoUri(), userPhoto)
             itemView.setOnClickListener {
                 listener.onUserClick(position)
             }

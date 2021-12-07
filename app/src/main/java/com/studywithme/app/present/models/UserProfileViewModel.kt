@@ -6,7 +6,6 @@ import androidx.core.os.postDelayed
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.studywithme.app.business.providers.IGlideProvider
 import com.studywithme.app.business.providers.IUserProvider
 import com.studywithme.app.business.providers.Result
 import com.studywithme.app.objects.AbstractUser

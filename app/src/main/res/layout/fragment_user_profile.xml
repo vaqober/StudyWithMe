@@ -4,7 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".present.fragments.UserProfileFragment">
+        tools:context="com.studywithme.app.present.fragments.UserProfileFragment">
 
     <TextView
             android:id="@+id/profile_name"
@@ -84,7 +84,7 @@
             android:text="@string/button_friends"/>
 
     <com.google.android.material.button.MaterialButton
-            android:id="@+id/create_button"
+            android:id="@+id/button_rooms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_margin"
@@ -94,4 +94,29 @@
             app:cornerRadius="@dimen/corner_radius_text_field"
             android:text="@string/button_rooms"/>
 
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:clickable="false"
+            android:layout_marginTop="@dimen/text_margin"
+            app:layout_constraintTop_toBottomOf="@id/button_rooms"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cornerRadius="@dimen/corner_radius_text_field"
+            android:text="@string/nav_settings"/>
+
+    <ProgressBar
+            android:id="@+id/loading_progress"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="top|end"
+            android:layout_margin="18dp"
+            android:elevation="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

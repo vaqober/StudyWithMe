@@ -68,7 +68,6 @@ class RegisterFragment : Fragment() {
         }.attach()
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
     }
@@ -83,6 +82,4 @@ class RegisterFragment : Fragment() {
             .addToBackStack(null)
             .commitAllowingStateLoss()
     }
-
-
 }

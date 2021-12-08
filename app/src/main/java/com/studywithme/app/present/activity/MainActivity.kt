@@ -41,7 +41,8 @@ class MainActivity :
         auth = FirebaseAuth.getInstance()
         setSupportActionBar(binding.toolbar.root)
         if (auth.currentUser != null) {
-            Toast.makeText(this, "main Activity" + auth.currentUser?.email, Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "main Activity" + auth.currentUser?.email,
+                Toast.LENGTH_LONG).show()
             setUserInfo(auth)
             menuSettings()
         }
@@ -137,7 +138,11 @@ class MainActivity :
                     Toast.makeText(this, "Fail: ${it.error}", Toast.LENGTH_LONG).show()
                 }
                 is State.Success -> {
-                    Toast.makeText(this, "viewModel.getUser " + it.data.getName(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this,
+                        "viewModel.getUser " + it.data.getName(),
+                        Toast.LENGTH_LONG
+                    ).show()
                     val photoUri = it.data.getPhotoUri()
                     val b = NavProfileHeaderBinding.inflate(layoutInflater)
                     b.navProfileHeaderUsername.text = it.data.getName()

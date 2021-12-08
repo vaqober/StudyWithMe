@@ -76,6 +76,7 @@ class SignUpFragment : Fragment() {
         val rooms = mutableListOf<Long>()
         val isOnline = true
         val newUser = User(id, name, photoUri, desc, rooms, isOnline)
+        Toast.makeText(requireContext(), name, Toast.LENGTH_LONG).show()
         userViewModel.postUser(newUser)
     }
 }

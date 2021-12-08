@@ -13,18 +13,16 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.StudyWithMe">
-        <activity android:name=".present.activity.RegisterActivity"
-                android:windowSoftInputMode="adjustPan">
+
+        <activity
+                android:name=".present.activity.MainActivity"
+                android:exported="true"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
-        </activity>
-        <activity
-                android:name=".present.activity.MainActivity"
-                android:exported="true"
-                android:screenOrientation="portrait">
         </activity>
 
         <provider

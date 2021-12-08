@@ -1,8 +1,9 @@
 package com.studywithme.app.present.fragments
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
@@ -11,7 +12,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.studywithme.app.R
 import com.studywithme.app.databinding.FragmentRegisterBinding
-import com.studywithme.app.present.activity.MainActivity
 import com.studywithme.app.present.adapters.PagerAdapter
 
 class RegisterFragment : Fragment() {
@@ -44,8 +44,7 @@ class RegisterFragment : Fragment() {
     private fun initFunc() {
         if (auth.currentUser != null) {
             Toast.makeText(requireContext(), auth.currentUser.toString(), Toast.LENGTH_LONG).show()
-            val intent = Intent(this.context, MainActivity::class.java)
-            startActivity(intent)
+            openFragment(RoomListFragment())
         } else {
             initial()
         }
@@ -54,16 +53,20 @@ class RegisterFragment : Fragment() {
     private fun initial() {
         binding.viewPager2.adapter = PagerAdapter(this)
         binding.tabLayout.tabIconTint = null
-        TabLayoutMediator(binding.tabLayout, binding.viewPager2) {
-                tab, position ->
+        TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
             when (position) {
-                0 -> { tab.text = "Login" }
-                1 -> { tab.text = "Sign Up" }
-                else -> { tab.text = "Login" }
+                0 -> {
+                    tab.text = "Login"
+                }
+                1 -> {
+                    tab.text = "Sign Up"
+                }
+                else -> {
+                    tab.text = "Login"
+                }
             }
         }.attach()
     }
-
 
 
     override fun onDestroyView() {

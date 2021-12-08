@@ -15,12 +15,14 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.studywithme.app.R
+import com.studywithme.app.business.providers.IGlideProvider
 import com.studywithme.app.databinding.FragmentRoomListBinding
 import com.studywithme.app.objects.room.Room
 import com.studywithme.app.present.State
 import com.studywithme.app.present.adapters.RoomRecyclerViewAdapter
 import com.studywithme.app.present.adapters.RoomRecyclerViewAdapter.OnRoomClickListener
 import com.studywithme.app.present.models.RoomListViewModel
+import org.koin.android.ext.android.inject
 
 @Suppress("Detekt.TooManyFunctions")
 class RoomListFragment :
@@ -30,9 +32,10 @@ class RoomListFragment :
     SearchView.OnQueryTextListener {
 
     private val viewModel = RoomListViewModel(this)
+    private val providerGlide by inject<IGlideProvider>()
     private var _binding: FragmentRoomListBinding? = null
     private val binding get() = _binding!!
-    private val recyclerAdapter = RoomRecyclerViewAdapter(mutableListOf(), this)
+    private val recyclerAdapter = RoomRecyclerViewAdapter(mutableListOf(), this, providerGlide)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

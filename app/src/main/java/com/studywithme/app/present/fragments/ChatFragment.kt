@@ -15,12 +15,14 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.studywithme.app.R
+import com.studywithme.app.business.providers.IGlideProvider
 import com.studywithme.app.databinding.FragmentChatBinding
 import com.studywithme.app.objects.message.Message
 import com.studywithme.app.present.State
 import com.studywithme.app.present.adapters.ChatRecyclerViewAdapter
 import com.studywithme.app.present.models.ChatViewModel
 import java.util.Date
+import org.koin.android.ext.android.inject
 
 class ChatFragment :
     Fragment(),
@@ -29,7 +31,8 @@ class ChatFragment :
 
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
-    private var adapter = ChatRecyclerViewAdapter(mutableListOf())
+    private val providerGlide by inject<IGlideProvider>()
+    private var adapter = ChatRecyclerViewAdapter(mutableListOf(), providerGlide)
     private val viewModel = ChatViewModel(this)
     private var roomId: Long = -1
 

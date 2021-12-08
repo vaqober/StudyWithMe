@@ -10,18 +10,21 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.studywithme.app.R
+import com.studywithme.app.business.providers.IGlideProvider
 import com.studywithme.app.databinding.FragmentAddUserBinding
 import com.studywithme.app.objects.user.User
 import com.studywithme.app.present.State
 import com.studywithme.app.present.adapters.UserRecyclerViewAdapter
 import com.studywithme.app.present.models.MembersListViewModel
+import org.koin.android.ext.android.inject
 
 class FriendsFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener {
 
     private val viewModel by viewModels<MembersListViewModel>()
+    private val providerGlide by inject<IGlideProvider>()
     private var _binding: FragmentAddUserBinding? = null
     private val binding get() = _binding!!
-    private val usersListAdapter = UserRecyclerViewAdapter(mutableListOf(), this)
+    private val usersListAdapter = UserRecyclerViewAdapter(mutableListOf(), this, providerGlide)
 
     override fun onCreateView(
         inflater: LayoutInflater,

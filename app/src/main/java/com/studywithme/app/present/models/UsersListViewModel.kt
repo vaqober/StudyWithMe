@@ -28,6 +28,30 @@ class UsersListViewModel : ViewModel(), KoinComponent {
         postponedQuery(user)
     }
 
+    fun getUser(id: String) {
+        postponedQuery(id)
+    }
+
+    private fun postponedQuery(id: String) {
+        handler.removeCallbacksAndMessages(null)
+        handler.postDelayed(delayInMillis = 600) {
+            makeRequest(id)
+        }
+    }
+
+    private fun makeRequest(id: String) {
+        state.postValue(State.Pending())
+
+        provider.getUser(id) {
+            val newState = when (it) {
+                is Result.Success -> State.Success(it.data)
+                is Result.Fail -> State.Fail(it.error)
+            }
+
+            state.postValue(newState)
+        }
+    }
+
     private fun postponedQuery(user: User) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {

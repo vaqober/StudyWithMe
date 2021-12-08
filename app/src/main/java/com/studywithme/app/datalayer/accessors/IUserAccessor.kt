@@ -14,6 +14,9 @@ interface IUserAccessor {
     @GET("users")
     suspend fun getAllUsers(): UserList<User>
 
+    @GET("users/{id}")
+    suspend fun getUser(@Path("id") userId: String): User
+
     @PUT("users/{id}")
-    suspend fun postUser(@Path("id") userId: Int, @Body user: User): User
+    suspend fun postUser(@Path("id") userId: String, @Body user: User): User
 }

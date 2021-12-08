@@ -13,15 +13,18 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.StudyWithMe">
-
-        <activity
-                android:name=".present.activity.MainActivity"
-                android:screenOrientation="portrait"
-                android:exported="true">
+        <activity android:name=".present.activity.RegisterActivity"
+                android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
+        </activity>
+        <activity
+                android:name=".present.activity.MainActivity"
+                android:exported="true"
+                android:screenOrientation="portrait">
         </activity>
 
         <provider
@@ -33,6 +36,6 @@
                     android:name="android.support.FILE_PROVIDER_PATHS"
                     android:resource="@xml/provider_paths" />
         </provider>
-
     </application>
+
 </manifest>

@@ -21,7 +21,7 @@
             android:id="@+id/profile_photo_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/corner_radius_small_field"
+            app:cardCornerRadius="@dimen/corner_radius_text_field"
             app:cardElevation="@dimen/element_small_margin"
             app:layout_constraintBottom_toTopOf="@id/profile_description_card"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -40,7 +40,8 @@
             android:layout_height="@dimen/image_profile_size"
             android:src="@drawable/outline_add_a_photo_black_48"
             android:background="@drawable/bg_round_image"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:padding="20dp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView

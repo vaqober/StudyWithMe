@@ -1,10 +1,7 @@
 package com.studywithme.app
 
 import android.app.Application
-import android.content.Context
-import android.graphics.drawable.Drawable
-import androidx.core.content.ContextCompat
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.studywithme.app.modules.messagesModule
 import com.studywithme.app.modules.baseModule
 import com.studywithme.app.modules.roomsModule
 import com.studywithme.app.modules.usersModule
@@ -23,22 +20,9 @@ class Application : Application() {
             modules(
                 baseModule,
                 roomsModule,
-                usersModule
+                usersModule,
+                messagesModule
             )
         }
-    }
-}
-
-fun Context.createProgressPlaceholderDrawable(): Drawable {
-    return CircularProgressDrawable(this).apply {
-        strokeWidth = resources.getDimension(R.dimen.element_margin)
-        centerRadius = resources.getDimension(R.dimen.text_margin)
-        setColorSchemeColors(
-            ContextCompat.getColor(
-                this@createProgressPlaceholderDrawable,
-                R.color.black
-            )
-        )
-        start()
     }
 }

@@ -44,5 +44,6 @@
     <string name="nav_open_drawer">Open navigation drawer</string>
     <string name="nav_close_drawer">Close navigation drawer</string>
     <string name="add_user_btn">ADD USER</string>
+    <string name="chat_button">Chat</string>
     <string name="join_btn">JOIN</string>
 </resources>

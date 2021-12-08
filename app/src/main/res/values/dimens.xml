@@ -6,6 +6,7 @@
     <dimen name="image_size">50dp</dimen>
     <dimen name="image_profile_size">100dp</dimen>
     <dimen name="image_search_size">30dp</dimen>
+    <dimen name="image_delete_size">20dp</dimen>
     <dimen name="search_size">40dp</dimen>
     <dimen name="small_text_size">15sp</dimen>
     <dimen name="corners_item_radius">30dp</dimen>

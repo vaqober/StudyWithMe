@@ -9,11 +9,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.studywithme.app.R
-import com.studywithme.app.business.providers.IGlideProvider
 import com.studywithme.app.databinding.FragmentUserProfileBinding
 import com.studywithme.app.objects.user.User
 import com.studywithme.app.present.State
 import com.studywithme.app.present.models.UserProfileViewModel
+import com.studywithme.app.business.providers.IGlideProvider
 import org.koin.android.ext.android.inject
 
 class UserProfileFragment : Fragment() {
@@ -39,6 +39,16 @@ class UserProfileFragment : Fragment() {
         setContentVisibility(false)
         observeModel()
         viewModel.getUser(userId)
+        binding.buttonRooms.setOnClickListener { openFragment(RoomListFragment()) }
+        binding.buttonFriens.setOnClickListener {
+            openFragment(
+                FriendsFragment.newInstance(
+                    requireArguments().getLong(
+                        ARG_USER
+                    )
+                )
+            )
+        }
     }
 
     private fun observeModel() {
@@ -76,17 +86,11 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun update(user: User) {
-        if (user.getId().toInt() == 1) {
-            binding.buttonSettings.isVisible = true
-            binding.buttonSettings.isClickable = true
-        } else {
-            binding.buttonSettings.isVisible = false
-            binding.buttonSettings.isClickable = false
-        }
         binding.profileName.text = user.getName()
         binding.profileDescription.text = user.getDescription()
         providerGlide.loadImage(user.getPhotoUri(), binding.profilePhoto)
         setContentVisibility(true)
+        // binding.profilePhoto = user.getPhotoUri()
     }
 
     companion object {
@@ -104,5 +108,16 @@ class UserProfileFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun openFragment(fragment: Fragment) {
+        val transaction = parentFragmentManager.beginTransaction()
+        if (!parentFragmentManager.fragments.contains(fragment)) {
+            transaction.add(R.id.fragment_container, fragment, null)
+        }
+        transaction
+            .hide(this)
+            .addToBackStack(null)
+            .commitAllowingStateLoss()
     }
 }

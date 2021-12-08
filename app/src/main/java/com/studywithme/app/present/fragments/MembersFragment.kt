@@ -134,9 +134,11 @@ class MembersFragment : Fragment(), OnUserClickListener {
     }
 
     private fun openFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction()
-            .add(R.id.fragment_container, fragment, null)
-            .show(fragment)
+        val transaction = parentFragmentManager.beginTransaction()
+        if (!parentFragmentManager.fragments.contains(fragment)) {
+            transaction.add(R.id.fragment_container, fragment, null)
+        }
+        transaction
             .hide(this)
             .addToBackStack(null)
             .commitAllowingStateLoss()

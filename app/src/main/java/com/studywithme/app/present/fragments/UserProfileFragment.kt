@@ -32,7 +32,7 @@ class UserProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.setTitle(R.string.fragment_profile_title)
-        val userId = requireArguments().getString(ARG_USER).toString()
+        val userId = requireArguments().getLong(ARG_USER).toString()
         setContentVisibility(false)
         observeModel()
         viewModel.getUser(userId)

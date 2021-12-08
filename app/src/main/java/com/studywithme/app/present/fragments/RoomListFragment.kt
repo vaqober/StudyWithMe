@@ -111,7 +111,7 @@ class RoomListFragment :
 
     override fun onRoomClick(position: Long) {
         Toast.makeText(context, "Room $position clicked", Toast.LENGTH_SHORT).show()
-        openFragment(MembersFragment.newInstance(position))
+        openFragment(ChatFragment.newInstance(position))
     }
 
     private fun openFragment(fragment: Fragment) {

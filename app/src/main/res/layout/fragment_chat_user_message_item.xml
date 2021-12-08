@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_marginStart="@dimen/element_small_margin"
+        android:layout_marginEnd="@dimen/element_small_margin"
+        android:layout_marginBottom="@dimen/element_margin"
+        app:cardCornerRadius="20dp"
+        android:background="@color/room_name_edit_text_color">
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="15dp">
+
+        <ImageView
+                android:id="@+id/chat_user_photo"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:src="@mipmap/ic_launcher"
+                android:background="@drawable/bg_round_image"
+                android:layout_gravity="top"/>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp">
+
+            <TextView
+                    android:id="@+id/chat_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="@string/user_name"
+                    android:layout_marginBottom="5dp"/>
+
+            <TextView
+                    android:id="@+id/chat_user_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="qwqwqwqwqwwqqwqqwewrscddtdrtwqwqwqwqwqqwqqwewarewrsersrewewerwrewrwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwwqqwqwqwqwqwqwqwqw"/>
+
+            <TextView
+                    android:id="@+id/chat_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="27.11.2021 21:47"
+                    android:textSize="12sp"
+                    android:layout_gravity="end" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -24,7 +24,7 @@ class UserProfileFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,6 +36,16 @@ class UserProfileFragment : Fragment() {
         setContentVisibility(false)
         observeModel()
         viewModel.getUser(userId)
+        binding.buttonRooms.setOnClickListener { openFragment(RoomListFragment()) }
+        binding.buttonFriens.setOnClickListener {
+            openFragment(
+                FriendsFragment.newInstance(
+                    requireArguments().getLong(
+                        ARG_USER
+                    )
+                )
+            )
+        }
     }
 
     private fun observeModel() {
@@ -73,13 +83,6 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun update(user: User) {
-        if (user.getId().toInt() == 1) {
-            binding.buttonSettings.isVisible = true
-            binding.buttonSettings.isClickable = true
-        } else {
-            binding.buttonSettings.isVisible = false
-            binding.buttonSettings.isClickable = false
-        }
         binding.profileName.text = user.getName()
         binding.profileDescription.text = user.getDescription()
         setContentVisibility(true)
@@ -101,5 +104,16 @@ class UserProfileFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun openFragment(fragment: Fragment) {
+        val transaction = parentFragmentManager.beginTransaction()
+        if (!parentFragmentManager.fragments.contains(fragment)) {
+            transaction.add(R.id.fragment_container, fragment, null)
+        }
+        transaction
+            .hide(this)
+            .addToBackStack(null)
+            .commitAllowingStateLoss()
     }
 }

@@ -16,7 +16,6 @@ import com.studywithme.app.objects.user.User
 import com.studywithme.app.present.activity.MainActivity
 import com.studywithme.app.present.models.UsersListViewModel
 
-
 class SignUpFragment : Fragment() {
 
     private lateinit var binding: FragmentSignUpBinding
@@ -24,7 +23,8 @@ class SignUpFragment : Fragment() {
     private val userViewModel by viewModels<UsersListViewModel>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentSignUpBinding.inflate(layoutInflater)
@@ -46,13 +46,24 @@ class SignUpFragment : Fragment() {
                     val intent = Intent(context, MainActivity::class.java)
                     startActivity(intent)
                     createUser(auth)
-                    Toast.makeText(requireContext(), "new account created", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "acc created", Toast.LENGTH_SHORT).show()
                 }
-
             } else {
-                if (email.isEmpty()) Toast.makeText(requireContext(), "Enter email, please", Toast.LENGTH_SHORT).show()
-                else if (password.isEmpty()) Toast.makeText(requireContext(), "Enter password, please", Toast.LENGTH_SHORT).show()
-                else if (password != cPassword) Toast.makeText(requireContext(), "Passwords do not match", Toast.LENGTH_SHORT).show()
+                if (email.isEmpty()) Toast.makeText(
+                    requireContext(),
+                    "Enter email, please",
+                    Toast.LENGTH_SHORT
+                ).show()
+                else if (password.isEmpty()) Toast.makeText(
+                    requireContext(),
+                    "Enter password, please",
+                    Toast.LENGTH_SHORT
+                ).show()
+                else if (password != cPassword) Toast.makeText(
+                    requireContext(),
+                    "Passwords do not match",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

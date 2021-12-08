@@ -2,8 +2,6 @@ package com.studywithme.app.present.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -12,27 +10,20 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.studywithme.app.R
 import com.studywithme.app.databinding.ActivityMainBinding
 import com.studywithme.app.databinding.NavProfileHeaderBinding
-import com.studywithme.app.objects.user.User
 import com.studywithme.app.present.DrawerLocker
 import com.studywithme.app.present.State
 import com.studywithme.app.present.fragments.RoomListFragment
-import com.studywithme.app.present.models.MembersListViewModel
 import com.studywithme.app.present.models.UsersListViewModel
-import kotlinx.coroutines.launch
-import org.koin.core.component.getScopeName
 
 class MainActivity :
     AppCompatActivity(),
@@ -93,11 +84,11 @@ class MainActivity :
                 fragName = fragment.javaClass.toString()
             }
             // R.id.nav_settings -> {}
-             R.id.nav_logout -> {
-                 auth.signOut()
-                 val intent = Intent(this.applicationContext, RegisterActivity::class.java)
-                 startActivity(intent)
-             }
+            R.id.nav_logout -> {
+                auth.signOut()
+                val intent = Intent(this.applicationContext, RegisterActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         if (fragment != null) {

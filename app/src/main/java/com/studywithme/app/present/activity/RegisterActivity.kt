@@ -27,7 +27,7 @@ class RegisterActivity : AppCompatActivity() {
         binding.viewPager2.adapter = PagerAdapter(this)
         binding.tabLayout.tabIconTint = null
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) {
-                tab, position ->
+            tab, position ->
             when (position) {
                 0 -> { tab.text = "Login" }
                 1 -> { tab.text = "Sign Up" }

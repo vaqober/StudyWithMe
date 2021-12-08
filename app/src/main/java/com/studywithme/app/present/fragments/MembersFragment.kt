@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.studywithme.app.R
+import com.studywithme.app.business.providers.IGlideProvider
 import com.studywithme.app.databinding.FragmentMembersBinding
 import com.studywithme.app.objects.AbstractUser
 import com.studywithme.app.objects.user.User
@@ -19,14 +20,24 @@ import com.studywithme.app.present.State
 import com.studywithme.app.present.adapters.UserRecyclerViewAdapter
 import com.studywithme.app.present.adapters.UserRecyclerViewAdapter.OnUserClickListener
 import com.studywithme.app.present.models.MembersListViewModel
+import org.koin.android.ext.android.inject
 
 class MembersFragment : Fragment(), OnUserClickListener {
 
     private val viewModel by viewModels<MembersListViewModel>()
+    private val providerGlide by inject<IGlideProvider>()
     private var _binding: FragmentMembersBinding? = null
     private val binding get() = _binding!!
-    private val usersOnlineListAdapter = UserRecyclerViewAdapter(mutableListOf(), this)
-    private val usersOfflineListAdapter = UserRecyclerViewAdapter(mutableListOf(), this)
+    private val usersOnlineListAdapter = UserRecyclerViewAdapter(
+        mutableListOf(),
+        this,
+        providerGlide
+    )
+    private val usersOfflineListAdapter = UserRecyclerViewAdapter(
+        mutableListOf(),
+        this,
+        providerGlide
+    )
     private val usersOnlineList: MutableList<AbstractUser> = mutableListOf()
     private val usersOfflineList: MutableList<AbstractUser> = mutableListOf()
 

@@ -8,12 +8,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.studywithme.app.R
+import com.studywithme.app.business.providers.IGlideProvider
 import com.studywithme.app.objects.message.Message
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Date
 
-class ChatRecyclerViewAdapter(val values: MutableList<Message>) :
+class ChatRecyclerViewAdapter(
+    val values: MutableList<Message>,
+    private val providerGlide: IGlideProvider
+) :
     RecyclerView.Adapter<ChatRecyclerViewAdapter.ChatItemViewHolder>() {
     companion object {
         private const val dateMult = 1000
@@ -22,7 +26,7 @@ class ChatRecyclerViewAdapter(val values: MutableList<Message>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatItemViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_chat_user_message_item, parent, false)
-        return ChatItemViewHolder(view)
+        return ChatItemViewHolder(view, providerGlide)
     }
 
     override fun onBindViewHolder(holder: ChatItemViewHolder, position: Int) {
@@ -38,7 +42,10 @@ class ChatRecyclerViewAdapter(val values: MutableList<Message>) :
         notifyDataSetChanged()
     }
 
-    class ChatItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ChatItemViewHolder(view: View, private val providerGlide: IGlideProvider) :
+        RecyclerView.ViewHolder(
+            view
+        ) {
         private val userPhoto: ImageView = view.findViewById(R.id.chat_user_photo)
         private val userName: TextView = view.findViewById(R.id.chat_user_name)
         private val userMessage: TextView = view.findViewById(R.id.chat_user_message)
@@ -48,7 +55,8 @@ class ChatRecyclerViewAdapter(val values: MutableList<Message>) :
         fun bind(message: Message) {
             val dateFormatter: DateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm")
 
-            userPhoto.setImageDrawable(photoDrawable)
+            // userPhoto.setImageDrawable(photoDrawable)
+            providerGlide.loadImage(message.userPhoto(), userPhoto, isCircle = true)
             userName.text = message.getUserName()
             userMessage.text = message.getMessage()
             messageDate.text = dateFormatter.format(Date(message.getDate() * dateMult))

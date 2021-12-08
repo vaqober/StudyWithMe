@@ -1,6 +1,7 @@
 package com.studywithme.app
 
 import android.app.Application
+import com.studywithme.app.modules.baseModule
 import com.studywithme.app.modules.messagesModule
 import com.studywithme.app.modules.roomsModule
 import com.studywithme.app.modules.usersModule
@@ -17,6 +18,7 @@ class Application : Application() {
             androidLogger()
 
             modules(
+                baseModule,
                 roomsModule,
                 usersModule,
                 messagesModule

@@ -16,7 +16,7 @@ import com.studywithme.app.present.State
 import com.studywithme.app.present.adapters.UserRecyclerViewAdapter
 import com.studywithme.app.present.models.MembersListViewModel
 
-class FriendsFragment: Fragment(), UserRecyclerViewAdapter.OnUserClickListener {
+class FriendsFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener {
 
     private val viewModel by viewModels<MembersListViewModel>()
     private var _binding: FragmentAddUserBinding? = null
@@ -73,7 +73,7 @@ class FriendsFragment: Fragment(), UserRecyclerViewAdapter.OnUserClickListener {
     }
 
     override fun onUserClick(position: Int) {
-        //openFragment(UserProfileFragment.newInstance(position.toLong()))
+        // openFragment(UserProfileFragment.newInstance(position.toLong()))
     }
 
     private fun openFragment(fragment: Fragment) {

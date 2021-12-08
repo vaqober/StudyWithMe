@@ -94,9 +94,9 @@ class RoomListFragment :
                 }
                 is State.Success -> {
                     binding.loadingProgress.isVisible = false
+                    recyclerAdapter.update(it.data.map { it as Room })
                     recyclerAdapter.values.clear()
                     recyclerAdapter.values.addAll(it.data.map { it as Room })
-                    recyclerAdapter.update(it.data.map { it as Room })
                     Toast.makeText(requireContext(), "Success: ${it.data.size}", Toast.LENGTH_LONG)
                         .show()
                 }
@@ -111,7 +111,7 @@ class RoomListFragment :
 
     override fun onRoomClick(position: Long) {
         Toast.makeText(context, "Room $position clicked", Toast.LENGTH_SHORT).show()
-        openFragment(MembersFragment.newInstance(position))
+        openFragment(ChatFragment.newInstance(position))
     }
 
     private fun openFragment(fragment: Fragment) {
@@ -147,6 +147,7 @@ class RoomListFragment :
     }
 
     override fun onQueryTextChange(newText: String): Boolean {
+        viewModel.findRooms(newText)
         return false
     }
 }

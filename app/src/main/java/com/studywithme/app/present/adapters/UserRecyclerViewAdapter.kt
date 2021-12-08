@@ -31,16 +31,17 @@ class UserRecyclerViewAdapter(
 
     override fun getItemCount(): Int = values.size
 
-    class UserItemViewHolder(view: View, private val provider: IGlideProvider) : RecyclerView.ViewHolder(
-        view
-    ) {
+    class UserItemViewHolder(view: View, private val provider: IGlideProvider) :
+        RecyclerView.ViewHolder(
+            view
+        ) {
 
         val binding = FragmentMembersUserItemBinding.bind(view)
 
         fun bind(user: User, listener: OnUserClickListener, position: Int) = with(binding) {
             Log.d("UsersList", "name: " + user.getName())
             userName.text = user.getName()
-            provider.loadImage(user.getPhotoUri(), userPhoto)
+            provider.loadImage(user.getPhotoUri(), userPhoto, true)
             itemView.setOnClickListener {
                 listener.onUserClick(position)
             }

@@ -9,11 +9,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.studywithme.app.R
+import com.studywithme.app.business.providers.IGlideProvider
 import com.studywithme.app.databinding.FragmentUserProfileBinding
 import com.studywithme.app.objects.user.User
 import com.studywithme.app.present.State
 import com.studywithme.app.present.models.UserProfileViewModel
-import com.studywithme.app.business.providers.IGlideProvider
 import org.koin.android.ext.android.inject
 
 class UserProfileFragment : Fragment() {
@@ -88,7 +88,7 @@ class UserProfileFragment : Fragment() {
     private fun update(user: User) {
         binding.profileName.text = user.getName()
         binding.profileDescription.text = user.getDescription()
-        providerGlide.loadImage(user.getPhotoUri(), binding.profilePhoto)
+        providerGlide.loadImage(user.getPhotoUri(), binding.profilePhoto, isCircle = false)
         setContentVisibility(true)
         // binding.profilePhoto = user.getPhotoUri()
     }

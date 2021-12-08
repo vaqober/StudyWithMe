@@ -6,18 +6,20 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.studywithme.app.R
 
 class GlideProvider : IGlideProvider {
-    override fun loadImage(imageUri: String, imageView: ImageView) {
-        Glide.with(imageView)
-            .asBitmap()
+    override fun loadImage(imageUri: String, imageView: ImageView, isCircle: Boolean) {
+        var glide = Glide.with(imageView).asBitmap()
+        glide = if (isCircle) {
+            glide.circleCrop()
+        } else {
+            glide.centerCrop()
+        }
+        glide
             .load(imageUri)
-            .centerCrop()
-            // .placeholder(context.createProgressPlaceholderDrawable())
+            .placeholder(R.drawable.outline_add_a_photo_black_48)
             .error(R.drawable.outline_add_a_photo_black_48)
             .fallback(R.drawable.outline_add_a_photo_black_48)
-            .skipMemoryCache(true)
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .into(imageView)
             .waitForLayout()
-            .clearOnDetach()
     }
 }

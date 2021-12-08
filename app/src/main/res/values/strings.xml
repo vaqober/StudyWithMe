@@ -46,4 +46,12 @@
     <string name="add_user_btn">ADD USER</string>
     <string name="chat_button">Chat</string>
     <string name="join_btn">JOIN</string>
+    <string name="zero">0</string>
+    <string name="auth_text_login">Login</string>
+    <string name="auth_text_sign_up">Sign Up</string>
+    <string name="fragment_login_hint_email">Email</string>
+    <string name="fragment_login_hint_password">Password</string>
+    <string name="login_forget_password">Forget password</string>
+    <string name="fragment_sign_up_hint_confirm_password">Confirm Password</string>
+    <string name="fragment_register_title">Log In</string>
 </resources>

@@ -43,16 +43,17 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
         viewModel.getAllUsers()
         observeModel()
         setAdapter()
-        observeUserModel()
-//        setOnClickListeners()
+        observeModel()
+
+        binding.swipeContainer.setOnRefreshListener {
+            viewModel.getAllUsers()
+            binding.swipeContainer.isRefreshing = false
+        }
     }
 
     private fun setAdapter() {
         binding.allUsersList.adapter = usersListAdapter
     }
-
-//    private fun setOnClickListeners() {
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -68,34 +69,14 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
                 }
                 is State.Fail -> {
                     binding.loadingProgress.isVisible = false
-                    Toast.makeText(requireContext(), "Fail: ${it.error}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Fail: ${it.error}", Toast.LENGTH_SHORT).show()
                 }
                 is State.Success -> {
                     binding.loadingProgress.isVisible = false
                     usersListAdapter.values.clear()
                     usersListAdapter.values.addAll(it.data.map { it as User })
                     usersListAdapter.notifyDataSetChanged()
-                    Toast.makeText(requireContext(), "Success: ${it.data.size}", Toast.LENGTH_LONG)
-                        .show()
-                }
-            }
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun observeUserModel() {
-        userViewModel.getState().observe(viewLifecycleOwner) { it ->
-            when (it) {
-                is State.Pending -> {
-                    binding.loadingProgress.isVisible = true
-                }
-                is State.Fail -> {
-                    binding.loadingProgress.isVisible = false
-                    Toast.makeText(requireContext(), "Fail: ${it.error}", Toast.LENGTH_LONG).show()
-                }
-                is State.Success -> {
-                    binding.loadingProgress.isVisible = false
-                    Toast.makeText(requireContext(), "Success: ${it.data}", Toast.LENGTH_LONG)
+                    Toast.makeText(requireContext(), "Success: ${it.data.size}", Toast.LENGTH_SHORT)
                         .show()
                 }
             }
@@ -103,17 +84,23 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
     }
 
     override fun onUserClick(position: Int) {
-
-        val userId = usersListAdapter.values[position].getId()
-        val name = usersListAdapter.values[position].getName()
-        val photo = usersListAdapter.values[position].getPhotoUri()
-        val description = usersListAdapter.values[position].getDescription()
         val rooms = usersListAdapter.values[position].getRoomsList()
-        rooms.add(requireArguments().getLong(ARG_ROOM))
-        val isOnline = usersListAdapter.values[position].isOnline()
-        val newUser = User(userId, name, photo, description, rooms, isOnline)
+        val name = usersListAdapter.values[position].getName()
 
-        userViewModel.postUser(newUser)
+        val roomId = requireArguments().getLong(ARG_ROOM)
+
+        if (rooms.contains(roomId)) {
+            Toast.makeText(requireContext(), "$name is in this room", Toast.LENGTH_SHORT).show()
+        } else {
+            rooms.add(roomId)
+            val userId = usersListAdapter.values[position].getId()
+            val photo = usersListAdapter.values[position].getPhotoUri()
+            val description = usersListAdapter.values[position].getDescription()
+            val isOnline = usersListAdapter.values[position].isOnline()
+            val newUser = User(userId, name, photo, description, rooms, isOnline)
+            userViewModel.putUser(newUser)
+            Toast.makeText(requireContext(), "Success: $name was added", Toast.LENGTH_SHORT).show()
+        }
     }
 
     companion object {

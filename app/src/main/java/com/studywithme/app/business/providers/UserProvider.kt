@@ -39,7 +39,7 @@ class UserProvider(private val onlineAccessor: IUserAccessor) :
         }
     }
 
-    override fun getUserById(id: Int, callback: (result: Result<AbstractUser>) -> Unit) {
+    override fun getUserById(id: String, callback: (result: Result<AbstractUser>) -> Unit) {
         AbstractCoroutineProvider.scope.launch {
 
             val result = try {
@@ -53,11 +53,25 @@ class UserProvider(private val onlineAccessor: IUserAccessor) :
         }
     }
 
+    override fun putUser(user: User, callback: (result: Result<AbstractUser>) -> Unit) {
+        AbstractCoroutineProvider.scope.launch {
+
+            val result = try {
+                val apiResult = onlineAccessor.putUser(user.getId(), user) as AbstractUser
+                Result.Success(apiResult)
+            } catch (error: retrofit2.HttpException) {
+                Result.Fail(error)
+            }
+
+            returnResult(result, callback)
+        }
+    }
+
     override fun postUser(user: User, callback: (result: Result<AbstractUser>) -> Unit) {
         AbstractCoroutineProvider.scope.launch {
 
             val result = try {
-                val apiResult = onlineAccessor.postUser(user.getId().toInt(), user) as AbstractUser
+                val apiResult = onlineAccessor.postUser(user) as AbstractUser
                 Result.Success(apiResult)
             } catch (error: retrofit2.HttpException) {
                 Result.Fail(error)

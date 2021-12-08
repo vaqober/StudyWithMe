@@ -4,6 +4,7 @@ import com.studywithme.app.objects.user.User
 import com.studywithme.app.objects.user.UserList
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
 
@@ -15,8 +16,11 @@ interface IUserAccessor {
     suspend fun getAllUsers(): UserList<User>
 
     @GET("users/{id}")
-    suspend fun getUserById(@Path("id") userId: Int): User
+    suspend fun getUserById(@Path("id") userId: String): User
 
     @PUT("users/{id}")
-    suspend fun postUser(@Path("id") userId: Int, @Body user: User): User
+    suspend fun putUser(@Path("id") userId: String, @Body user: User): User
+
+    @POST("users")
+    suspend fun postUser(@Body user: User): User
 }

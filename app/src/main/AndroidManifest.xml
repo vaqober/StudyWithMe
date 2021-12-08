@@ -16,10 +16,11 @@
 
         <activity
                 android:name=".present.activity.MainActivity"
-                android:screenOrientation="portrait"
-                android:exported="true">
+                android:exported="true"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
@@ -33,6 +34,6 @@
                     android:name="android.support.FILE_PROVIDER_PATHS"
                     android:resource="@xml/provider_paths" />
         </provider>
-
     </application>
+
 </manifest>

@@ -24,6 +24,10 @@ class UsersListViewModel : ViewModel(), KoinComponent {
 
     fun getState(): LiveData<State<AbstractUser>> = state
 
+    fun putUser(user: User) {
+        postponedQuery(user.getId(), user)
+    }
+
     fun postUser(user: User) {
         postponedQuery(user)
     }
@@ -39,6 +43,26 @@ class UsersListViewModel : ViewModel(), KoinComponent {
         state.postValue(State.Pending())
 
         provider.postUser(user) {
+            val newState = when (it) {
+                is Result.Success -> State.Success(it.data)
+                is Result.Fail -> State.Fail(it.error)
+            }
+
+            state.postValue(newState)
+        }
+    }
+
+    private fun postponedQuery(userId: String, user: User) {
+        handler.removeCallbacksAndMessages(null)
+        handler.postDelayed(delayInMillis = 600) {
+            makeRequest(userId, user)
+        }
+    }
+
+    private fun makeRequest(userId: String, user: User) {
+        state.postValue(State.Pending())
+
+        provider.putUser(user) {
             val newState = when (it) {
                 is Result.Success -> State.Success(it.data)
                 is Result.Fail -> State.Fail(it.error)

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'com.google.gms.google-services'
     id 'kotlin-kapt'
 }
 
@@ -59,6 +60,8 @@ dependencies {
     // https://github.com/square/okhttp
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.2"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
     // https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor
 
     def glide = "4.12.0"

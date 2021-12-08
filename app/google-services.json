@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "701789979797",
+    "project_id": "studywithme-e5a96",
+    "storage_bucket": "studywithme-e5a96.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:701789979797:android:d75fc71544037af8dec79c",
+        "android_client_info": {
+          "package_name": "com.studywithme.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "701789979797-4cq9usp5a8q22n04ccfbn63mce5rhil8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.studywithme.app",
+            "certificate_hash": "d171cf3ec9c0d74bb0769d47191d3d7389cb16f7"
+          }
+        },
+        {
+          "client_id": "701789979797-tn17ug7ibp5p4qv1ucf3l00jtbdmfvih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.studywithme.app",
+            "certificate_hash": "a80009b9ae163084dd9d2de5a6d1f44d4f1619bc"
+          }
+        },
+        {
+          "client_id": "701789979797-urodm56ei0csgumpdjrho4kgtqfevg2m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAbWUqcHAORX3ask82uor6PThNIGqTqZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "701789979797-urodm56ei0csgumpdjrho4kgtqfevg2m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

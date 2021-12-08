@@ -22,6 +22,12 @@
     <string name="online">Online - </string>
     <string name="fragment_members_title">MEMBERS</string>
     <string name="user_name">User Name</string>
+    <string name="user_description">Description profile tatatata</string>
+    <string name="button_friends">Friends</string>
+    <string name="button_rooms">Subscribed rooms</string>
+    <string name="profile_settings">Settings</string>
+    <string name="fragment_profile_title">PROFILE</string>
+
 
     <string-array name="hints_for_theme">
         <item>Math</item>

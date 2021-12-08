@@ -118,7 +118,7 @@ class MembersFragment : Fragment(), OnUserClickListener {
 
     override fun onUserClick(position: Int) {
         Toast.makeText(context, "User $position clicked", Toast.LENGTH_SHORT).show()
-        openFragment(UserProfileFragment())
+        openFragment(UserProfileFragment.newInstance(usersOfflineList[position].getId().toLong()))
     }
 
     companion object {

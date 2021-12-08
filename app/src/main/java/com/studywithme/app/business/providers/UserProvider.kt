@@ -39,6 +39,20 @@ class UserProvider(private val onlineAccessor: IUserAccessor) :
         }
     }
 
+    override fun getUserById(id: Int, callback: (result: Result<AbstractUser>) -> Unit) {
+        AbstractCoroutineProvider.scope.launch {
+
+            val result = try {
+                val apiResult = (onlineAccessor.getUserById(id) as AbstractUser)
+                Result.Success(apiResult)
+            } catch (error: IllegalStateException) {
+                Result.Fail(error)
+            }
+
+            returnResult(result, callback)
+        }
+    }
+
     override fun postUser(user: User, callback: (result: Result<AbstractUser>) -> Unit) {
         AbstractCoroutineProvider.scope.launch {
 

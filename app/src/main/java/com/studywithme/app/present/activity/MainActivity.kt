@@ -41,8 +41,11 @@ class MainActivity :
         auth = FirebaseAuth.getInstance()
         setSupportActionBar(binding.toolbar.root)
         if (auth.currentUser != null) {
-            Toast.makeText(this, "main Activity" + auth.currentUser?.email,
-                Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                this,
+                "main Activity" + auth.currentUser?.email,
+                Toast.LENGTH_LONG
+            ).show()
             setUserInfo(auth)
             menuSettings()
         }

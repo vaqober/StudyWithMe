@@ -111,7 +111,6 @@ class ChatFragment :
         return super.onOptionsItemSelected(item)
     }
 
-
     override fun onQueryTextSubmit(query: String): Boolean {
         roomId = requireArguments().getLong(ARG_ROOM)
         viewModel.allMessages(roomId.toInt(), query)

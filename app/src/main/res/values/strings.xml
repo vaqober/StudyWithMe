@@ -47,4 +47,5 @@
     <string name="fragment_login_hint_password">Password</string>
     <string name="login_forget_password">Forget password</string>
     <string name="fragment_sign_up_hint_confirm_password">Confirm Password</string>
+    <string name="fragment_register_title">Log In</string>
 </resources>

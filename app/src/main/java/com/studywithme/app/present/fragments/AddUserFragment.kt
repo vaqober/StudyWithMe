@@ -95,7 +95,7 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
             val description = usersListAdapter.values[position].getDescription()
             val isOnline = usersListAdapter.values[position].isOnline()
             val newUser = User(userId, name, photo, description, rooms, isOnline)
-            userViewModel.postUser(newUser)
+            userViewModel.putUser(newUser)
             Toast.makeText(requireContext(), "Success: $name was added", Toast.LENGTH_SHORT).show()
         }
     }

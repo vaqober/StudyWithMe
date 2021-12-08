@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "701789979797-4cq9usp5a8q22n04ccfbn63mce5rhil8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.studywithme.app",
+            "certificate_hash": "d171cf3ec9c0d74bb0769d47191d3d7389cb16f7"
+          }
+        },
+        {
+          "client_id": "701789979797-tn17ug7ibp5p4qv1ucf3l00jtbdmfvih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.studywithme.app",
+            "certificate_hash": "a80009b9ae163084dd9d2de5a6d1f44d4f1619bc"
+          }
+        },
+        {
           "client_id": "701789979797-urodm56ei0csgumpdjrho4kgtqfevg2m.apps.googleusercontent.com",
           "client_type": 3
         }

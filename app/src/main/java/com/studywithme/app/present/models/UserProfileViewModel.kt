@@ -59,7 +59,7 @@ class UserProfileViewModel : ViewModel(), KoinComponent {
     private fun makeRequest(query: User) {
         state.postValue(State.Pending())
 
-        provider.postUser(query) {
+        provider.putUser(query) {
             val newState = when (it) {
                 is Result.Success -> State.Success(it.data)
                 is Result.Fail -> State.Fail(it.error)

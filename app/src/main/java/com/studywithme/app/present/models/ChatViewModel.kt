@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.studywithme.app.business.providers.IMessageProvider
+import com.studywithme.app.business.providers.INetworkProvider
 import com.studywithme.app.business.providers.Result
 import com.studywithme.app.objects.AbstractMessage
 import com.studywithme.app.objects.message.Message
@@ -14,44 +15,46 @@ import com.studywithme.app.present.State
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class ChatViewModel(private val internetCheck: InternetCheck) : ViewModel(), KoinComponent {
+class ChatViewModel : ViewModel(), KoinComponent {
     private val handler = Handler(Looper.getMainLooper())
     private val provider by inject<IMessageProvider>()
+    private val providerNetwork by inject<INetworkProvider>()
     private val state = MutableLiveData<State<List<AbstractMessage>>>()
     private val statePost = MutableLiveData<State<AbstractMessage>>()
 
     fun getState(): LiveData<State<List<AbstractMessage>>> = state
 
     fun allMessages(roomId: Int, query: String) {
-        postponedQuery(roomId, query)
+        postponedSearch(roomId, query)
     }
 
     fun postMessage(roomId: Int, message: Message) {
-        postponedQuery(roomId, message)
+        postponedSearch(roomId, message)
     }
 
-    private fun postponedQuery(roomId: Int, query: String) {
+    private fun postponedSearch(roomId: Int, query: String) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {
-            makeRequest(roomId, query)
+            if (providerNetwork.isConnected()) {
+                makeRequest(roomId, query)
+            } else {
+                state.postValue(State.Fail(Throwable("miss internet")))
+            }
         }
     }
 
-    private fun postponedQuery(roomId: Int, message: Message) {
+    private fun postponedSearch(roomId: Int, message: Message) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {
-            makeRequest(roomId, message)
+            if (providerNetwork.isConnected()) {
+                makeRequest(roomId, message)
+            } else {
+                state.postValue(State.Fail(Throwable("miss internet")))
+            }
         }
     }
 
     private fun makeRequest(roomId: Int, query: String) {
-        if (internetCheck.isOnline()) {
-            state.postValue(State.Pending())
-        } else {
-            state.postValue(State.Fail(Throwable("miss internet")))
-            return
-        }
-
         provider.allMessages(roomId, query) {
             val newState = when (it) {
                 is Result.Success -> State.Success(it.data)
@@ -63,13 +66,6 @@ class ChatViewModel(private val internetCheck: InternetCheck) : ViewModel(), Koi
     }
 
     private fun makeRequest(roomId: Int, message: Message) {
-        if (internetCheck.isOnline()) {
-            statePost.postValue(State.Pending())
-        } else {
-            statePost.postValue(State.Fail(Throwable("miss internet")))
-            return
-        }
-
         provider.postMessage(roomId, message) {
             val newState = when (it) {
                 is Result.Success -> State.Success(it.data)
@@ -78,9 +74,5 @@ class ChatViewModel(private val internetCheck: InternetCheck) : ViewModel(), Koi
 
             statePost.postValue(newState)
         }
-    }
-
-    interface InternetCheck {
-        fun isOnline(): Boolean
     }
 }

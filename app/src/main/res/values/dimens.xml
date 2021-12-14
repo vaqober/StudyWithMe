@@ -13,4 +13,6 @@
     <dimen name="corner_radius_text_field">20dp</dimen>
     <dimen name="corner_radius_small_field">5dp</dimen>
     <dimen name="margin_top_text_field">5dp</dimen>
+    <dimen name="progress_width">4dp</dimen>
+    <dimen name="progress_radius">16dp</dimen>
 </resources>

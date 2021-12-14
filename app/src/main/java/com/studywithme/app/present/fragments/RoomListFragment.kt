@@ -1,8 +1,5 @@
 package com.studywithme.app.present.fragments
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -28,10 +25,9 @@ import org.koin.android.ext.android.inject
 class RoomListFragment :
     Fragment(),
     OnRoomClickListener,
-    RoomListViewModel.InternetCheck,
     SearchView.OnQueryTextListener {
 
-    private val viewModel = RoomListViewModel(this)
+    private val viewModel = RoomListViewModel()
     private val providerGlide by inject<IGlideProvider>()
     private var _binding: FragmentRoomListBinding? = null
     private val binding get() = _binding!!
@@ -126,22 +122,6 @@ class RoomListFragment :
             .hide(this)
             .addToBackStack(null)
             .commitAllowingStateLoss()
-    }
-
-    override fun isOnline(): Boolean {
-        var isOnline = false
-        val connectivityManager =
-            context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val capabilities =
-            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-        if (capabilities != null) {
-            when (true) {
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> isOnline = true
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> isOnline = true
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> isOnline = true
-            }
-        }
-        return isOnline
     }
 
     override fun onQueryTextSubmit(query: String): Boolean {

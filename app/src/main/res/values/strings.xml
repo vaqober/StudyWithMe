@@ -21,6 +21,7 @@
     <string name="offline">Offline - </string>
     <string name="online">Online - </string>
     <string name="fragment_members_title">MEMBERS</string>
+    <string name="fragment_friends_title">FRIENDS</string>
     <string name="user_name">User Name</string>
     <string name="user_description">Description profile tatatata</string>
     <string name="button_friends">Friends</string>

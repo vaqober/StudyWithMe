@@ -1,9 +1,6 @@
 package com.studywithme.app.present.fragments
 
-import android.content.Context
 import android.graphics.drawable.Drawable
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,9 +20,9 @@ import com.studywithme.app.present.State
 import com.studywithme.app.present.models.CreateRoomViewModel
 import kotlinx.coroutines.launch
 
-class CreateRoomFragment : Fragment(), CreateRoomViewModel.InternetCheck {
+class CreateRoomFragment : Fragment() {
 
-    private val viewModel = CreateRoomViewModel(this)
+    private val viewModel = CreateRoomViewModel()
     private var _binding: FragmentCreateRoomBinding? = null
     private val binding get() = _binding!!
     private var imageUri = Uri.parse(
@@ -118,21 +115,5 @@ class CreateRoomFragment : Fragment(), CreateRoomViewModel.InternetCheck {
         super.onDestroy()
         _binding = null
         (activity as DrawerLocker?)!!.setDrawerLocked(false)
-    }
-
-    override fun isOnline(): Boolean {
-        var isOnline = false
-        val connectivityManager =
-            context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val capabilities =
-            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-        if (capabilities != null) {
-            when (true) {
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> isOnline = true
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> isOnline = true
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> isOnline = true
-            }
-        }
-        return isOnline
     }
 }

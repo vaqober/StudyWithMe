@@ -7,9 +7,9 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface IRoomAccessor {
-    @GET("rooms.json")
+    @GET("rooms")
     suspend fun findAll(): RoomList<Room>
 
-    @POST("rooms/rooms.json")
+    @POST("rooms")
     suspend fun postRoom(@Body room: Room): Room
 }

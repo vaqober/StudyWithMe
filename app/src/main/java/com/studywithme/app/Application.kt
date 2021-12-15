@@ -18,10 +18,10 @@ class Application : Application() {
             androidLogger()
 
             modules(
-                baseModule,
-                roomsModule,
-                usersModule,
-                messagesModule
+                    baseModule,
+                    roomsModule,
+                    usersModule,
+                    messagesModule
             )
         }
     }

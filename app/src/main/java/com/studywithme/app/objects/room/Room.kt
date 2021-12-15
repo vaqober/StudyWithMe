@@ -5,12 +5,12 @@ import com.studywithme.app.objects.AbstractRoom
 import com.studywithme.app.objects.message.Message
 
 class Room(
-    @SerializedName("id") private val id: String = "",
-    @SerializedName("title") private val title: String,
-    @SerializedName("theme") private val theme: String = "",
-    @SerializedName("description") private val description: String = "",
-    @SerializedName("photoUri") private val photoUri: String = "",
-    @SerializedName("messages") private val messages: MutableList<Message>
+        @SerializedName("id") private val id: String = "",
+        @SerializedName("title") private val title: String,
+        @SerializedName("theme") private val theme: String = "",
+        @SerializedName("description") private val description: String = "",
+        @SerializedName("photoUri") private val photoUri: String = "",
+        @SerializedName("messages") private val messages: MutableList<Message>
 ) : AbstractRoom() {
     override fun getId(): String = id
     override fun getTitle(): String = title

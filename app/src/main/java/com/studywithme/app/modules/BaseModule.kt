@@ -5,7 +5,6 @@ import com.studywithme.app.business.providers.IGlideProvider
 import com.studywithme.app.business.providers.INetworkProvider
 import com.studywithme.app.business.providers.NetworkProvider
 import org.koin.android.ext.koin.androidContext
-import org.koin.core.scope.get
 import org.koin.dsl.module
 
 val baseModule = module() {

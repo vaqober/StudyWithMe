@@ -12,20 +12,20 @@ import com.studywithme.app.business.providers.IGlideProvider
 import com.studywithme.app.objects.message.Message
 import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
 
 class ChatRecyclerViewAdapter(
-    val values: MutableList<Message>,
-    private val providerGlide: IGlideProvider
+        val values: MutableList<Message>,
+        private val providerGlide: IGlideProvider
 ) :
-    RecyclerView.Adapter<ChatRecyclerViewAdapter.ChatItemViewHolder>() {
+        RecyclerView.Adapter<ChatRecyclerViewAdapter.ChatItemViewHolder>() {
     companion object {
         private const val dateMult = 1000
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatItemViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_chat_user_message_item, parent, false)
+                .inflate(R.layout.fragment_chat_user_message_item, parent, false)
         return ChatItemViewHolder(view, providerGlide)
     }
 
@@ -43,9 +43,9 @@ class ChatRecyclerViewAdapter(
     }
 
     class ChatItemViewHolder(view: View, private val providerGlide: IGlideProvider) :
-        RecyclerView.ViewHolder(
-            view
-        ) {
+            RecyclerView.ViewHolder(
+                    view
+            ) {
         private val userPhoto: ImageView = view.findViewById(R.id.chat_user_photo)
         private val userName: TextView = view.findViewById(R.id.chat_user_name)
         private val userMessage: TextView = view.findViewById(R.id.chat_user_message)
@@ -65,13 +65,13 @@ class ChatRecyclerViewAdapter(
 
     fun update(newList: List<Message>) {
         val messageDiffUtilCallback =
-            RoomDiffUtilCallback(values, newList)
+                RoomDiffUtilCallback(values, newList)
         DiffUtil.calculateDiff(messageDiffUtilCallback).dispatchUpdatesTo(this)
     }
 
     class RoomDiffUtilCallback(
-        private val mOldList: List<Message>,
-        private val mNewList: List<Message>
+            private val mOldList: List<Message>,
+            private val mNewList: List<Message>
     ) : DiffUtil.Callback() {
 
         override fun getOldListSize(): Int = mOldList.size
@@ -79,10 +79,10 @@ class ChatRecyclerViewAdapter(
         override fun getNewListSize(): Int = mNewList.size
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-            mOldList[oldItemPosition] == mNewList[newItemPosition]
+                mOldList[oldItemPosition] == mNewList[newItemPosition]
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-            mOldList[oldItemPosition].getId() == mNewList[newItemPosition].getId() &&
-                mOldList[oldItemPosition].getMessage() == mNewList[newItemPosition].getMessage()
+                mOldList[oldItemPosition].getId() == mNewList[newItemPosition].getId() &&
+                        mOldList[oldItemPosition].getMessage() == mNewList[newItemPosition].getMessage()
     }
 }

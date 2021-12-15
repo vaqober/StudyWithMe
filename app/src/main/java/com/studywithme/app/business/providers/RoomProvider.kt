@@ -4,11 +4,10 @@ import com.studywithme.app.business.providers.AbstractCoroutineProvider.Companio
 import com.studywithme.app.datalayer.accessors.IRoomAccessor
 import com.studywithme.app.objects.AbstractRoom
 import com.studywithme.app.objects.room.Room
-import java.lang.IllegalStateException
 import kotlinx.coroutines.launch
 
 class RoomProvider(private val onlineAccessor: IRoomAccessor) :
-    AbstractCoroutineProvider, IRoomProvider {
+        AbstractCoroutineProvider, IRoomProvider {
 
     override fun findRooms(query: String, callback: (result: Result<List<AbstractRoom>>) -> Unit) {
         scope.launch {

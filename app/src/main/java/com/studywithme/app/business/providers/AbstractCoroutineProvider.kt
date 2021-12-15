@@ -10,8 +10,8 @@ interface AbstractCoroutineProvider {
     }
 
     suspend fun <TYPE> returnResult(
-        result: Result<TYPE>,
-        callback: (Result<TYPE>) -> Unit
+            result: Result<TYPE>,
+            callback: (Result<TYPE>) -> Unit
     ) {
         withContext(Dispatchers.Main) {
             callback(result)

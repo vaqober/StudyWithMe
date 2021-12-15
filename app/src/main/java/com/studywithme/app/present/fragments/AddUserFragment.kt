@@ -29,9 +29,9 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
     private val usersListAdapter = UserRecyclerViewAdapter(mutableListOf(), this, providerGlide)
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddUserBinding.inflate(inflater, container, false)
         return binding.root
@@ -77,7 +77,7 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
                     usersListAdapter.values.addAll(it.data.map { it as User })
                     usersListAdapter.notifyDataSetChanged()
                     Toast.makeText(requireContext(), "Success: ${it.data.size}", Toast.LENGTH_SHORT)
-                        .show()
+                            .show()
                 }
             }
         }
@@ -108,10 +108,10 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
 
         @JvmStatic
         fun newInstance(roomId: Long) =
-            AddUserFragment().apply {
-                arguments = Bundle().apply {
-                    putLong(ARG_ROOM, roomId)
+                AddUserFragment().apply {
+                    arguments = Bundle().apply {
+                        putLong(ARG_ROOM, roomId)
+                    }
                 }
-            }
     }
 }

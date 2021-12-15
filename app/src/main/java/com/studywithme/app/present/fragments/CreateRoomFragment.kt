@@ -27,13 +27,13 @@ class CreateRoomFragment : Fragment() {
     private var _binding: FragmentCreateRoomBinding? = null
     private val binding get() = _binding!!
     private var imageUri = Uri.parse(
-        "android.resource://com.studywithme.app/drawable/outline_add_a_photo_black_48"
+            "android.resource://com.studywithme.app/drawable/outline_add_a_photo_black_48"
     )
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentCreateRoomBinding.inflate(layoutInflater)
@@ -80,12 +80,12 @@ class CreateRoomFragment : Fragment() {
     }
 
     private val selectImageFromGalleryResult = registerForActivityResult(
-        ActivityResultContracts.GetContent()
+            ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         uri?.let {
             val inputStream = activity?.contentResolver?.openInputStream(uri)
             binding.photoImage.setImageDrawable(
-                Drawable.createFromStream(inputStream, uri.toString())
+                    Drawable.createFromStream(inputStream, uri.toString())
             )
             binding.photoImage.setPadding(0)
             imageUri = uri
@@ -103,11 +103,11 @@ class CreateRoomFragment : Fragment() {
             when (it) {
                 is State.Fail -> {
                     Toast.makeText(requireContext(), "Fail: ${it.error}", Toast.LENGTH_LONG)
-                        .show()
+                            .show()
                 }
                 is State.Success -> {
                     Toast.makeText(requireContext(), "Success: ${it.data}", Toast.LENGTH_LONG)
-                        .show()
+                            .show()
                 }
             }
         }

@@ -4,12 +4,12 @@ import com.google.gson.annotations.SerializedName
 import com.studywithme.app.objects.AbstractUser
 
 class User(
-        @SerializedName("id") private val id: String = "",
-        @SerializedName("name") private val name: String,
-        @SerializedName("photoUri") private val photoUri: String = "",
-        @SerializedName("description") private val description: String = "",
-        @SerializedName("roomsList") private val roomsList: MutableList<String>,
-        @SerializedName("isOnline") private val isOnline: Boolean = false
+    @SerializedName("id") private val id: String = "",
+    @SerializedName("name") private val name: String,
+    @SerializedName("photoUri") private val photoUri: String = "",
+    @SerializedName("description") private val description: String = "",
+    @SerializedName("roomsList") private val roomsList: MutableList<String>,
+    @SerializedName("isOnline") private val isOnline: Boolean = false
 ) : AbstractUser() {
 
     override fun getId(): String = id

@@ -11,10 +11,10 @@ class NetworkProvider(private val context: Context) : INetworkProvider {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             cm.allNetworks
-                    .mapNotNull(cm::getNetworkCapabilities)
-                    .any { capabilities ->
-                        capabilities.hasCapability(NET_CAPABILITY_INTERNET)
-                    }
+                .mapNotNull(cm::getNetworkCapabilities)
+                .any { capabilities ->
+                    capabilities.hasCapability(NET_CAPABILITY_INTERNET)
+                }
         } else {
             cm.activeNetworkInfo?.isConnectedOrConnecting == true
         }

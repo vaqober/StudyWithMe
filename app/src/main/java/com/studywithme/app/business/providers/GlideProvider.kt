@@ -18,13 +18,13 @@ class GlideProvider(private val context: Context) : IGlideProvider {
             glide.centerCrop()
         }
         glide
-                .load(imageUri)
-                .placeholder(context.createProgressPlaceholderDrawable())
-                .error(R.drawable.ic_user_svg)
-                .fallback(R.drawable.ic_user_svg)
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .into(imageView)
-                .waitForLayout()
+            .load(imageUri)
+            .placeholder(context.createProgressPlaceholderDrawable())
+            .error(R.drawable.ic_user_svg)
+            .fallback(R.drawable.ic_user_svg)
+            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+            .into(imageView)
+            .waitForLayout()
     }
 }
 
@@ -33,10 +33,10 @@ private fun Context.createProgressPlaceholderDrawable(): Drawable {
         strokeWidth = resources.getDimension(R.dimen.progress_width)
         centerRadius = resources.getDimension(R.dimen.progress_radius)
         setColorSchemeColors(
-                ContextCompat.getColor(
-                        this@createProgressPlaceholderDrawable,
-                        R.color.black
-                )
+            ContextCompat.getColor(
+                this@createProgressPlaceholderDrawable,
+                R.color.black
+            )
         )
         start()
     }

@@ -23,9 +23,9 @@ class SignUpFragment : Fragment() {
     private val userViewModel by viewModels<UsersListViewModel>()
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentSignUpBinding.inflate(layoutInflater)
         return binding.root
@@ -50,19 +50,19 @@ class SignUpFragment : Fragment() {
                 }
             } else {
                 if (email.isEmpty()) Toast.makeText(
-                        requireContext(),
-                        "Enter email, please",
-                        Toast.LENGTH_SHORT
+                    requireContext(),
+                    "Enter email, please",
+                    Toast.LENGTH_SHORT
                 ).show()
                 else if (password.isEmpty()) Toast.makeText(
-                        requireContext(),
-                        "Enter password, please",
-                        Toast.LENGTH_SHORT
+                    requireContext(),
+                    "Enter password, please",
+                    Toast.LENGTH_SHORT
                 ).show()
                 else if (password != cPassword) Toast.makeText(
-                        requireContext(),
-                        "Passwords do not match",
-                        Toast.LENGTH_SHORT
+                    requireContext(),
+                    "Passwords do not match",
+                    Toast.LENGTH_SHORT
                 ).show()
             }
         }

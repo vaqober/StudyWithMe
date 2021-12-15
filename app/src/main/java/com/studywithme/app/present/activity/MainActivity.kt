@@ -25,9 +25,9 @@ import com.studywithme.app.present.fragments.RoomListFragment
 import com.studywithme.app.present.models.UserProfileViewModel
 
 class MainActivity :
-        AppCompatActivity(),
-        DrawerLocker,
-        NavigationView.OnNavigationItemSelectedListener {
+    AppCompatActivity(),
+    DrawerLocker,
+    NavigationView.OnNavigationItemSelectedListener {
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
@@ -42,9 +42,9 @@ class MainActivity :
         setSupportActionBar(binding.toolbar.root)
         if (auth.currentUser != null) {
             Toast.makeText(
-                    this,
-                    "main Activity" + auth.currentUser?.email,
-                    Toast.LENGTH_LONG
+                this,
+                "main Activity" + auth.currentUser?.email,
+                Toast.LENGTH_LONG
             ).show()
             setUserInfo(auth)
             menuSettings()
@@ -58,11 +58,11 @@ class MainActivity :
 
     private fun menuSettings() {
         val toggle = ActionBarDrawerToggle(
-                this,
-                binding.drawer,
-                binding.toolbar.root,
-                R.string.nav_open_drawer,
-                R.string.nav_close_drawer
+            this,
+            binding.drawer,
+            binding.toolbar.root,
+            R.string.nav_open_drawer,
+            R.string.nav_close_drawer
         )
         binding.drawer.addDrawerListener(toggle)
         binding.navMenu.setNavigationItemSelectedListener(this)
@@ -142,19 +142,19 @@ class MainActivity :
                 }
                 is State.Success -> {
                     Toast.makeText(
-                            this,
-                            "viewModel.getUser " + it.data.getName(),
-                            Toast.LENGTH_LONG
+                        this,
+                        "viewModel.getUser " + it.data.getName(),
+                        Toast.LENGTH_LONG
                     ).show()
                     val photoUri = it.data.getPhotoUri()
                     val b = NavProfileHeaderBinding.inflate(layoutInflater)
                     b.navProfileHeaderUsername.text = it.data.getName()
                     Glide.with(this)
-                            .load(photoUri)
-                            .into(b.navProfileHeaderUserPhoto)
+                        .load(photoUri)
+                        .into(b.navProfileHeaderUserPhoto)
 
                     Toast.makeText(this, "Success: ${it.data}", Toast.LENGTH_LONG)
-                            .show()
+                        .show()
                 }
             }
         }

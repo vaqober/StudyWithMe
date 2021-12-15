@@ -7,7 +7,7 @@ import com.studywithme.app.objects.room.Room
 import kotlinx.coroutines.launch
 
 class RoomProvider(private val onlineAccessor: IRoomAccessor) :
-        AbstractCoroutineProvider, IRoomProvider {
+    AbstractCoroutineProvider, IRoomProvider {
 
     override fun findRooms(query: String, callback: (result: Result<List<AbstractRoom>>) -> Unit) {
         scope.launch {

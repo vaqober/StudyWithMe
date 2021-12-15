@@ -18,9 +18,9 @@ import org.koin.android.ext.android.inject
 
 @Suppress("Detekt.TooManyFunctions")
 class RoomListFragment :
-        Fragment(),
-        OnRoomClickListener,
-        SearchView.OnQueryTextListener {
+    Fragment(),
+    OnRoomClickListener,
+    SearchView.OnQueryTextListener {
 
     private val viewModel = RoomListViewModel()
     private val providerGlide by inject<IGlideProvider>()
@@ -34,9 +34,9 @@ class RoomListFragment :
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRoomListBinding.inflate(inflater, container, false)
         return binding.root
@@ -92,7 +92,7 @@ class RoomListFragment :
                     recyclerAdapter.values.clear()
                     recyclerAdapter.values.addAll(it.data.map { it as Room })
                     Toast.makeText(requireContext(), "Success: ${it.data.size}", Toast.LENGTH_LONG)
-                            .show()
+                        .show()
                 }
             }
         }
@@ -114,9 +114,9 @@ class RoomListFragment :
             transaction.add(R.id.fragment_container, fragment, null)
         }
         transaction
-                .hide(this)
-                .addToBackStack(null)
-                .commitAllowingStateLoss()
+            .hide(this)
+            .addToBackStack(null)
+            .commitAllowingStateLoss()
     }
 
     override fun onQueryTextSubmit(query: String): Boolean {

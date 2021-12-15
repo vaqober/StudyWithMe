@@ -29,22 +29,22 @@ class MembersFragment : Fragment(), OnUserClickListener {
     private var _binding: FragmentMembersBinding? = null
     private val binding get() = _binding!!
     private val usersOnlineListAdapter = UserRecyclerViewAdapter(
-            mutableListOf(),
-            this,
-            providerGlide
+        mutableListOf(),
+        this,
+        providerGlide
     )
     private val usersOfflineListAdapter = UserRecyclerViewAdapter(
-            mutableListOf(),
-            this,
-            providerGlide
+        mutableListOf(),
+        this,
+        providerGlide
     )
     private val usersOnlineList: MutableList<AbstractUser> = mutableListOf()
     private val usersOfflineList: MutableList<AbstractUser> = mutableListOf()
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMembersBinding.inflate(inflater, container, false)
         return binding.root
@@ -121,7 +121,7 @@ class MembersFragment : Fragment(), OnUserClickListener {
                     binding.usersOnline.text = " " + usersOnlineList.size
                     binding.usersOffline.text = " " + usersOfflineList.size
                     Toast.makeText(requireContext(), "Success: ${it.data.size}", Toast.LENGTH_LONG)
-                            .show()
+                        .show()
                 }
             }
         }
@@ -137,11 +137,11 @@ class MembersFragment : Fragment(), OnUserClickListener {
 
         @JvmStatic
         fun newInstance(roomId: String) =
-                MembersFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_ROOM, roomId)
-                    }
+            MembersFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_ROOM, roomId)
                 }
+            }
     }
 
     private fun openFragment(fragment: Fragment) {
@@ -150,8 +150,8 @@ class MembersFragment : Fragment(), OnUserClickListener {
             transaction.add(R.id.fragment_container, fragment, null)
         }
         transaction
-                .hide(this)
-                .addToBackStack(null)
-                .commitAllowingStateLoss()
+            .hide(this)
+            .addToBackStack(null)
+            .commitAllowingStateLoss()
     }
 }

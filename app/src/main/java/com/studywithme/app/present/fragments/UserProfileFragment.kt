@@ -24,9 +24,9 @@ class UserProfileFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
         return binding.root
@@ -58,11 +58,11 @@ class UserProfileFragment : Fragment() {
                     update(it.data as User)
                     binding.loadingProgress.isVisible = false
                     Toast.makeText(
-                            requireContext(),
-                            "Success: ${it.data.getName()}",
-                            Toast.LENGTH_LONG
+                        requireContext(),
+                        "Success: ${it.data.getName()}",
+                        Toast.LENGTH_LONG
                     )
-                            .show()
+                        .show()
                 }
             }
         }
@@ -87,11 +87,11 @@ class UserProfileFragment : Fragment() {
 
         @JvmStatic
         fun newInstance(userId: Long) =
-                UserProfileFragment().apply {
-                    arguments = Bundle().apply {
-                        putLong(ARG_USER, userId)
-                    }
+            UserProfileFragment().apply {
+                arguments = Bundle().apply {
+                    putLong(ARG_USER, userId)
                 }
+            }
     }
 
     override fun onDestroyView() {
@@ -105,8 +105,8 @@ class UserProfileFragment : Fragment() {
             transaction.add(R.id.fragment_container, fragment, null)
         }
         transaction
-                .hide(this)
-                .addToBackStack(null)
-                .commitAllowingStateLoss()
+            .hide(this)
+            .addToBackStack(null)
+            .commitAllowingStateLoss()
     }
 }

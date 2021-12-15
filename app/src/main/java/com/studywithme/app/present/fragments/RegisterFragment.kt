@@ -26,9 +26,9 @@ class RegisterFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
@@ -78,8 +78,8 @@ class RegisterFragment : Fragment() {
             transaction.add(R.id.fragment_container, fragment, null)
         }
         transaction
-                .hide(this)
-                .addToBackStack(null)
-                .commitAllowingStateLoss()
+            .hide(this)
+            .addToBackStack(null)
+            .commitAllowingStateLoss()
     }
 }

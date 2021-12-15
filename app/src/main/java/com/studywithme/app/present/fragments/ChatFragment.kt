@@ -13,12 +13,12 @@ import com.studywithme.app.objects.message.Message
 import com.studywithme.app.present.State
 import com.studywithme.app.present.adapters.ChatRecyclerViewAdapter
 import com.studywithme.app.present.models.ChatViewModel
-import org.koin.android.ext.android.inject
 import java.util.*
+import org.koin.android.ext.android.inject
 
 class ChatFragment :
-        Fragment(),
-        SearchView.OnQueryTextListener {
+    Fragment(),
+    SearchView.OnQueryTextListener {
 
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
@@ -33,9 +33,9 @@ class ChatFragment :
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentChatBinding.inflate(layoutInflater)
 
@@ -87,7 +87,7 @@ class ChatFragment :
                     adapter.values.addAll(messages)
                     binding.chatRecycler.smoothScrollToPosition(adapter.itemCount)
                     Toast.makeText(requireContext(), "Success: ${it.data.size}", Toast.LENGTH_LONG)
-                            .show()
+                        .show()
                 }
             }
         }
@@ -122,19 +122,19 @@ class ChatFragment :
 
         @JvmStatic
         fun newInstance(roomId: String) =
-                ChatFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_ROOM, roomId)
-                    }
+            ChatFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_ROOM, roomId)
                 }
+            }
     }
 
     private fun openFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, fragment, null)
-                .show(fragment)
-                .hide(this)
-                .addToBackStack(null)
-                .commitAllowingStateLoss()
+            .add(R.id.fragment_container, fragment, null)
+            .show(fragment)
+            .hide(this)
+            .addToBackStack(null)
+            .commitAllowingStateLoss()
     }
 }

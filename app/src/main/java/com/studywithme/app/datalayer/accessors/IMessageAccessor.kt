@@ -10,12 +10,12 @@ interface IMessageAccessor {
 
     @GET("rooms/rooms/{id}/messages.json")
     suspend fun allMessages(
-            @Path("id") id: String
+        @Path("id") id: String
     ): List<Message>
 
     @POST("messages/{id}.json")
     suspend fun postMessage(
-            @Body message: Message,
-            @Path("id") id: String
+        @Body message: Message,
+        @Path("id") id: String
     ): Message
 }

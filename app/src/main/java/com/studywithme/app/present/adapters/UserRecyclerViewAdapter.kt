@@ -12,15 +12,15 @@ import com.studywithme.app.databinding.FragmentMembersUserItemBinding
 import com.studywithme.app.objects.user.User
 
 class UserRecyclerViewAdapter(
-        val values: MutableList<User>,
-        private val listener: OnUserClickListener,
-        private val providerGlide: IGlideProvider
+    val values: MutableList<User>,
+    private val listener: OnUserClickListener,
+    private val providerGlide: IGlideProvider
 ) :
-        RecyclerView.Adapter<UserRecyclerViewAdapter.UserItemViewHolder>() {
+    RecyclerView.Adapter<UserRecyclerViewAdapter.UserItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserItemViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_members_user_item, parent, false)
+            .inflate(R.layout.fragment_members_user_item, parent, false)
         Log.d("UserList", "onCreateViewHolder")
         return UserItemViewHolder(view, providerGlide)
     }
@@ -32,9 +32,9 @@ class UserRecyclerViewAdapter(
     override fun getItemCount(): Int = values.size
 
     class UserItemViewHolder(view: View, private val provider: IGlideProvider) :
-            RecyclerView.ViewHolder(
-                    view
-            ) {
+        RecyclerView.ViewHolder(
+            view
+        ) {
 
         val binding = FragmentMembersUserItemBinding.bind(view)
 
@@ -55,13 +55,13 @@ class UserRecyclerViewAdapter(
 
     fun update(newList: List<User>) {
         val messageDiffUtilCallback =
-                UserDiffUtilCallback(values, newList)
+            UserDiffUtilCallback(values, newList)
         DiffUtil.calculateDiff(messageDiffUtilCallback).dispatchUpdatesTo(this)
     }
 
     class UserDiffUtilCallback(
-            private val mOldList: List<User>,
-            private val mNewList: List<User>
+        private val mOldList: List<User>,
+        private val mNewList: List<User>
     ) : DiffUtil.Callback() {
 
         override fun getOldListSize(): Int = mOldList.size
@@ -69,10 +69,10 @@ class UserRecyclerViewAdapter(
         override fun getNewListSize(): Int = mNewList.size
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-                mOldList[oldItemPosition] == mNewList[newItemPosition]
+            mOldList[oldItemPosition] == mNewList[newItemPosition]
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-                mOldList[oldItemPosition].getId() == mNewList[newItemPosition].getId() &&
-                        mOldList[oldItemPosition].getName() == mNewList[newItemPosition].getName()
+            mOldList[oldItemPosition].getId() == mNewList[newItemPosition].getId() &&
+                mOldList[oldItemPosition].getName() == mNewList[newItemPosition].getName()
     }
 }

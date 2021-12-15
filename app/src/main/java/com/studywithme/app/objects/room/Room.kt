@@ -19,7 +19,6 @@ class Room(
     override fun getPhotoUri(): String = photoUri
     override fun getMessagesList(): MutableList<Message> = messages
 
-
     override fun toString(): String {
         return "Room:\n title: '$title'\ntheme: '$theme'\ndescription: '$description'"
     }

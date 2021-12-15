@@ -1,7 +1,6 @@
 package com.studywithme.app.datalayer.accessors
 
 import com.studywithme.app.objects.message.Message
-import com.studywithme.app.objects.message.MessageList
 import retrofit2.http.*
 
 interface IMessageAccessor {
@@ -16,5 +15,4 @@ interface IMessageAccessor {
         @Body message: Message,
         @Path("id") id: String
     ): Message
-
 }

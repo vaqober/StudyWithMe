@@ -1,6 +1,5 @@
 package com.studywithme.app.business.providers
 
-import android.util.Log
 import com.studywithme.app.business.providers.AbstractCoroutineProvider.Companion.scope
 import com.studywithme.app.datalayer.accessors.IMessageAccessor
 import com.studywithme.app.objects.AbstractMessage
@@ -47,5 +46,4 @@ class MessageProvider(private val onlineAccessor: IMessageAccessor) :
             returnResult(result, callback)
         }
     }
-
 }

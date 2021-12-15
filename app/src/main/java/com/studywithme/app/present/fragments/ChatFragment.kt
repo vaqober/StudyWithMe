@@ -1,8 +1,5 @@
 package com.studywithme.app.present.fragments
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -26,14 +23,13 @@ import org.koin.android.ext.android.inject
 
 class ChatFragment :
     Fragment(),
-    SearchView.OnQueryTextListener,
-    ChatViewModel.InternetCheck {
+    SearchView.OnQueryTextListener {
 
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
     private val providerGlide by inject<IGlideProvider>()
     private var adapter = ChatRecyclerViewAdapter(mutableListOf(), providerGlide)
-    private val viewModel = ChatViewModel(this)
+    private val viewModel = ChatViewModel()
     private var roomId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,21 +121,21 @@ class ChatFragment :
         return false
     }
 
-    override fun isOnline(): Boolean {
-        var isOnline = false
-        val connectivityManager =
-            context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val capabilities =
-            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-        if (capabilities != null) {
-            when (true) {
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> isOnline = true
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> isOnline = true
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> isOnline = true
-            }
-        }
-        return isOnline
-    }
+//    override fun isOnline(): Boolean {
+//        var isOnline = false
+//        val connectivityManager =
+//            context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+//        val capabilities =
+//            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+//        if (capabilities != null) {
+//            when (true) {
+//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> isOnline = true
+//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> isOnline = true
+//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> isOnline = true
+//            }
+//        }
+//        return isOnline
+//    }
 
     companion object {
         private const val ARG_ROOM: String = ""

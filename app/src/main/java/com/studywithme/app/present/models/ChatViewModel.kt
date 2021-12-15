@@ -66,13 +66,6 @@ class ChatViewModel : ViewModel(), KoinComponent {
     }
 
     private fun makeRequest(roomId: String, message: Message) {
-        if (internetCheck.isOnline()) {
-            statePost.postValue(State.Pending())
-        } else {
-            statePost.postValue(State.Fail(Throwable("miss internet")))
-            return
-        }
-
         provider.postMessage(roomId, message) {
             val newState = when (it) {
                 is Result.Success -> State.Success(it.data)
@@ -81,9 +74,5 @@ class ChatViewModel : ViewModel(), KoinComponent {
 
             statePost.postValue(newState)
         }
-    }
-
-    interface InternetCheck {
-        fun isOnline(): Boolean
     }
 }

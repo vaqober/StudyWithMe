@@ -7,11 +7,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.studywithme.app.business.providers.INetworkProvider
-import com.studywithme.app.business.providers.IMessageProvider
 import com.studywithme.app.business.providers.IRoomProvider
 import com.studywithme.app.business.providers.Result
 import com.studywithme.app.objects.AbstractRoom
-import com.studywithme.app.objects.message.Message
 import com.studywithme.app.objects.room.Room
 import com.studywithme.app.present.State
 import org.koin.core.component.KoinComponent

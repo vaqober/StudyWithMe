@@ -6,6 +6,7 @@ import androidx.core.os.postDelayed
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.studywithme.app.business.providers.INetworkProvider
 import com.studywithme.app.business.providers.IUserProvider
 import com.studywithme.app.business.providers.NetworkProvider
 import com.studywithme.app.business.providers.Result
@@ -18,7 +19,7 @@ import org.koin.core.component.inject
 class UsersListViewModel : ViewModel(), KoinComponent {
     private val handler = Handler(Looper.getMainLooper())
     private val provider by inject<IUserProvider>()
-    private val providerNetwork by inject<NetworkProvider>()
+    private val providerNetwork by inject<INetworkProvider>()
     private val state = MutableLiveData<State<AbstractUser>>()
 
     var query = ""

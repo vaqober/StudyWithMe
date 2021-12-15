@@ -7,14 +7,15 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface IMessageAccessor {
-    @GET("rooms/{id}/messages")
+
+    @GET("rooms/rooms/{id}/messages.json")
     suspend fun allMessages(
-        @Path("id") id: Int
+        @Path("id") id: String
     ): List<Message>
 
-    @POST("rooms/{id}/messages")
+    @POST("messages/{id}.json")
     suspend fun postMessage(
         @Body message: Message,
-        @Path("id") id: Int
+        @Path("id") id: String
     ): Message
 }

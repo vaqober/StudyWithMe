@@ -108,7 +108,7 @@ class RoomListFragment :
         _binding = null
     }
 
-    override fun onRoomClick(position: Long) {
+    override fun onRoomClick(position: String) {
         Toast.makeText(context, "Room $position clicked", Toast.LENGTH_SHORT).show()
         openFragment(ChatFragment.newInstance(position))
     }

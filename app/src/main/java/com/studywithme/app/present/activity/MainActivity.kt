@@ -126,7 +126,7 @@ class MainActivity :
     }
 
     private fun setUserInfo(auth: FirebaseAuth) {
-        val id = "5"
+        val id = "1"
         viewModel.getUser(id)
         observeModel()
     }

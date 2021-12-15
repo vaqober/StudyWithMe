@@ -3,13 +3,15 @@ package com.studywithme.app.business.providers
 import com.studywithme.app.datalayer.accessors.IUserAccessor
 import com.studywithme.app.objects.AbstractUser
 import com.studywithme.app.objects.user.User
-import java.lang.IllegalStateException
 import kotlinx.coroutines.launch
 
 class UserProvider(private val onlineAccessor: IUserAccessor) :
     AbstractCoroutineProvider, IUserProvider {
 
-    override fun getMembers(roomId: Long, callback: (result: Result<List<AbstractUser>>) -> Unit) {
+    override fun getMembers(
+        roomId: String,
+        callback: (result: Result<List<AbstractUser>>) -> Unit
+    ) {
         AbstractCoroutineProvider.scope.launch {
 
             val result = try {

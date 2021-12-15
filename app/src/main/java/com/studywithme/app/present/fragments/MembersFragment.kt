@@ -53,7 +53,7 @@ class MembersFragment : Fragment(), OnUserClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.setTitle(R.string.fragment_members_title)
-        val roomId = requireArguments().getLong(ARG_ROOM)
+        val roomId = requireArguments().getString(ARG_ROOM).toString()
         viewModel.getMembers(roomId)
         observeModel()
         setAdapters()
@@ -136,10 +136,10 @@ class MembersFragment : Fragment(), OnUserClickListener {
         private const val ARG_ROOM: String = ""
 
         @JvmStatic
-        fun newInstance(roomId: Long) =
+        fun newInstance(roomId: String) =
             MembersFragment().apply {
                 arguments = Bundle().apply {
-                    putLong(ARG_ROOM, roomId)
+                    putString(ARG_ROOM, roomId)
                 }
             }
     }

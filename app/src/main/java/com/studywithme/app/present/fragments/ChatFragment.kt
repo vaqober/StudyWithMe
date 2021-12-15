@@ -18,8 +18,8 @@ import com.studywithme.app.objects.message.Message
 import com.studywithme.app.present.State
 import com.studywithme.app.present.adapters.ChatRecyclerViewAdapter
 import com.studywithme.app.present.models.ChatViewModel
-import java.util.Date
 import org.koin.android.ext.android.inject
+import java.util.Date
 
 class ChatFragment :
     Fragment(),
@@ -30,7 +30,7 @@ class ChatFragment :
     private val providerGlide by inject<IGlideProvider>()
     private var adapter = ChatRecyclerViewAdapter(mutableListOf(), providerGlide)
     private val viewModel = ChatViewModel()
-    private var roomId: Long = -1
+    private var roomId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +41,11 @@ class ChatFragment :
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentChatBinding.inflate(layoutInflater)
 
-        roomId = requireArguments().getLong(ARG_ROOM)
-        viewModel.allMessages(roomId.toInt(), "")
+        roomId = requireArguments().getString(ARG_ROOM).toString()
+        viewModel.allMessages(roomId, "")
         observeModel()
         binding.chatRecycler.adapter = adapter
 
@@ -62,7 +62,7 @@ class ChatFragment :
             val messageText = binding.messageField.editText?.text.toString()
             binding.messageField.editText?.text?.clear()
             val newMessage = Message("Some name", messageText, Date().time / dateMult)
-            viewModel.postMessage(roomId.toInt(), newMessage)
+            viewModel.postMessage(roomId, newMessage)
             adapter.setMessage(newMessage)
             binding.chatRecycler.smoothScrollToPosition(adapter.itemCount)
         }
@@ -111,8 +111,8 @@ class ChatFragment :
     }
 
     override fun onQueryTextSubmit(query: String): Boolean {
-        roomId = requireArguments().getLong(ARG_ROOM)
-        viewModel.allMessages(roomId.toInt(), query)
+        roomId = requireArguments().getString(ARG_ROOM).toString()
+        viewModel.allMessages(roomId, query)
 
         return false
     }
@@ -126,10 +126,10 @@ class ChatFragment :
         private const val dateMult = 1000
 
         @JvmStatic
-        fun newInstance(roomId: Long) =
+        fun newInstance(roomId: String) =
             ChatFragment().apply {
                 arguments = Bundle().apply {
-                    putLong(ARG_ROOM, roomId)
+                    putString(ARG_ROOM, roomId)
                 }
             }
     }

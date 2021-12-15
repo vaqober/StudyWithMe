@@ -42,7 +42,7 @@ class RoomRecyclerViewAdapter(
             description.text = room.getDescription()
             providerGlide.loadImage(room.getPhotoUri(), itemImage, isCircle = true)
             itemView.setOnClickListener {
-                listener.onRoomClick(room.getId().toLong())
+                listener.onRoomClick(room.getId())
             }
         }
 
@@ -55,7 +55,7 @@ class RoomRecyclerViewAdapter(
     }
 
     interface OnRoomClickListener {
-        fun onRoomClick(position: Long)
+        fun onRoomClick(position: String)
     }
 
     fun update(newList: List<Room>) {

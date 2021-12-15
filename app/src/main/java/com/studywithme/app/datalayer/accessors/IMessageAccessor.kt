@@ -1,20 +1,20 @@
 package com.studywithme.app.datalayer.accessors
 
 import com.studywithme.app.objects.message.Message
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import com.studywithme.app.objects.message.MessageList
+import retrofit2.http.*
 
 interface IMessageAccessor {
-    @GET("rooms/{id}/messages")
+
+    @GET("rooms/rooms/{id}/messages.json")
     suspend fun allMessages(
-        @Path("id") id: Int
+        @Path("id") id: String
     ): List<Message>
 
-    @POST("rooms/{id}/messages")
+    @POST("messages/{id}.json")
     suspend fun postMessage(
         @Body message: Message,
-        @Path("id") id: Int
+        @Path("id") id: String
     ): Message
+
 }

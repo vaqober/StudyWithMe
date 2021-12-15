@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 class UserProvider(private val onlineAccessor: IUserAccessor) :
     AbstractCoroutineProvider, IUserProvider {
 
-    override fun getMembers(roomId: Long, callback: (result: Result<List<AbstractUser>>) -> Unit) {
+    override fun getMembers(roomId: String, callback: (result: Result<List<AbstractUser>>) -> Unit) {
         AbstractCoroutineProvider.scope.launch {
 
             val result = try {

@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.studywithme.app.R
 import com.studywithme.app.databinding.FragmentCreateRoomBinding
+import com.studywithme.app.objects.message.Message
 import com.studywithme.app.objects.room.Room
 import com.studywithme.app.present.DrawerLocker
 import com.studywithme.app.present.State
@@ -53,8 +54,9 @@ class CreateRoomFragment : Fragment(), CreateRoomViewModel.InternetCheck {
             val title = binding.roomNameTextField.editText?.text.toString()
             val theme = binding.roomThemeTextField.editText?.text.toString()
             val description = binding.roomDescriptionTextField.editText?.text.toString()
-            val isPrivate = binding.privateSwitch.isChecked
-            val room = Room("", title, theme, description, isPrivate, photo)
+            val msg = Message("", "", 0)
+            val messages = mutableListOf<Message>(msg)
+            val room = Room("", title, theme, description, photo, messages)
 
             if (title == "") {
                 Toast.makeText(context, "Missing name", Toast.LENGTH_SHORT).show()

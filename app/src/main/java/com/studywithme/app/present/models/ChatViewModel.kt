@@ -22,29 +22,29 @@ class ChatViewModel(private val internetCheck: InternetCheck) : ViewModel(), Koi
 
     fun getState(): LiveData<State<List<AbstractMessage>>> = state
 
-    fun allMessages(roomId: Int, query: String) {
+    fun allMessages(roomId: String, query: String) {
         postponedQuery(roomId, query)
     }
 
-    fun postMessage(roomId: Int, message: Message) {
+    fun postMessage(roomId: String, message: Message) {
         postponedQuery(roomId, message)
     }
 
-    private fun postponedQuery(roomId: Int, query: String) {
+    private fun postponedQuery(roomId: String, query: String) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {
             makeRequest(roomId, query)
         }
     }
 
-    private fun postponedQuery(roomId: Int, message: Message) {
+    private fun postponedQuery(roomId: String, message: Message) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {
             makeRequest(roomId, message)
         }
     }
 
-    private fun makeRequest(roomId: Int, query: String) {
+    private fun makeRequest(roomId: String, query: String) {
         if (internetCheck.isOnline()) {
             state.postValue(State.Pending())
         } else {
@@ -62,7 +62,7 @@ class ChatViewModel(private val internetCheck: InternetCheck) : ViewModel(), Koi
         }
     }
 
-    private fun makeRequest(roomId: Int, message: Message) {
+    private fun makeRequest(roomId: String, message: Message) {
         if (internetCheck.isOnline()) {
             statePost.postValue(State.Pending())
         } else {

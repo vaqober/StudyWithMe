@@ -1,5 +1,6 @@
 package com.studywithme.app.business.providers
 
+import android.util.Log
 import com.studywithme.app.business.providers.AbstractCoroutineProvider.Companion.scope
 import com.studywithme.app.datalayer.accessors.IMessageAccessor
 import com.studywithme.app.objects.AbstractMessage
@@ -9,8 +10,9 @@ import kotlinx.coroutines.launch
 
 class MessageProvider(private val onlineAccessor: IMessageAccessor) :
     AbstractCoroutineProvider, IMessageProvider {
+
     override fun allMessages(
-        roomId: Int,
+        roomId: String,
         query: String,
         callback: (result: Result<List<AbstractMessage>>) -> Unit
     ) {
@@ -29,7 +31,7 @@ class MessageProvider(private val onlineAccessor: IMessageAccessor) :
     }
 
     override fun postMessage(
-        roomId: Int,
+        roomId: String,
         message: Message,
         callback: (result: Result<AbstractMessage>) -> Unit
     ) {
@@ -45,4 +47,5 @@ class MessageProvider(private val onlineAccessor: IMessageAccessor) :
             returnResult(result, callback)
         }
     }
+
 }

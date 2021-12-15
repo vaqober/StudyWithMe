@@ -3,10 +3,10 @@ package com.studywithme.app.present.fragments
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -18,8 +18,8 @@ import com.studywithme.app.objects.message.Message
 import com.studywithme.app.present.State
 import com.studywithme.app.present.adapters.ChatRecyclerViewAdapter
 import com.studywithme.app.present.models.ChatViewModel
-import java.util.*
 import org.koin.android.ext.android.inject
+import java.util.Date
 
 class ChatFragment :
     Fragment(),
@@ -38,9 +38,9 @@ class ChatFragment :
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentChatBinding.inflate(layoutInflater)
 

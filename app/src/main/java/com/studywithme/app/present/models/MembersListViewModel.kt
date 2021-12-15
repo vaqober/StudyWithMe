@@ -6,6 +6,7 @@ import androidx.core.os.postDelayed
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.studywithme.app.business.providers.INetworkProvider
 import com.studywithme.app.business.providers.IUserProvider
 import com.studywithme.app.business.providers.Result
 import com.studywithme.app.objects.AbstractUser
@@ -16,6 +17,7 @@ import org.koin.core.component.inject
 class MembersListViewModel : ViewModel(), KoinComponent {
     private val handler = Handler(Looper.getMainLooper())
     private val provider by inject<IUserProvider>()
+    private val providerNetwork by inject<INetworkProvider>()
     private val state = MutableLiveData<State<List<AbstractUser>>>()
 
     var query = ""
@@ -34,14 +36,22 @@ class MembersListViewModel : ViewModel(), KoinComponent {
     private fun postponedQuery() {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {
-            makeRequest()
+            if (providerNetwork.isConnected()) {
+                makeRequest()
+            } else {
+                state.postValue(State.Fail(Throwable("miss internet")))
+            }
         }
     }
 
     private fun postponedQuery(roomId: String) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {
-            makeRequest(roomId)
+            if (providerNetwork.isConnected()) {
+                makeRequest(roomId)
+            } else {
+                state.postValue(State.Fail(Throwable("miss internet")))
+            }
         }
     }
 

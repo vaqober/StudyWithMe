@@ -72,22 +72,11 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_friens"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_margin"
-            app:layout_constraintTop_toBottomOf="@id/profile_description_card"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:cornerRadius="@dimen/corner_radius_text_field"
-            android:text="@string/button_friends"/>
-
-    <com.google.android.material.button.MaterialButton
             android:id="@+id/button_rooms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_margin"
-            app:layout_constraintTop_toBottomOf="@id/button_friens"
+            app:layout_constraintTop_toBottomOf="@id/profile_description_card"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:cornerRadius="@dimen/corner_radius_text_field"

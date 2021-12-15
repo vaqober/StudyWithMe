@@ -40,15 +40,6 @@ class UserProfileFragment : Fragment() {
         observeModel()
         viewModel.getUser(userId)
         binding.buttonRooms.setOnClickListener { openFragment(RoomListFragment()) }
-        binding.buttonFriens.setOnClickListener {
-            openFragment(
-                FriendsFragment.newInstance(
-                    requireArguments().getLong(
-                        ARG_USER
-                    )
-                )
-            )
-        }
     }
 
     private fun observeModel() {
@@ -81,7 +72,6 @@ class UserProfileFragment : Fragment() {
         binding.profileName.isVisible = visibility
         binding.profilePhoto.isVisible = visibility
         binding.profileDescription.isVisible = visibility
-        binding.buttonFriens.isVisible = visibility
         binding.buttonRooms.isVisible = visibility
     }
 
@@ -90,7 +80,6 @@ class UserProfileFragment : Fragment() {
         binding.profileDescription.text = user.getDescription()
         providerGlide.loadImage(user.getPhotoUri(), binding.profilePhoto, isCircle = false)
         setContentVisibility(true)
-        // binding.profilePhoto = user.getPhotoUri()
     }
 
     companion object {

@@ -6,6 +6,7 @@ import androidx.core.os.postDelayed
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.studywithme.app.business.providers.INetworkProvider
 import com.studywithme.app.business.providers.IMessageProvider
 import com.studywithme.app.business.providers.IRoomProvider
 import com.studywithme.app.business.providers.Result
@@ -16,9 +17,10 @@ import com.studywithme.app.present.State
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class CreateRoomViewModel(private val internetCheck: InternetCheck) : ViewModel(), KoinComponent {
+class CreateRoomViewModel : ViewModel(), KoinComponent {
     private val handler = Handler(Looper.getMainLooper())
     private val provider by inject<IRoomProvider>()
+    private val providerNetwork by inject<INetworkProvider>()
     private val state = MutableLiveData<State<AbstractRoom>>()
 
     var query = ""
@@ -33,17 +35,16 @@ class CreateRoomViewModel(private val internetCheck: InternetCheck) : ViewModel(
     private fun postponedQuery(room: Room) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {
-            makeRequest(room)
+            if (providerNetwork.isConnected()) {
+                makeRequest(room)
+            } else {
+                state.postValue(State.Fail(Throwable("miss internet")))
+            }
         }
     }
 
     private fun makeRequest(room: Room) {
-        if (internetCheck.isOnline()) {
-            state.postValue(State.Pending())
-        } else {
-            state.postValue(State.Fail(Throwable("miss internet")))
-            return
-        }
+        state.postValue(State.Pending())
 
         provider.postRoom(room) {
             val newState = when (it) {
@@ -53,7 +54,6 @@ class CreateRoomViewModel(private val internetCheck: InternetCheck) : ViewModel(
 
             state.postValue(newState)
         }
-
     }
 
     interface InternetCheck {

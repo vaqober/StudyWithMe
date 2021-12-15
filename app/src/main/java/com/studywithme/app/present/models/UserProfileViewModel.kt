@@ -6,6 +6,7 @@ import androidx.core.os.postDelayed
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.studywithme.app.business.providers.INetworkProvider
 import com.studywithme.app.business.providers.IUserProvider
 import com.studywithme.app.business.providers.Result
 import com.studywithme.app.objects.AbstractUser
@@ -17,6 +18,7 @@ import org.koin.core.component.inject
 class UserProfileViewModel : ViewModel(), KoinComponent {
     private val handler = Handler(Looper.getMainLooper())
     private val provider by inject<IUserProvider>()
+    private val providerNetwork by inject<INetworkProvider>()
     private val state = MutableLiveData<State<AbstractUser>>()
 
     fun getState(): LiveData<State<AbstractUser>> = state
@@ -32,20 +34,27 @@ class UserProfileViewModel : ViewModel(), KoinComponent {
     private fun postponedQuery(query: String) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 500) {
-            makeRequest(query)
+            if (providerNetwork.isConnected()) {
+                makeRequest(query)
+            } else {
+                state.postValue(State.Fail(Throwable("miss internet")))
+            }
         }
     }
 
     private fun postponedQuery(query: User) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 500) {
-            makeRequest(query)
+            if (providerNetwork.isConnected()) {
+                makeRequest(query)
+            } else {
+                state.postValue(State.Fail(Throwable("miss internet")))
+            }
         }
     }
 
     private fun makeRequest(query: String) {
         state.postValue(State.Pending())
-
         provider.getUserById(query) {
             val newState = when (it) {
                 is Result.Success -> State.Success(it.data)
@@ -58,7 +67,6 @@ class UserProfileViewModel : ViewModel(), KoinComponent {
 
     private fun makeRequest(query: User) {
         state.postValue(State.Pending())
-
         provider.putUser(query) {
             val newState = when (it) {
                 is Result.Success -> State.Success(it.data)

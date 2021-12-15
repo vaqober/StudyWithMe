@@ -4,6 +4,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/main_background"
         android:padding="20dp">
 
     <ImageView
@@ -18,5 +19,6 @@
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/message_text_color"
             android:text="@string/user_name"/>
 </LinearLayout>

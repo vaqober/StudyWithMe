@@ -5,6 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/main_background"
         tools:context=".present.fragments.CreateRoomFragment">
 
     <androidx.cardview.widget.CardView
@@ -15,6 +16,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:cardBackgroundColor="@color/message_background"
             app:cardCornerRadius="100dp">
         <ImageView
                 android:id="@+id/photo_image"
@@ -39,12 +41,17 @@
             app:boxCornerRadiusTopEnd="@dimen/corner_radius_text_field"
             app:boxCornerRadiusBottomStart="@dimen/corner_radius_text_field"
             app:boxCornerRadiusTopStart="@dimen/corner_radius_text_field"
+            app:boxStrokeColor="@color/message_background"
+            app:boxBackgroundColor="@color/message_field_background"
+            app:hintTextColor="@color/message_text_color"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:hint="@string/create_room_room_name_text_field_hint">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textCursorDrawable="@null"
+                android:textColor="@color/message_text_color"
                 android:gravity="center" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,6 +68,9 @@
             app:boxCornerRadiusTopEnd="@dimen/corner_radius_text_field"
             app:boxCornerRadiusBottomStart="@dimen/corner_radius_text_field"
             app:boxCornerRadiusTopStart="@dimen/corner_radius_text_field"
+            app:boxStrokeColor="@color/message_background"
+            app:boxBackgroundColor="@color/message_field_background"
+            app:hintTextColor="@color/message_text_color"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <AutoCompleteTextView
@@ -68,6 +78,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/room_theme_text"
+                android:textCursorDrawable="@null"
+                android:textColor="@color/message_text_color"
                 android:gravity="center"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,12 +96,17 @@
             app:boxCornerRadiusTopEnd="@dimen/corner_radius_text_field"
             app:boxCornerRadiusBottomStart="@dimen/corner_radius_text_field"
             app:boxCornerRadiusTopStart="@dimen/corner_radius_text_field"
+            app:boxStrokeColor="@color/message_background"
+            app:boxBackgroundColor="@color/message_field_background"
+            app:hintTextColor="@color/message_text_color"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:hint="@string/create_room_description_text_field">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textCursorDrawable="@null"
+                android:textColor="@color/message_text_color"
                 android:gravity="center"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,6 +130,7 @@
             app:layout_constraintStart_toStartOf="@id/private_switch"
             app:layout_constraintEnd_toEndOf="@id/private_switch"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/message_text_color"
             app:cornerRadius="@dimen/corner_radius_text_field"
             android:text="@string/create_room_create_button_text"/>
 

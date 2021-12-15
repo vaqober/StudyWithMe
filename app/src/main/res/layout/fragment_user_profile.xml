@@ -4,6 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/main_background"
         tools:context="com.studywithme.app.present.fragments.UserProfileFragment">
 
     <TextView
@@ -15,6 +16,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginBottom="@dimen/text_margin"
             android:text="@string/user_name"
+            android:textColor="@color/message_text_color"
             style="@style/TextAppearance.AppCompat.Headline" />
 
     <androidx.cardview.widget.CardView
@@ -68,6 +70,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 android:text="@string/user_description"
                 android:padding="@dimen/text_margin"
+                android:background="@color/message_background"
+                android:textColor="@color/message_text_color"
                 style="@style/TextAppearance.AppCompat.Body1" />
     </androidx.cardview.widget.CardView>
 
@@ -80,6 +84,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:cornerRadius="@dimen/corner_radius_text_field"
+            android:textColor="@color/message_text_color"
             android:text="@string/button_rooms"/>
 
     <com.google.android.material.button.MaterialButton

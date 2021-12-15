@@ -7,6 +7,7 @@
         android:layout_marginEnd="@dimen/element_small_margin"
         android:layout_marginBottom="@dimen/element_margin"
         app:cardCornerRadius="@dimen/corner_radius_small_field"
+
         app:cardPreventCornerOverlap="true"
         android:gravity="center">
 
@@ -14,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/text_margin"
+            android:background="@color/message_background"
             android:orientation="horizontal">
 
         <ImageView
@@ -37,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/room_title"
-                    android:textColor="@color/black"
+                    android:textColor="@color/message_text_color"
                     android:textAppearance="?attr/textAppearanceListItem" />
 
             <TextView
@@ -47,7 +49,7 @@
                     android:maxLines="2"
                     android:ellipsize="end"
                     android:text="@string/room_description"
-                    android:textColor="@color/black"
+                    android:textColor="@color/message_text_color"
                     android:textAppearance="?attr/textAppearanceListItemSecondary" />
         </LinearLayout>
 
@@ -56,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/room_theme"
-                android:textColor="@color/black"
+                android:textColor="@color/message_text_color"
                 android:textAppearance="?attr/textAppearanceListItemSecondary" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

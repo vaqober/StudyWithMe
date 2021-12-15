@@ -4,6 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/main_background"
         tools:context=".present.fragments.ChatFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -40,12 +41,16 @@
                 app:boxCornerRadiusTopEnd="@dimen/corner_radius_text_field"
                 app:boxCornerRadiusBottomStart="@dimen/corner_radius_text_field"
                 app:boxCornerRadiusTopStart="@dimen/corner_radius_text_field"
+                app:boxStrokeColor="@color/message_background"
+                app:boxBackgroundColor="@color/message_field_background"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginBottom="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textCursorDrawable="@null"
+                    android:textColor="@color/message_text_color"
                     android:maxHeight="120dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 

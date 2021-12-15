@@ -9,9 +9,15 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background">#CCCCCC</color>
     <color name="room_name_edit_text_color">#C4C4C4</color>
-    <color name="nav_profile_header_background_color">#6F97DD</color>
+    <color name="nav_profile_header_background_color">#363940</color>
 
     <color name="register_activity_edit_text_background">#F0F0F0</color>
     <color name="register_activity_btn_color">#FFC0CB</color>
     <color name="register_activity_forget_password_text_color">#0028F9</color>
+
+    <color name="main_background">#303136</color>
+    <color name="message_background">#363940</color>
+    <color name="message_text_color">#bdb2ae</color>
+    <color name="message_field_background">#40454b</color>
+    <color name="toolbar_background">#212226</color>
 </resources>

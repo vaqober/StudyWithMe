@@ -13,7 +13,8 @@
         tools:context="com.studywithme.app.present.fragments.RoomListFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/main_background">
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/room_list"
@@ -23,6 +24,7 @@
             android:layout_marginStart="@dimen/element_margin"
             android:layout_marginEnd="@dimen/element_margin"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:overScrollMode="never"
             app:layoutManager="LinearLayoutManager"
             tools:listitem="@layout/fragment_room_list_item"
             app:layout_constraintTop_toTopOf="parent" />

@@ -53,8 +53,4 @@ class CreateRoomViewModel : ViewModel(), KoinComponent {
             state.postValue(newState)
         }
     }
-
-    interface InternetCheck {
-        fun isOnline(): Boolean
-    }
 }

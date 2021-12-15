@@ -5,13 +5,12 @@ import com.studywithme.app.objects.message.Message
 
 interface IMessageProvider {
     fun allMessages(
-        roomId: String,
+        roomId: Int,
         query: String,
         callback: (result: Result<List<AbstractMessage>>) -> Unit
     )
-
     fun postMessage(
-        roomId: String,
+        roomId: Int,
         message: Message,
         callback: (result: Result<AbstractMessage>) -> Unit
     )

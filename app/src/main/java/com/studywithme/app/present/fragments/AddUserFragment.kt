@@ -87,12 +87,12 @@ class AddUserFragment : Fragment(), UserRecyclerViewAdapter.OnUserClickListener 
         val rooms = usersListAdapter.values[position].getRoomsList()
         val name = usersListAdapter.values[position].getName()
 
-        val roomId = requireArguments().getString(ARG_ROOM)
+        val roomId = requireArguments().getLong(ARG_ROOM)
 
         if (rooms.contains(roomId)) {
             Toast.makeText(requireContext(), "$name is in this room", Toast.LENGTH_SHORT).show()
         } else {
-            rooms.add(roomId.toString())
+            rooms.add(roomId)
             val userId = usersListAdapter.values[position].getId()
             val photo = usersListAdapter.values[position].getPhotoUri()
             val description = usersListAdapter.values[position].getDescription()

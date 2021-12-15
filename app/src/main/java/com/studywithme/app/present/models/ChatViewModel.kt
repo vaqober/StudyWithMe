@@ -24,15 +24,15 @@ class ChatViewModel : ViewModel(), KoinComponent {
 
     fun getState(): LiveData<State<List<AbstractMessage>>> = state
 
-    fun allMessages(roomId: String, query: String) {
-        postponedQuery(roomId, query)
+    fun allMessages(roomId: Int, query: String) {
+        postponedSearch(roomId, query)
     }
 
-    fun postMessage(roomId: String, message: Message) {
-        postponedQuery(roomId, message)
+    fun postMessage(roomId: Int, message: Message) {
+        postponedSearch(roomId, message)
     }
 
-    private fun postponedQuery(roomId: String, query: String) {
+    private fun postponedSearch(roomId: Int, query: String) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {
             if (providerNetwork.isConnected()) {
@@ -43,7 +43,7 @@ class ChatViewModel : ViewModel(), KoinComponent {
         }
     }
 
-    private fun postponedQuery(roomId: String, message: Message) {
+    private fun postponedSearch(roomId: Int, message: Message) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {
             if (providerNetwork.isConnected()) {
@@ -54,7 +54,7 @@ class ChatViewModel : ViewModel(), KoinComponent {
         }
     }
 
-    private fun makeRequest(roomId: String, query: String) {
+    private fun makeRequest(roomId: Int, query: String) {
         provider.allMessages(roomId, query) {
             val newState = when (it) {
                 is Result.Success -> State.Success(it.data)
@@ -65,7 +65,7 @@ class ChatViewModel : ViewModel(), KoinComponent {
         }
     }
 
-    private fun makeRequest(roomId: String, message: Message) {
+    private fun makeRequest(roomId: Int, message: Message) {
         provider.postMessage(roomId, message) {
             val newState = when (it) {
                 is Result.Success -> State.Success(it.data)

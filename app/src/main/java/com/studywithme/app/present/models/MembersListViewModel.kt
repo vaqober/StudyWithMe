@@ -25,7 +25,7 @@ class MembersListViewModel : ViewModel(), KoinComponent {
 
     fun getState(): LiveData<State<List<AbstractUser>>> = state
 
-    fun getMembers(roomId: String) {
+    fun getMembers(roomId: Long) {
         postponedQuery(roomId)
     }
 
@@ -44,7 +44,7 @@ class MembersListViewModel : ViewModel(), KoinComponent {
         }
     }
 
-    private fun postponedQuery(roomId: String) {
+    private fun postponedQuery(roomId: Long) {
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed(delayInMillis = 600) {
             if (providerNetwork.isConnected()) {
@@ -68,7 +68,7 @@ class MembersListViewModel : ViewModel(), KoinComponent {
         }
     }
 
-    private fun makeRequest(roomId: String) {
+    private fun makeRequest(roomId: Long) {
         state.postValue(State.Pending())
 
         provider.getMembers(roomId) {

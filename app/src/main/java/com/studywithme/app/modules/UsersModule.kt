@@ -12,8 +12,7 @@ val usersModule = module() {
     factory<IUserProvider> { UserProvider(get()) }
 
     factory<IUserAccessor> {
-//        val baseUrl = "https://6161de9737492500176314c6.mockapi.io/api/develop/v1/"
-        val baseUrl = "https://studywithme-e5a96-default-rtdb.europe-west1.firebasedatabase.app/"
+        val baseUrl = "https://6161de9737492500176314c6.mockapi.io/api/develop/v1/"
 
         val gson = GsonBuilder()
             .create()

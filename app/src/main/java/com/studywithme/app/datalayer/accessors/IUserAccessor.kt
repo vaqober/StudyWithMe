@@ -9,18 +9,18 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface IUserAccessor {
-    @GET("users.json")
+    @GET("users")
     suspend fun getMembers(): UserList<User>
 
-    @GET("users.json")
+    @GET("users")
     suspend fun getAllUsers(): UserList<User>
 
-    @GET("users/users/{id}.json")
+    @GET("users/{id}")
     suspend fun getUserById(@Path("id") userId: String): User
 
-    @PUT("users/users/{id}.json")
+    @PUT("users/{id}")
     suspend fun putUser(@Path("id") userId: String, @Body user: User): User
 
-    @POST("users/users.json")
+    @POST("users")
     suspend fun postUser(@Body user: User): User
 }

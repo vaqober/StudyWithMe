@@ -12,7 +12,7 @@ import com.studywithme.app.business.providers.IGlideProvider
 import com.studywithme.app.objects.message.Message
 import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 class ChatRecyclerViewAdapter(
     val values: MutableList<Message>,
